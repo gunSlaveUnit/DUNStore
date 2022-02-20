@@ -9,6 +9,8 @@ services:
       - POSTGRES_NAME=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    networks:
+      - dunstore-net
   web:
     build: ./backend
     command: python manage.py runserver 0.0.0.0:8000
@@ -18,3 +20,9 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    networks:
+      - dunstore-net
+
+networks:
+  dunstore-net:
+    driver: bridge
