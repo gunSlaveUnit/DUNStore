@@ -14,3 +14,12 @@ class Product(models.Model):
     @abstractmethod
     def __str__(self):
         pass
+
+
+class Processor(Product):
+    cores_amount = models.IntegerField()
+    threads_amount = models.IntegerField()
+    technological_process = models.IntegerField()
+
+    def __str__(self):
+        return self.title
