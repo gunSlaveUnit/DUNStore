@@ -7,9 +7,9 @@ class Product(models.Model):
     __metaclass__ = ABCMeta
 
     title = models.CharField(max_length=50)
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
-    is_published = models.BooleanField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    is_published = models.BooleanField(default=True)
 
     @abstractmethod
     def __str__(self):
