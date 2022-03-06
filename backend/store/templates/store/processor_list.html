@@ -3,9 +3,10 @@
 {% block content %}
     {% for processor in processors %}
         <div>
-            <p {{ processor.cores_amount }}/>
-            <p {{ processor.threads_amount }}/>
-            <p {{ processor.technological_process }}/>
+            <p>{{ processor.title }}</p>
+            <p>{{ processor.cores_amount }}</p>
+            <p>{{ processor.threads_amount }}</p>
+            <p>{{ processor.technological_process }}</p>
         </div>
     {% endfor %}
 {% endblock %}
