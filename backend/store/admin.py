@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from store.models import Processor
+
+
+@admin.register(Processor)
+class ProcessorAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
