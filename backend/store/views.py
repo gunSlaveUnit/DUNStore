@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 
-from models import Processor
+from store.models import Processor
 
 
 class Processors(ListView):
