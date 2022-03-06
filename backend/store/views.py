@@ -11,5 +11,5 @@ class Processors(ListView):
 
 class ProcessorCreate(CreateView):
     model = Processor
-    fields = '__all__'
+    fields = ('title', 'price', 'is_published', 'cores_amount', 'threads_amount', 'technological_process')
     template_name = 'store/processor_create.html'
