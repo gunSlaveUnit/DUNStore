@@ -12,3 +12,4 @@ class Processors(ListView):
 class ProcessorCreate(CreateView):
     model = Processor
     fields = '__all__'
+    template_name = 'store/processor_create.html'
