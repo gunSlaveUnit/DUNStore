@@ -1,7 +1,7 @@
 from django.urls import path
 
-from store.views import index
+from store.views import Processors
 
 urlpatterns = [
-    path('', index, name='index')
+    path('processors/', Processors.as_view(), name='processors')
 ]
