@@ -2,11 +2,6 @@
 
 {% block content %}
     {% for processor in processors %}
-        <div>
-            <p>{{ processor.title }}</p>
-            <p>{{ processor.cores_amount }}</p>
-            <p>{{ processor.threads_amount }}</p>
-            <p>{{ processor.technological_process }}</p>
-        </div>
+        <a href="{% url 'processor_detail' processor.slug %}">{{ processor.title }}</a>
     {% endfor %}
 {% endblock %}
