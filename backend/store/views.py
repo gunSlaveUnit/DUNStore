@@ -22,6 +22,6 @@ class ProcessorDetail(DetailView):
     context_object_name = 'processor'
 
 
-class MovieUpdate(UpdateView):
+class ProcessorUpdate(UpdateView):
     model = Processor
     fields = '__all__'
