@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 from store.models import Processor
 
@@ -11,5 +11,12 @@ class Processors(ListView):
 
 class ProcessorCreate(CreateView):
     model = Processor
-    fields = ('title', 'price', 'is_published', 'cores_amount', 'threads_amount', 'technological_process')
+    slug_field = 'slug'
+    fields = '__all__'
     template_name = 'store/processor_create.html'
+
+
+class ProcessorDetail(DetailView):
+    model = Processor
+    slug_field = 'slug'
+    context_object_name = 'processor'
