@@ -25,6 +25,7 @@ class ProcessorDetail(DetailView):
 class ProcessorUpdate(UpdateView):
     model = Processor
     fields = '__all__'
+    template_name = 'store/processor_create.html'
 
 
 class ProcessorDelete(DeleteView):
