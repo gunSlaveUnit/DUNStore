@@ -1,7 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.views.generic import ListView
+
+from models import Processor
 
 
-def index(request):
-    print(request)
-    return HttpResponse("Hello from store")
+class Processors(ListView):
+    model = Processor
+    queryset = Processor.objects.filter(is_published=True)
+    context_object_name = 'processors'
