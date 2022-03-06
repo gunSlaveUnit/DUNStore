@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView
 
 from store.models import Processor
 
@@ -20,3 +20,8 @@ class ProcessorDetail(DetailView):
     model = Processor
     slug_field = 'slug'
     context_object_name = 'processor'
+
+
+class MovieUpdate(UpdateView):
+    model = Processor
+    fields = '__all__'
