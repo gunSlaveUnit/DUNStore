@@ -1,3 +1,4 @@
+from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from store.models import Processor
@@ -32,4 +33,4 @@ class ProcessorDelete(DeleteView):
     model = Processor
     fields = '__all__'
     context_object_name = 'processor'
-    success_url = 'processors'
+    success_url = reverse_lazy('processors')
