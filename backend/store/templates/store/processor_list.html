@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for processor in processors %}
+        <div>
+            <p {{ processor.cores_amount }}/>
+            <p {{ processor.threads_amount }}/>
+            <p {{ processor.technological_process }}/>
+        </div>
+    {% endfor %}
+{% endblock %}
