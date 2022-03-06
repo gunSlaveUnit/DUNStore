@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from store.models import Processor
 
@@ -25,3 +25,10 @@ class ProcessorDetail(DetailView):
 class ProcessorUpdate(UpdateView):
     model = Processor
     fields = '__all__'
+
+
+class ProcessorDelete(DeleteView):
+    model = Processor
+    fields = '__all__'
+    context_object_name = 'processor'
+    success_url = 'processors'
