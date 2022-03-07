@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete this: {{ processor.title }}?</p>
+        <button type="submit">Yes, Delete This Product</button>
+        <button type="submit"><a href="{% url 'processor_detail' processor.slug %}">No</a></button>
+    </form>
+{% endblock %}
