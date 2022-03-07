@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView, DeleteView
-from rest_framework.generics import ListAPIView, CreateAPIView
+from django.views.generic import DetailView, DeleteView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
 
 from store.models import Processor
 from store.serializers import ProcessorSerializer
@@ -24,10 +24,11 @@ class ProcessorDetail(DetailView):
     context_object_name = 'processor'
 
 
-class ProcessorUpdate(UpdateView):
+class ProcessorUpdateAPIView(UpdateAPIView):
     model = Processor
-    fields = '__all__'
-    template_name = 'store/processor_create.html'
+    serializer_class = ProcessorSerializer
+    queryset = Processor.objects.all()
+    lookup_field = 'slug'
 
 
 class ProcessorDelete(DeleteView):
