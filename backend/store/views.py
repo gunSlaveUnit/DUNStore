@@ -1,13 +1,16 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from rest_framework.generics import ListAPIView
 
 from store.models import Processor
+from store.serializers import ProcessorSerializer
 
 
-class Processors(ListView):
+class ProcessorsAPIView(ListAPIView):
     model = Processor
     queryset = Processor.objects.filter(is_published=True)
     context_object_name = 'processors'
+    serializer_class = ProcessorSerializer
 
 
 class ProcessorCreate(CreateView):
