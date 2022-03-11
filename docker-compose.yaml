@@ -28,7 +28,7 @@ services:
       - '0.0.0.0:8000:8000'
   frontend:
     restart: always
-    command: npm start
+    command: npm install bootstrap && npm start
     container_name: frontend
     build:
       context: ./frontend/
