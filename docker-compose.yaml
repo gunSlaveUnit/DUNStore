@@ -22,6 +22,8 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes:
       - .:/code
+    env_file:
+       - .env.dev
     depends_on:
       - db
     ports:
