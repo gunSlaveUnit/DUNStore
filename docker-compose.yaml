@@ -16,10 +16,6 @@ services:
     build: ./backend
     container_name: backend
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     volumes:
       - .:/code
     env_file:
