@@ -1,7 +1,0 @@
-{% extends 'base.html' %}
-
-{% block content %}
-    {% for processor in processors %}
-        <a href="{% url 'processor_detail' processor.slug %}">{{ processor.title }}</a>
-    {% endfor %}
-{% endblock %}
