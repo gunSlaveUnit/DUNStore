@@ -2,6 +2,10 @@ import React from 'react';
 
 export default class Footer extends React.Component {
     render() {
-        return <p>hello from footer</p>
+        return (
+            <div>
+                &copy; GURU {new Date().getFullYear()}. All rights reserved
+            </div>
+        );
     }
 }
