@@ -1,8 +1,7 @@
 import React from 'react';
 
 function fetchProducts(productsListName) {
-    console.log(`http://localhost:8000/api/v1/store/${productsListName}`)
-    return fetch(`http://localhost:8000/api/v1/store/${productsListName}`)
+    return fetch(`http://localhost:8000/api/v1/store/${productsListName}/`)
 }
 
 export default class Content extends React.Component {
@@ -14,18 +13,24 @@ export default class Content extends React.Component {
     }
 
     componentDidMount() {
-        fetchProducts(this.props.toString()).then(response => {
-            this.setState({
-                products: response.products
+        const result = fetchProducts(this.props.productsListName);
+        const products = result.json();
+        this.setState({
+                products
             })
-        })
-        console.log(this.products)
     }
 
     render() {
         return (
             <div>
-                Some list of products
+                <ul>
+                  {this.state.products.map(item => (
+                  <div>
+                    <h1>{item.title}</h1>
+                    <span>{item.price}</span>
+                  </div>
+                  ))}
+                  </ul>
             </div>
         );
     }
