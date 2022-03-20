@@ -30,6 +30,9 @@ class SupplyType(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('supply_type_detail', kwargs={'slug': self.slug})
+
 
 class Processor(Product):
     supply_type = models.OneToOneField(to=SupplyType, on_delete=models.SET_NULL)
