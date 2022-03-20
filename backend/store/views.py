@@ -1,7 +1,7 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
-from store.models import Processor
-from store.serializers import ProcessorSerializer
+from store.models import Processor, SupplyType
+from store.serializers import ProcessorSerializer, SupplyTypeSerializer
 
 
 class ProcessorsAPIView(ListAPIView):
@@ -34,4 +34,37 @@ class ProcessorDeleteAPIView(DestroyAPIView):
     model = Processor
     serializer_class = ProcessorSerializer
     queryset = Processor.objects.all()
+    lookup_field = 'slug'
+
+
+class SupplyTypeAPIView(ListAPIView):
+    model = SupplyType
+    queryset = SupplyType.objects.all()
+    context_object_name = 'supplyTypes'
+    serializer_class = SupplyTypeSerializer
+
+
+class SupplyTypeCreateAPIView(CreateAPIView):
+    model = SupplyType
+    serializer_class = SupplyTypeSerializer
+
+
+class SupplyTypeDetailAPIView(RetrieveAPIView):
+    model = SupplyType
+    lookup_field = 'slug'
+    queryset = SupplyType.objects.all()
+    serializer_class = SupplyTypeSerializer
+
+
+class SupplyTypeUpdateAPIView(UpdateAPIView):
+    model = SupplyType
+    serializer_class = SupplyTypeSerializer
+    queryset = SupplyType.objects.all()
+    lookup_field = 'slug'
+
+
+class SupplyTypeDeleteAPIView(DestroyAPIView):
+    model = SupplyType
+    serializer_class = SupplyTypeSerializer
+    queryset = SupplyType.objects.all()
     lookup_field = 'slug'
