@@ -23,7 +23,16 @@ class Product(models.Model):
         pass
 
 
+class SupplyType(models.Model):
+    title = models.CharField(max_length=10)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.title
+
+
 class Processor(Product):
+    supply_type = models.OneToOneField(to=SupplyType, on_delete=models.SET_NULL)
     cores_amount = models.IntegerField()
     threads_amount = models.IntegerField()
     technological_process = models.IntegerField()
