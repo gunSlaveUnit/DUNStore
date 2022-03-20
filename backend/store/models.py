@@ -35,7 +35,7 @@ class SupplyType(models.Model):
 
 
 class Processor(Product):
-    supply_type = models.OneToOneField(to=SupplyType, on_delete=models.SET_NULL)
+    supply_type = models.ForeignKey(to=SupplyType, on_delete=models.PROTECT)
     cores_amount = models.IntegerField()
     threads_amount = models.IntegerField()
     technological_process = models.IntegerField()
