@@ -18,7 +18,8 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load_dotenv(os.path.abspath(os.path.curdir) + '/.env.dev')
+env_dir = str(BASE_DIR.resolve().parent.absolute())
+load_dotenv(os.path.abspath(env_dir).title() + '/.env.dev')
 
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
