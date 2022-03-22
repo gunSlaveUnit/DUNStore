@@ -6,7 +6,7 @@ from store.serializers import ProcessorSerializer, SupplyTypeSerializer
 
 class ProcessorsAPIView(ListAPIView):
     model = Processor
-    queryset = Processor.objects.select_related().filter(is_published=True)
+    queryset = Processor.objects.filter(is_published=True)
     context_object_name = 'processors'
     serializer_class = ProcessorSerializer
 
@@ -19,21 +19,21 @@ class ProcessorCreateAPIView(CreateAPIView):
 class ProcessorDetailAPIView(RetrieveAPIView):
     model = Processor
     lookup_field = 'slug'
-    queryset = Processor.objects.select_related().all()
+    queryset = Processor.objects.all()
     serializer_class = ProcessorSerializer
 
 
 class ProcessorUpdateAPIView(UpdateAPIView):
     model = Processor
     serializer_class = ProcessorSerializer
-    queryset = Processor.objects.select_related().all()
+    queryset = Processor.objects.all()
     lookup_field = 'slug'
 
 
 class ProcessorDeleteAPIView(DestroyAPIView):
     model = Processor
     serializer_class = ProcessorSerializer
-    queryset = Processor.objects.select_related().all()
+    queryset = Processor.objects.all()
     lookup_field = 'slug'
 
 
