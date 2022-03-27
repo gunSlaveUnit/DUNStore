@@ -1,5 +1,5 @@
 import React from 'react';
-import Processor from "./Processor";
+import ProductCard from "./ProductCard";
 
 export default class Content extends React.Component {
     render() {
