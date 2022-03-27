@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency
+from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration
 
 
 # TODO: make admin.register(model_name), not classes
@@ -33,4 +33,9 @@ class RAMTypeAdmin(admin.ModelAdmin):
 
 @admin.register(RAMFrequency)
 class RAMFrequencyAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(RAMGeneration)
+class RAMGenerationAdmin(admin.ModelAdmin):
     pass
