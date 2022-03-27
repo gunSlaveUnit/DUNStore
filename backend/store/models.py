@@ -14,14 +14,22 @@ class Entity(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     is_published = models.BooleanField(default=True)
 
+    class Meta:
+        abstract = True
+
     def __str__(self):
         return self.title
 
 
 class Product(Entity):
     """ Represents the final finished component for sale """
+
+    __metaclass__ = ABCMeta
     price = models.IntegerField()
-    weight = models.DecimalField()
+    weight = models.FloatField()
+
+    class Meta:
+        abstract = True
 
 
 class SupplyType(Entity):
