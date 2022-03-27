@@ -56,6 +56,10 @@ class RAMGeneration(Entity):
     pass
 
 
+class RAMWorkingMode(Entity):
+    pass
+
+
 class Processor(Product):
     supply_type = models.ForeignKey(SupplyType, on_delete=models.PROTECT)
     socket = models.ForeignKey(Socket, on_delete=models.PROTECT)
