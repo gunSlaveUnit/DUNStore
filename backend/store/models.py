@@ -81,3 +81,7 @@ class Processor(Product):
     cores_amount = models.IntegerField()
     threads_amount = models.IntegerField()
     technological_process = models.IntegerField()
+
+
+class PowerUnit(Product):
+    power = models.IntegerField()

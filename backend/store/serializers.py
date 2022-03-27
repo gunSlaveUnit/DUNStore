@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
 
-from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
-    RAMLatency, RAM
+from models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
+    RAMLatency, RAM, PowerUnit
 
 
 class SupplyTypeSerializer(ModelSerializer):
@@ -130,3 +130,9 @@ class ProcessorSerializer(ModelSerializer):
         internal_data['supply_type'] = supply_type
         internal_data['socket'] = socket
         return internal_data
+
+
+class PowerUnitSerializer(ModelSerializer):
+    class Meta:
+        model = PowerUnit
+        fields = '__all__'
