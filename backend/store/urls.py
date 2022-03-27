@@ -7,15 +7,15 @@ from views import ProcessorViewSet, SupplyTypeViewSet, SocketViewSet, ChipsetVie
 router = routers.SimpleRouter()
 router.register(r'processors', ProcessorViewSet)
 router.register(r'rams', RAMViewSet)
-router.register(r'supplyTypes', SupplyTypeViewSet)
+router.register(r'supply_types', SupplyTypeViewSet)
 router.register(r'sockets', SocketViewSet)
 router.register(r'chipsets', ChipsetViewSet)
-router.register(r'RAMTypes', RAMTypeViewSet)
-router.register(r'RAMFrequencies', RAMFrequencyViewSet)
-router.register(r'RAMGenerations', RAMGenerationViewSet)
-router.register(r'RAMWorkingModes', RAMWorkingModeViewSet)
-router.register(r'RAMLatencies', RAMLatencyViewSet)
-router.register(r'powerUnits', PowerUnitViewSet)
+router.register(r'ram_types', RAMTypeViewSet)
+router.register(r'ram_frequencies', RAMFrequencyViewSet)
+router.register(r'ram_generations', RAMGenerationViewSet)
+router.register(r'ram_working_modes', RAMWorkingModeViewSet)
+router.register(r'ram_latencies', RAMLatencyViewSet)
+router.register(r'power_units', PowerUnitViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
