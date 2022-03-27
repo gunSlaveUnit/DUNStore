@@ -1,37 +1,50 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
 
 from django.db import models
-from django.urls import reverse
 
 
-class Product(models.Model):
+class Entity(models.Model):
+    """ Represents a "string" base entity.
+    Needed to represent a name for selection anywhere """
+
     __metaclass__ = ABCMeta
-
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=100, unique=True)
-    price = models.IntegerField()
     is_published = models.BooleanField(default=True)
-
-    @abstractmethod
-    def __str__(self):
-        pass
-
-    @abstractmethod
-    def get_absolute_url(self):
-        pass
-
-
-class SupplyType(models.Model):
-    title = models.CharField(max_length=10)
-    slug = models.SlugField(max_length=100, unique=True)
 
     def __str__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('supply_type_detail', kwargs={'slug': self.slug})
+
+class Product(Entity):
+    """ Represents the final finished component for sale """
+    price = models.IntegerField()
+
+
+class SupplyType(Entity):
+    pass
+
+
+class Socket(Entity):
+    pass
+
+
+class Chipset(Entity):
+    pass
+
+
+class RAMType(Entity):
+    pass
+
+
+class RAMFrequency(Entity):
+    pass
+
+
+class RAMGeneration(Entity):
+    pass
 
 
 class Processor(Product):
@@ -39,64 +52,3 @@ class Processor(Product):
     cores_amount = models.IntegerField()
     threads_amount = models.IntegerField()
     technological_process = models.IntegerField()
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('processor_detail', kwargs={'slug': self.slug})
-
-
-class Socket(models.Model):
-    title = models.CharField(max_length=10)
-    slug = models.SlugField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('socket_detail', kwargs={'slug': self.slug})
-
-
-class Chipset(models.Model):
-    title = models.CharField(max_length=10)
-    slug = models.SlugField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('chipset_detail', kwargs={'slug': self.slug})
-
-
-class RAMType(models.Model):
-    title = models.CharField(max_length=10)
-    slug = models.SlugField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('ram_type_detail', kwargs={'slug': self.slug})
-
-
-class RAMFrequency(models.Model):
-    title = models.CharField(max_length=10)
-    slug = models.SlugField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('ram_frequency_detail', kwargs={'slug': self.slug})
-
-
-class RAMGeneration(models.Model):
-    title = models.CharField(max_length=10)
-    slug = models.SlugField(max_length=100, unique=True)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return reverse('ram_generation_detail', kwargs={'slug': self.slug})
