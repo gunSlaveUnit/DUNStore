@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 
-from store.models import Processor, SupplyType, Socket, Chipset, SupportedRAMType
+from store.models import Processor, SupplyType, Socket, Chipset, RAMType
 from store.serializers import ProcessorSerializer, SupplyTypeSerializer, SocketSerializer, ChipsetSerializer, \
-    SupportedRAMTypeSerializer
+    RAMTypeSerializer
 
 
 class ProcessorViewSet(ModelViewSet):
@@ -30,6 +30,6 @@ class ChipsetViewSet(ModelViewSet):
 
 
 class SupportedRAMTypeViewSet(ModelViewSet):
-    queryset = SupportedRAMType.objects.all()
-    serializer_class = SupportedRAMTypeSerializer
+    queryset = RAMType.objects.all()
+    serializer_class = RAMTypeSerializer
     lookup_field = 'slug'

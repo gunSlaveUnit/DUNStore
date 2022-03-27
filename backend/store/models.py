@@ -69,7 +69,7 @@ class Chipset(models.Model):
         return reverse('chipset_detail', kwargs={'slug': self.slug})
 
 
-class SupportedRAMType(models.Model):
+class RAMType(models.Model):
     title = models.CharField(max_length=10)
     slug = models.SlugField(max_length=100, unique=True)
 
