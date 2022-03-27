@@ -29,7 +29,7 @@ class ChipsetViewSet(ModelViewSet):
     lookup_field = 'slug'
 
 
-class SupportedRAMTypeViewSet(ModelViewSet):
+class RAMTypeViewSet(ModelViewSet):
     queryset = RAMType.objects.all()
     serializer_class = RAMTypeSerializer
     lookup_field = 'slug'
