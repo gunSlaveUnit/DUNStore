@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
 
-from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode
+from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
+    RAMLatency
 
 
 class SupplyTypeSerializer(ModelSerializer):
@@ -42,6 +43,12 @@ class RAMGenerationSerializer(ModelSerializer):
 class RAMWorkingModeSerializer(ModelSerializer):
     class Meta:
         model = RAMWorkingMode
+        fields = '__all__'
+
+
+class RAMLatencySerializer(ModelSerializer):
+    class Meta:
+        model = RAMLatency
         fields = '__all__'
 
 

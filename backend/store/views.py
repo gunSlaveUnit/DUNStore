@@ -1,8 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 
-from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode
+from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
+    RAMLatency
 from store.serializers import ProcessorSerializer, SupplyTypeSerializer, SocketSerializer, ChipsetSerializer, \
-    RAMTypeSerializer, RAMFrequencySerializer, RAMGenerationSerializer, RAMWorkingModeSerializer
+    RAMTypeSerializer, RAMFrequencySerializer, RAMGenerationSerializer, RAMWorkingModeSerializer, RAMLatencySerializer
 
 
 class ProcessorViewSet(ModelViewSet):
@@ -50,4 +51,10 @@ class RAMGenerationViewSet(ModelViewSet):
 class RAMWorkingModeViewSet(ModelViewSet):
     queryset = RAMWorkingMode.objects.all()
     serializer_class = RAMWorkingModeSerializer
+    lookup_field = 'slug'
+
+
+class RAMLatencyViewSet(ModelViewSet):
+    queryset = RAMLatency.objects.all()
+    serializer_class = RAMLatencySerializer
     lookup_field = 'slug'
