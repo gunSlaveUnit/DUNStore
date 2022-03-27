@@ -41,6 +41,7 @@ class RAMGenerationSerializer(ModelSerializer):
 
 class ProcessorSerializer(ModelSerializer):
     supply_type = SupplyTypeSerializer(read_only=True)
+    socket = SocketSerializer(read_only=True)
 
     class Meta:
         model = Processor
@@ -48,12 +49,19 @@ class ProcessorSerializer(ModelSerializer):
 
     def to_internal_value(self, data):
         supply_type_id = data.get('supply_type')
+        socket_id = data.get('socket')
         internal_data = super().to_internal_value(data)
         try:
             supply_type = SupplyType.objects.get(id=supply_type_id)
+            socket = Socket.objects.get(id=socket_id)
         except SupplyType.DoesNotExist:
             raise ValidationError(
                 {'supply_type': ['Item does not exist']},
             )
+        except Socket.DoesNotExist:
+            raise ValidationError(
+                {'socket': ['Item does not exist']},
+            )
         internal_data['supply_type'] = supply_type
+        internal_data['socket'] = socket
         return internal_data
