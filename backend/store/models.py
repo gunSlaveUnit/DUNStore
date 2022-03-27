@@ -21,6 +21,7 @@ class Entity(models.Model):
 class Product(Entity):
     """ Represents the final finished component for sale """
     price = models.IntegerField()
+    weight = models.DecimalField()
 
 
 class SupplyType(Entity):
