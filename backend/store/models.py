@@ -64,6 +64,17 @@ class RAMLatency(Entity):
     pass
 
 
+class RAM(Entity):
+    """ Represents one RAM module """
+
+    form_factor = models.ForeignKey(RAMType, on_delete=models.PROTECT)
+    generation = models.ForeignKey(RAMGeneration, on_delete=models.PROTECT)
+    mode = models.ForeignKey(RAMWorkingMode, on_delete=models.PROTECT)
+    frequency = models.ForeignKey(RAMFrequency, on_delete=models.PROTECT)
+    latency = models.ForeignKey(RAMLatency, on_delete=models.PROTECT)
+    capacity = models.IntegerField()
+
+
 class Processor(Product):
     supply_type = models.ForeignKey(SupplyType, on_delete=models.PROTECT)
     socket = models.ForeignKey(Socket, on_delete=models.PROTECT)
