@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework import routers
 
 from views import ProcessorViewSet, SupplyTypeViewSet, SocketViewSet, ChipsetViewSet, RAMTypeViewSet, \
-    RAMFrequencyViewSet, RAMGenerationViewSet, RAMWorkingModeViewSet, RAMLatencyViewSet, RAMViewSet, PowerUnitViewSet
+    RAMFrequencyViewSet, RAMGenerationViewSet, RAMWorkingModeViewSet, RAMLatencyViewSet, RAMViewSet, PowerUnitViewSet, \
+    BuildSerializer
 
 router = routers.SimpleRouter()
 router.register(r'processors', ProcessorViewSet)
@@ -16,6 +17,7 @@ router.register(r'ram_generations', RAMGenerationViewSet)
 router.register(r'ram_working_modes', RAMWorkingModeViewSet)
 router.register(r'ram_latencies', RAMLatencyViewSet)
 router.register(r'power_units', PowerUnitViewSet)
+router.register(r'builds', BuildSerializer)
 
 urlpatterns = [
     path('', include(router.urls)),
