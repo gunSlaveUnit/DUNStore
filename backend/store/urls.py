@@ -9,6 +9,7 @@ router.register(r'supplyTypes', SupplyTypeViewSet)
 router.register(r'sockets', SocketViewSet)
 router.register(r'chipsets', ChipsetViewSet)
 router.register(r'RAMTypes', RAMTypeViewSet)
+router.register(r'RAMFrequencies', RAMTypeViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
