@@ -77,4 +77,15 @@ class RAMType(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('supported_ram_type_detail', kwargs={'slug': self.slug})
+        return reverse('ram_type_detail', kwargs={'slug': self.slug})
+
+
+class RAMFrequency(models.Model):
+    title = models.CharField(max_length=10)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('ram_frequency_detail', kwargs={'slug': self.slug})
