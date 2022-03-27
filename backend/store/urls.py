@@ -4,9 +4,10 @@ from rest_framework import routers
 from store.views import ProcessorViewSet, SupplyTypeViewSet, SocketViewSet
 
 router = routers.SimpleRouter()
-router.register(r'processor', ProcessorViewSet)
-router.register(r'supplyType', SupplyTypeViewSet)
-router.register(r'socket', SocketViewSet)
+router.register(r'processors', ProcessorViewSet)
+router.register(r'supplyTypes', SupplyTypeViewSet)
+router.register(r'sockets', SocketViewSet)
+router.register(r'chipsets', SocketViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

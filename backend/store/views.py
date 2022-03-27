@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 
-from store.models import Processor, SupplyType, Socket
-from store.serializers import ProcessorSerializer, SupplyTypeSerializer, SocketSerializer
+from store.models import Processor, SupplyType, Socket, Chipset
+from store.serializers import ProcessorSerializer, SupplyTypeSerializer, SocketSerializer, ChipsetSerializer
 
 
 class ProcessorViewSet(ModelViewSet):
@@ -19,4 +19,10 @@ class SupplyTypeViewSet(ModelViewSet):
 class SocketViewSet(ModelViewSet):
     queryset = Socket.objects.all()
     serializer_class = SocketSerializer
+    lookup_field = 'slug'
+
+
+class ChipsetViewSet(ModelViewSet):
+    queryset = Chipset.objects.all()
+    serializer_class = ChipsetSerializer
     lookup_field = 'slug'

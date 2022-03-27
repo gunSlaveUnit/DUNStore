@@ -56,3 +56,14 @@ class Socket(models.Model):
 
     def get_absolute_url(self):
         return reverse('socket_detail', kwargs={'slug': self.slug})
+
+
+class Chipset(models.Model):
+    title = models.CharField(max_length=10)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('chipset_detail', kwargs={'slug': self.slug})
