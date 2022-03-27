@@ -3,13 +3,13 @@ import React from 'react';
 export default class Header extends React.Component {
     render() {
         return (
-            <div>
-                <ul>
-                    <li>Home</li>
-                    <li>Sign In</li>
-                    <li>Sign Up</li>
-                </ul>
-            </div>
+            <header>
+                <nav>
+                    <h6>Home</h6>
+                    <h6>Sign In</h6>
+                    <h6>Sign Up</h6>
+                </nav>
+            </header>
         );
     }
 }
