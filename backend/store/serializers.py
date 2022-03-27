@@ -1,11 +1,17 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
 
-from store.models import Processor, SupplyType
+from store.models import Processor, SupplyType, Socket
 
 
 class SupplyTypeSerializer(ModelSerializer):
     class Meta:
         model = SupplyType
+        fields = '__all__'
+
+
+class SocketSerializer(ModelSerializer):
+    class Meta:
+        model = Socket
         fields = '__all__'
 
 
