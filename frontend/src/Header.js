@@ -5,9 +5,11 @@ export default class Header extends React.Component {
         return (
             <header>
                 <nav>
-                    <h6>Home</h6>
-                    <h6>Sign In</h6>
-                    <h6>Sign Up</h6>
+                    <ul>
+                        <li>Home</li>
+                        <li>Sign In</li>
+                        <li>Sign Up</li>
+                    </ul>
                 </nav>
             </header>
         );
