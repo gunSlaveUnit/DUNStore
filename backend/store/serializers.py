@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
 
-from store.models import Processor, SupplyType, Socket, Chipset
+from store.models import Processor, SupplyType, Socket, Chipset, SupportedRAMType
 
 
 class SupplyTypeSerializer(ModelSerializer):
@@ -18,6 +18,12 @@ class SocketSerializer(ModelSerializer):
 class ChipsetSerializer(ModelSerializer):
     class Meta:
         model = Chipset
+        fields = '__all__'
+
+
+class SupportedRAMTypeSerializer(ModelSerializer):
+    class Meta:
+        model = SupportedRAMType
         fields = '__all__'
 
 

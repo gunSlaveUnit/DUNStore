@@ -67,3 +67,14 @@ class Chipset(models.Model):
 
     def get_absolute_url(self):
         return reverse('chipset_detail', kwargs={'slug': self.slug})
+
+
+class SupportedRAMType(models.Model):
+    title = models.CharField(max_length=10)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('supported_ram_type_detail', kwargs={'slug': self.slug})

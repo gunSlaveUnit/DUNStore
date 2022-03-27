@@ -8,6 +8,7 @@ router.register(r'processors', ProcessorViewSet)
 router.register(r'supplyTypes', SupplyTypeViewSet)
 router.register(r'sockets', SocketViewSet)
 router.register(r'chipsets', SocketViewSet)
+router.register(r'supportedRAMTypes', SocketViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
