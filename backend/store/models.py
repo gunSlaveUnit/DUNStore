@@ -12,7 +12,6 @@ class Entity(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField(max_length=100, unique=True)
-    is_published = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
@@ -33,6 +32,7 @@ class Product(Entity):
     weight = models.FloatField()
     warranty_period = models.ForeignKey(Period, on_delete=models.PROTECT)
     warranty_amount = models.IntegerField()
+    is_published = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
