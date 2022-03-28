@@ -22,16 +22,18 @@ export default class Content extends React.Component {
 
         console.log(this.cards)
 
-        this.state.cards = this.cards.map((c) =>
-            <ProductCard card = {c}/>
-        );
+        this.setState({
+            cards: this.state.cards.map((c) =>
+                <ProductCard card = {c}/>
+            )
+        });
     }
 
     render() {
         return (
             <main>
                 <article>
-                    <ul>{cards}</ul>
+                    <ul>{this.cards}</ul>
                 </article>
             </main>
         );
