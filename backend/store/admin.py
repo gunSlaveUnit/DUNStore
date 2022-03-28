@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
-    RAMLatency, RAM, PowerUnit, Build, GraphicsCard
+    RAMLatency, RAM, PowerUnit, Build, GraphicsCard, Period
 
 admin.site.register(Processor)
 admin.site.register(SupplyType)
@@ -16,3 +16,4 @@ admin.site.register(RAM)
 admin.site.register(PowerUnit)
 admin.site.register(Build)
 admin.site.register(GraphicsCard)
+admin.site.register(Period)

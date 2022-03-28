@@ -1,7 +1,13 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
 
 from models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
-    RAMLatency, RAM, PowerUnit, Build, GraphicsCard
+    RAMLatency, RAM, PowerUnit, Build, GraphicsCard, Period
+
+
+class PeriodSerializer(ModelSerializer):
+    class Meta:
+        model = Period
+        fields = '__all__'
 
 
 class SupplyTypeSerializer(ModelSerializer):

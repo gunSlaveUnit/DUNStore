@@ -21,12 +21,18 @@ class Entity(models.Model):
         return self.title
 
 
+class Period(Entity):
+    pass
+
+
 class Product(Entity):
     """ Represents the final finished component for sale """
 
     __metaclass__ = ABCMeta
     price = models.IntegerField()
     weight = models.FloatField()
+    warranty_period = models.ForeignKey(Period, on_delete=models.PROTECT)
+    warranty_amount = models.IntegerField()
 
     class Meta:
         abstract = True

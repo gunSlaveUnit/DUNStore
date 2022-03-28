@@ -1,10 +1,16 @@
 from rest_framework.viewsets import ModelViewSet
 
 from models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
-    RAMLatency, RAM, PowerUnit, Build, GraphicsCard
+    RAMLatency, RAM, PowerUnit, Build, GraphicsCard, Period
 from serializers import ProcessorSerializer, SupplyTypeSerializer, SocketSerializer, ChipsetSerializer, \
     RAMTypeSerializer, RAMFrequencySerializer, RAMGenerationSerializer, RAMWorkingModeSerializer, RAMLatencySerializer, \
-    RAMSerializer, PowerUnitSerializer, BuildSerializer, GraphicsCardSerializer
+    RAMSerializer, PowerUnitSerializer, BuildSerializer, GraphicsCardSerializer, PeriodSerializer
+
+
+class PeriodViewSet(ModelViewSet):
+    queryset = Period.objects.all()
+    serializer_class = PeriodSerializer
+    lookup_field = 'slug'
 
 
 class ProcessorViewSet(ModelViewSet):
