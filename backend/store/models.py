@@ -91,3 +91,9 @@ class Build(Product):
     processor = models.ForeignKey(Processor, on_delete=models.PROTECT)
     ram_module = models.ForeignKey(RAM, on_delete=models.PROTECT)
     power_unit = models.ForeignKey(PowerUnit, on_delete=models.PROTECT)
+
+
+class GraphicsCard(Product):
+    gpu_frequency = models.IntegerField()
+    video_memory_frequency = models.IntegerField()
+    technological_process = models.IntegerField()

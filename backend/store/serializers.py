@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, ValidationError
 
 from models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
-    RAMLatency, RAM, PowerUnit, Build
+    RAMLatency, RAM, PowerUnit, Build, GraphicsCard
 
 
 class SupplyTypeSerializer(ModelSerializer):
@@ -135,6 +135,12 @@ class ProcessorSerializer(ModelSerializer):
 class PowerUnitSerializer(ModelSerializer):
     class Meta:
         model = PowerUnit
+        fields = '__all__'
+
+
+class GraphicsCardSerializer(ModelSerializer):
+    class Meta:
+        model = GraphicsCard
         fields = '__all__'
 
 

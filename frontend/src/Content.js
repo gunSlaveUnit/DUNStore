@@ -23,7 +23,7 @@ export default class Content extends React.Component {
         console.log(this.cards)
 
         this.state.cards = this.cards.map((c) =>
-            <ProductCard card = c/>
+            <ProductCard card = {c}/>
         );
     }
 
