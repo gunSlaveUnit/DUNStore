@@ -70,7 +70,7 @@ class RAMLatency(Entity):
     pass
 
 
-class RAM(Entity):
+class RAM(Product):
     """ Represents one RAM module """
 
     form_factor = models.ForeignKey(RAMType, on_delete=models.PROTECT)
