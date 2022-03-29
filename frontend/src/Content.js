@@ -10,7 +10,8 @@ export default class Content extends React.Component {
     }
 
     fetchContent() {
-        return fetch("http://localhost:8000/api/v1/store/sockets/", {method: 'GET'})
+        console.log("http://localhost:8000/api/v1/store/processors/", {method: 'GET'});
+        return fetch("http://localhost:8000/api/v1/store/processors/", {method: 'GET'});
     }
 
     componentDidMount() {
@@ -20,7 +21,7 @@ export default class Content extends React.Component {
             });
         });
 
-        console.log(this.cards)
+        console.log(this.state.cards)
 
         this.setState({
             cards: this.state.cards.map((c) =>
