@@ -19,7 +19,7 @@ router.register(r'ram_latencies', RAMLatencyViewSet)
 router.register(r'power_units', PowerUnitViewSet)
 router.register(r'builds', BuildSerializer)
 router.register(r'graphics_cards', GraphicsCardSerializer)
-router.register(r'periods', GraphicsCardSerializer)
+router.register(r'periods', PeriodSerializer)
 
 urlpatterns = [
     path('', include(router.urls)),
