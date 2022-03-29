@@ -1,16 +1,10 @@
 from rest_framework.viewsets import ModelViewSet
 
-from models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
-    RAMLatency, RAM, PowerUnit, Build, GraphicsCard, Period
-from serializers import ProcessorSerializer, SupplyTypeSerializer, SocketSerializer, ChipsetSerializer, \
+from store.models import Processor, SupplyType, Socket, Chipset, RAMType, RAMFrequency, RAMGeneration, RAMWorkingMode, \
+    RAMLatency, RAM, PowerUnit
+from store.serializers import ProcessorSerializer, SupplyTypeSerializer, SocketSerializer, ChipsetSerializer, \
     RAMTypeSerializer, RAMFrequencySerializer, RAMGenerationSerializer, RAMWorkingModeSerializer, RAMLatencySerializer, \
-    RAMSerializer, PowerUnitSerializer, BuildSerializer, GraphicsCardSerializer, PeriodSerializer
-
-
-class PeriodViewSet(ModelViewSet):
-    queryset = Period.objects.all()
-    serializer_class = PeriodSerializer
-    lookup_field = 'slug'
+    RAMSerializer, PowerUnitSerializer
 
 
 class ProcessorViewSet(ModelViewSet):
@@ -76,16 +70,4 @@ class RAMLatencyViewSet(ModelViewSet):
 class PowerUnitViewSet(ModelViewSet):
     queryset = PowerUnit.objects.all()
     serializer_class = PowerUnitSerializer
-    lookup_field = 'slug'
-
-
-class GraphicsCardViewSet(ModelViewSet):
-    queryset = GraphicsCard.objects.all()
-    serializer_class = GraphicsCardSerializer
-    lookup_field = 'slug'
-
-
-class BuildViewSet(ModelViewSet):
-    queryset = Build.objects.all()
-    serializer_class = BuildSerializer
     lookup_field = 'slug'

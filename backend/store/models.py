@@ -20,17 +20,12 @@ class Entity(models.Model):
         return self.title
 
 
-class Period(Entity):
-    pass
-
-
 class Product(Entity):
     """ Represents the final finished component for sale """
 
     __metaclass__ = ABCMeta
     price = models.IntegerField()
     weight = models.FloatField()
-    warranty_period = models.ForeignKey(Period, on_delete=models.PROTECT)
     warranty_amount = models.IntegerField()
     is_published = models.BooleanField(default=True)
 
@@ -91,15 +86,3 @@ class Processor(Product):
 
 class PowerUnit(Product):
     power = models.IntegerField()
-
-
-class Build(Product):
-    processor = models.ForeignKey(Processor, on_delete=models.PROTECT)
-    ram_module = models.ForeignKey(RAM, on_delete=models.PROTECT)
-    power_unit = models.ForeignKey(PowerUnit, on_delete=models.PROTECT)
-
-
-class GraphicsCard(Product):
-    gpu_frequency = models.IntegerField()
-    video_memory_frequency = models.IntegerField()
-    technological_process = models.IntegerField()
