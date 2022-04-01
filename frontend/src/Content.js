@@ -1,42 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import ProductCard from "./ProductCard";
 
-export default class Content extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            cards: []
-        }
-    }
+export default function Content () {
+    const [cards, setCards] = React.useState([]);
 
-    fetchContent() {
-        console.log("http://localhost:8000/api/v1/store/processors/", {method: 'GET'});
-        return fetch("http://localhost:8000/api/v1/store/processors/", {method: 'GET'});
-    }
+    useEffect(async () => {
+        const requestOptions = {
+            method: "GET",
+            headers: {"Content-Type": "application/json"},
+        };
 
-    componentDidMount() {
-        this.fetchContent().then(response => {
-            this.setState({
-                cards: response.cards
-            });
-        });
+        const res = await fetch("http://localhost:8000/api/v1/store/sockets/", requestOptions);
+        const data = await res.json()
+        console.log(data)
+        setCards(data)
+    }, [])
 
-        console.log(this.state.cards)
-
-        this.setState({
-            cards: this.state.cards.map((c) =>
-                <ProductCard card = {c}/>
-            )
-        });
-    }
-
-    render() {
-        return (
-            <main>
-                <article>
-                    <ul>{this.cards}</ul>
-                </article>
-            </main>
-        );
-    }
+    return (
+        <main>
+            <article>
+                <h3>Sockets</h3>
+                {cards.map(c => <ProductCard key = {c.id} title = {c.title}/>)}
+            </article>
+        </main>
+    );
 }
