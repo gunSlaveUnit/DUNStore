@@ -1,7 +1,13 @@
 from rest_framework.viewsets import ModelViewSet
 
-from store.models import VideoCard, Motherboard, Processor, RAM, PowerUnit
-from store.serializers import VideoCardSerializer, MotherboardSerializer, ProcessorSerializer, RAMSerializer, PowerUnitSerializer
+from store.models import StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
+from store.serializers import StorageDeviceSerializer, VideoCardSerializer, MotherboardSerializer, ProcessorSerializer, RAMSerializer, PowerUnitSerializer
+
+
+class StorageDeviceViewSet(ModelViewSet):
+    queryset = StorageDevice.objects.filter(is_published=True)
+    serializer_class = StorageDeviceSerializer
+    lookup_field = 'slug'
 
 
 class VideoCardViewSet(ModelViewSet):

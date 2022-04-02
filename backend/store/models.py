@@ -58,3 +58,10 @@ class VideoCard(Product):
     video_memory_size = models.IntegerField()
     video_memory_generation = models.CharField(max_length=10)
     video_memory_frequency = models.IntegerField()
+
+
+class StorageDevice(Product):
+    type = models.CharField(max_length=10)
+    capacity = models.IntegerField()
+    form_factor = models.CharField(max_length=10)
+    interface = models.CharField(max_length=10)

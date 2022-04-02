@@ -1,6 +1,12 @@
 from rest_framework.serializers import ModelSerializer
 
-from store.models import VideoCard, Motherboard, Processor, RAM, PowerUnit
+from store.models import StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
+
+
+class StorageDeviceSerializer(ModelSerializer):
+    class Meta:
+        model = StorageDevice
+        fields = '__all__'
 
 
 class VideoCardSerializer(ModelSerializer):
