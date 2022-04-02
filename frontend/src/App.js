@@ -8,7 +8,7 @@ export default class App extends React.Component {
         return (
             <div className="App">
                 <Header/>
-                <Content/>
+                <Content what="categories"/>
                 <Footer/>
             </div>
         );

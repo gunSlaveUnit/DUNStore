@@ -1,26 +1,19 @@
 import React, {useEffect} from 'react';
-import ProductCard from "./ProductCard";
+import * as API from "./API";
+import CategoryCard from "./CategoryCard";
 
-export default function Content () {
+export default function Content({what}) {
     const [cards, setCards] = React.useState([]);
 
-    useEffect(async () => {
-        const requestOptions = {
-            method: "GET",
-            headers: {"Content-Type": "application/json"},
-        };
-
-        const res = await fetch("http://localhost:8000/api/v1/store/sockets/", requestOptions);
-        const data = await res.json()
-        console.log(data)
-        setCards(data)
+    useEffect( async () => {
+        setCards(await API.list(what))
     }, [])
 
     return (
         <main>
             <article>
-                <h3>Sockets</h3>
-                {cards.map(c => <ProductCard key = {c.id} title = {c.title}/>)}
+                <h3>Categories</h3>
+                {cards.map(c => <CategoryCard key={c.id} title={c.title} slug={c.slug}/>)}
             </article>
         </main>
     );
