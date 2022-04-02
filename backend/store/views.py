@@ -17,6 +17,6 @@ class RAMViewSet(ModelViewSet):
 
 
 class PowerUnitViewSet(ModelViewSet):
-    queryset = PowerUnit.objects.all()
+    queryset = PowerUnit.objects.filter(is_published=True)
     serializer_class = PowerUnitSerializer
     lookup_field = 'slug'
