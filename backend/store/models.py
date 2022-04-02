@@ -51,3 +51,10 @@ class Motherboard(Product):
     ram_generation = models.CharField(max_length=10)
     ram_type = models.CharField(max_length=10)
     ram_slots_amount = models.IntegerField()
+
+
+class VideoCard(Product):
+    gpu_frequency = models.IntegerField()
+    video_memory_size = models.IntegerField()
+    video_memory_generation = models.CharField(max_length=10)
+    video_memory_frequency = models.IntegerField()
