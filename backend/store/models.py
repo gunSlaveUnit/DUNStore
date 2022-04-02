@@ -65,3 +65,13 @@ class StorageDevice(Product):
     capacity = models.IntegerField()
     form_factor = models.CharField(max_length=10)
     interface = models.CharField(max_length=10)
+
+
+class Build(Product):
+    description = models.TextField()
+    motherboard = models.ForeignKey(Motherboard, models.DO_NOTHING)
+    processor = models.ForeignKey(Processor, models.DO_NOTHING)
+    video_card = models.ForeignKey(VideoCard, models.DO_NOTHING)
+    power_unit = models.ForeignKey(PowerUnit, models.DO_NOTHING)
+    ram = models.ForeignKey(RAM, models.DO_NOTHING)
+    storage_device = models.ForeignKey(StorageDevice, models.DO_NOTHING)
