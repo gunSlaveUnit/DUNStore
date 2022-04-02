@@ -1,7 +1,8 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from store.views import BuildSerializer, StorageDeviceSerializer, VideoCardSerializer, MotherboardSerializer, ProcessorViewSet, RAMViewSet, PowerUnitViewSet
+from store.views import BuildSerializer, \
+    StorageDeviceSerializer, VideoCardSerializer, MotherboardSerializer, ProcessorViewSet, RAMViewSet, PowerUnitViewSet
 
 router = routers.SimpleRouter()
 router.register(r'builds', BuildSerializer)
