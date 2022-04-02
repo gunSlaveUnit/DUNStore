@@ -26,62 +26,30 @@ class Product(Entity):
     __metaclass__ = ABCMeta
     price = models.IntegerField()
     weight = models.FloatField()
-    warranty_amount = models.IntegerField()
+    warranty = models.CharField(max_length=20)
     is_published = models.BooleanField(default=True)
 
     class Meta:
         abstract = True
 
 
-class SupplyType(Entity):
-    pass
-
-
-class Socket(Entity):
-    pass
-
-
-class Chipset(Entity):
-    pass
-
-
-class RAMType(Entity):
-    pass
-
-
-class RAMFrequency(Entity):
-    pass
-
-
-class RAMGeneration(Entity):
-    pass
-
-
-class RAMWorkingMode(Entity):
-    pass
-
-
-class RAMLatency(Entity):
-    pass
+class Processor(Product):
+    supply_type = models.CharField(max_length=10)
+    socket = models.CharField(max_length=20)
+    cores_amount = models.IntegerField()
+    threads_amount = models.IntegerField()
+    technological_process = models.IntegerField()
 
 
 class RAM(Product):
     """ Represents one RAM module """
 
-    form_factor = models.ForeignKey(RAMType, on_delete=models.PROTECT)
-    generation = models.ForeignKey(RAMGeneration, on_delete=models.PROTECT)
-    mode = models.ForeignKey(RAMWorkingMode, on_delete=models.PROTECT)
-    frequency = models.ForeignKey(RAMFrequency, on_delete=models.PROTECT)
-    latency = models.ForeignKey(RAMLatency, on_delete=models.PROTECT)
-    capacity = models.IntegerField()
-
-
-class Processor(Product):
-    supply_type = models.ForeignKey(SupplyType, on_delete=models.PROTECT)
-    socket = models.ForeignKey(Socket, on_delete=models.PROTECT)
-    cores_amount = models.IntegerField()
-    threads_amount = models.IntegerField()
-    technological_process = models.IntegerField()
+    form_factor = models.CharField(max_length=10)
+    generation = models.CharField(max_length=10)
+    mode = models.CharField(max_length=10)
+    frequency = models.CharField(max_length=10)
+    latency = models.CharField(max_length=10)
+    capacity = models.CharField(max_length=10)
 
 
 class PowerUnit(Product):
