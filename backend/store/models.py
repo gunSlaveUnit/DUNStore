@@ -3,27 +3,14 @@ from abc import ABCMeta
 from django.db import models
 
 
-class Entity(models.Model):
-    """ Represents a "string" base entity.
-    Needed to represent a name for selection anywhere """
-
-    __metaclass__ = ABCMeta
-    title = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(max_length=100, unique=True)
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return self.title
-
-
-class Product(Entity):
+class Product(models.Model):
     """ Represents the final finished component for sale """
 
     __metaclass__ = ABCMeta
+    title = models.CharField(max_length=100, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    slug = models.SlugField(max_length=100, unique=True)
     price = models.IntegerField()
     weight = models.FloatField()
     warranty = models.CharField(max_length=20)
@@ -31,6 +18,9 @@ class Product(Entity):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.title
 
 
 class Processor(Product):
@@ -54,3 +44,10 @@ class RAM(Product):
 
 class PowerUnit(Product):
     power = models.IntegerField()
+
+
+class Motherboard(Product):
+    socket = models.CharField(max_length=20)
+    ram_generation = models.CharField(max_length=10)
+    ram_type = models.CharField(max_length=10)
+    ram_slots_amount = models.IntegerField()
