@@ -1,11 +1,12 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from store.views import BuildViewSet, \
+from store.views import CategoryViewSet, BuildViewSet, \
     StorageDeviceViewSet, VideoCardViewSet, MotherboardViewSet, ProcessorViewSet, RAMViewSet, PowerUnitViewSet
 
 router = routers.SimpleRouter()
 
+router.register(r'categories', CategoryViewSet)
 router.register(r'processors', ProcessorViewSet)
 router.register(r'rams', RAMViewSet)
 router.register(r'power_units', PowerUnitViewSet)

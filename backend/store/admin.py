@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from store.models import Build, StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
+from store.models import Category, Build, StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
 
+admin.site.register(Category)
 admin.site.register(Build)
 admin.site.register(StorageDevice)
 admin.site.register(VideoCard)

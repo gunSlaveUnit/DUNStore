@@ -1,7 +1,13 @@
 from rest_framework.viewsets import ModelViewSet
 
-from store.models import Build, StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
-from store.serializers import BuildSerializer, StorageDeviceSerializer, VideoCardSerializer, MotherboardSerializer, ProcessorSerializer, RAMSerializer, PowerUnitSerializer
+from store.models import Category, Build, StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
+from store.serializers import CategorySerializer, BuildSerializer, StorageDeviceSerializer, VideoCardSerializer, MotherboardSerializer, ProcessorSerializer, RAMSerializer, PowerUnitSerializer
+
+
+class CategoryViewSet(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    lookup_field = 'slug'
 
 
 class BuildViewSet(ModelViewSet):

@@ -1,7 +1,13 @@
 from rest_framework.exceptions import ValidationError
 from rest_framework.serializers import ModelSerializer
 
-from store.models import Build, StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
+from store.models import Category, Build, StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
+
+
+class CategorySerializer(ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
 
 
 class StorageDeviceSerializer(ModelSerializer):

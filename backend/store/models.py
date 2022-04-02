@@ -23,6 +23,11 @@ class Product(models.Model):
         return self.title
 
 
+class Category(models.Model):
+    title = models.CharField(max_length=100, null=False)
+    slug = models.SlugField(max_length=100, unique=True)
+
+
 class Processor(Product):
     supply_type = models.CharField(max_length=10)
     socket = models.CharField(max_length=20)
