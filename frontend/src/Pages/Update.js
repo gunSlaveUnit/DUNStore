@@ -8,7 +8,6 @@ export default function Update({what, slug}) {
 
     useEffect(async () => {
         setProduct(await API.detail(what, slug))
-        console.log(product)
     }, [slug, what])
 
     return (
@@ -21,7 +20,7 @@ export default function Update({what, slug}) {
                         {Object.entries(product).map(([k, v]) =>
                             <div className="field" key={k}>
                                 <p>{k.charAt(0).toUpperCase() + k.slice(1)}</p>
-                                <input type="text" value={v}/>
+                                <input type="text" defaultValue={v}/>
                             </div>
                         )}
                         <button onClick={() => {
