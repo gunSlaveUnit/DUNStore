@@ -26,7 +26,7 @@ export default function Update({what, slug}) {
                         <button onClick={() => {
                             let data = document.getElementsByTagName("input")
                             let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
-                            API.update(what, body)
+                            API.update(what, slug, body)
                         }}>Submit
                         </button>
                     </section>
