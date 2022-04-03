@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import * as API from "./API";
-import CategoryCard from "./CategoryCard";
+import Header from "../PageComponents/Header";
+import Footer from "../PageComponents/Footer";
+import * as API from "../API";
+import CategoryCard from "../Cards/CategoryCard";
 
 export default function Home() {
     const [categories, setCategories] = React.useState([]);

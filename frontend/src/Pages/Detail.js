@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
-import * as API from "./API";
-import Header from "./Header";
-import Footer from "./Footer";
+import * as API from "../API";
+import Header from "../PageComponents/Header";
+import Footer from "../PageComponents/Footer";
 
 export default function Detail({what, slug}) {
     const [product, setProduct] = React.useState([]);

@@ -1,9 +1,9 @@
 import React from 'react';
 import {useRoutes} from 'hookrouter';
-import NotFoundPage from './NotFoundPage';
-import Home from "./Home";
-import Catalog from "./Catalog";
-import Detail from "./Detail";
+import NotFoundPage from './Pages/NotFoundPage';
+import Home from "./Pages/Home";
+import Catalog from "./Pages/Catalog";
+import Detail from "./Pages/Detail";
 
 export default function App() {
     const routes = {
