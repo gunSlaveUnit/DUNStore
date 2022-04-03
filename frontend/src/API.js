@@ -42,12 +42,12 @@ export async function update(what, how) {
     return await res.json()
 }
 
-export async function del(what) {
+export async function del(what, slug) {
     const requestOptions = {
-        method: "DEL",
+        method: "DELETE",
         headers: {"Content-Type": "application/json"},
     };
 
-    const res = await fetch(URL_BASE + what + "/", requestOptions);
+    const res = await fetch(URL_BASE + what + "/" + slug + "/", requestOptions);
     return await res.json()
 }
