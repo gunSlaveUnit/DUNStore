@@ -35,7 +35,7 @@ export async function update(what, how) {
     const requestOptions = {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
-        body: how
+        body: JSON.stringify(how)
     };
 
     const res = await fetch(URL_BASE + what + "/", requestOptions);
