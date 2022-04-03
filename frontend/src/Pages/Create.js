@@ -24,13 +24,8 @@ export default function Create({what, how}) {
                             </div>
                         )}
                         <button onClick={() => {
-                            let body = {};
-                            let count = 0;
                             let data = document.getElementsByTagName("input")
-                            Object.keys(product).map(f => {
-                                body[f] = data[count].value;
-                                ++count;
-                            })
+                            let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
                             API.create(what, body)
                         }}>Submit
                         </button>
