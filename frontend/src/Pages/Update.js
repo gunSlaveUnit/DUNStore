@@ -16,19 +16,20 @@ export default function Update({what, slug}) {
             <main>
                 <article>
                     <section>
-                        <h1>Update product</h1>
-                        {Object.entries(product).map(([k, v]) =>
-                            <div className="field" key={k}>
-                                <p>{k.charAt(0).toUpperCase() + k.slice(1)}</p>
-                                <input type="text" defaultValue={v}/>
-                            </div>
-                        )}
-                        <button onClick={() => {
+                        <form onSubmit={() => {
                             let data = document.getElementsByTagName("input")
                             let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
                             API.update(what, slug, body)
-                        }}>Submit
-                        </button>
+                        }}>
+                            <h1>Update product</h1>
+                            {Object.entries(product).map(([k, v]) =>
+                                <div className="field" key={k}>
+                                    <p>{k.charAt(0).toUpperCase() + k.slice(1)}</p>
+                                    <input type="text" defaultValue={v}/>
+                                </div>
+                            )}
+                            <button type={"submit"}>Submit</button>
+                        </form>
                     </section>
                 </article>
             </main>

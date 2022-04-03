@@ -16,19 +16,20 @@ export default function Create({what, how}) {
             <main>
                 <article>
                     <section>
-                        <h1>Create a new product</h1>
-                        {Object.keys(product).map(f =>
-                            <div className="field" key={f}>
-                                <p>{f.charAt(0).toUpperCase() + f.slice(1)}</p>
-                                <input type="text"/>
-                            </div>
-                        )}
-                        <button onClick={() => {
+                        <form onSubmit={() => {
                             let data = document.getElementsByTagName("input")
                             let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
                             API.create(what, body)
-                        }}>Submit
-                        </button>
+                        }}>
+                            <h1>Create a new product</h1>
+                            {Object.keys(product).map(f =>
+                                <div className="field" key={f}>
+                                    <p>{f.charAt(0).toUpperCase() + f.slice(1)}</p>
+                                    <input type="text"/>
+                                </div>
+                            )}
+                            <button type={"submit"}>Submit</button>
+                        </form>
                     </section>
                 </article>
             </main>
