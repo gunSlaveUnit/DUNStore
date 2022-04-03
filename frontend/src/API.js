@@ -31,14 +31,14 @@ export async function create(what, how) {
     return await res.json()
 }
 
-export async function update(what, how) {
+export async function update(what, slug, how) {
     const requestOptions = {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(how)
     };
 
-    const res = await fetch(URL_BASE + what + "/", requestOptions);
+    const res = await fetch(URL_BASE + what + "/" + slug + "/", requestOptions);
     return await res.json()
 }
 
