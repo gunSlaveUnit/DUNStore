@@ -6,7 +6,7 @@ export default class Header extends React.Component {
             <header>
                 <nav>
                     <ul>
-                        <li>Home</li>
+                        <li><a href="/">Home</a></li>
                         <li>Sign In</li>
                         <li>Sign Up</li>
                     </ul>
