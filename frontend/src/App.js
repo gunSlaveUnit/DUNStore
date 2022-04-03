@@ -1,16 +1,20 @@
-import React from "react";
-import Header from "./Header";
-import Content from "./Content";
-import Footer from "./Footer";
+import React from 'react';
+import {useRoutes} from 'hookrouter';
+import NotFoundPage from './NotFoundPage';
+import Home from "./Home";
+import Catalog from "./Catalog";
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <div className="App">
-                <Header/>
-                <Content what="categories"/>
-                <Footer/>
-            </div>
-        );
+export default function App() {
+    const routes = {
+        '/': () => <Home/>,
+        '/catalog/:slug': ({slug}) => <Catalog what={slug}/>
     }
+
+    const match = useRoutes(routes);
+
+    return (
+        <div className="App">
+            {match || <NotFoundPage/>}
+        </div>
+    )
 }
