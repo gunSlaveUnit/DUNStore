@@ -9,10 +9,10 @@ router = routers.SimpleRouter()
 router.register(r'categories', CategoryViewSet)
 router.register(r'processors', ProcessorViewSet)
 router.register(r'rams', RAMViewSet)
-router.register(r'power_units', PowerUnitViewSet)
+router.register(r'power-units', PowerUnitViewSet)
 router.register(r'motherboards', MotherboardViewSet)
-router.register(r'video_cards', VideoCardViewSet)
-router.register(r'storage_devices', StorageDeviceViewSet)
+router.register(r'video-cards', VideoCardViewSet)
+router.register(r'storage-devices', StorageDeviceViewSet)
 router.register(r'builds', BuildViewSet)
 
 urlpatterns = [
