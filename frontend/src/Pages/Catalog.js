@@ -3,6 +3,7 @@ import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
 import ProductCard from "../Cards/ProductCard";
+import {A} from 'hookrouter';
 
 export default function Catalog({what}) {
     const [cards, setCards] = React.useState([]);
@@ -17,9 +18,9 @@ export default function Catalog({what}) {
             <main>
                 <article>
                     <h3>{what.charAt(0).toUpperCase() + what.slice(1)}</h3>
-                    <a href={`/catalog/${what}/create`}>
+                    <A href={`/catalog/${what}/create`}>
                         <h3>Add a new product</h3>
-                    </a>
+                    </A>
                     {cards.map(c => <ProductCard key={c.id} group={what} title={c.title} slug={c.slug}/>)}
                 </article>
             </main>

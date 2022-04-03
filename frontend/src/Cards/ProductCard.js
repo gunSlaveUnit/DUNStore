@@ -1,11 +1,12 @@
 import React from 'react';
+import {A} from 'hookrouter';
 
 export default function ProductCard (props) {
     return (
          <section className="ProductCard">
-             <a href={`/catalog/${props.group}/detail/${props.slug}`}>
+             <A href={`/catalog/${props.group}/detail/${props.slug}`}>
                 <h3>{props.title}</h3>
-             </a>
+             </A>
          </section>
     );
 }

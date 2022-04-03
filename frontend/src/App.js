@@ -7,8 +7,7 @@ import Detail from "./Pages/Detail";
 import Create from "./Pages/Create";
 import Update from "./Pages/Update";
 
-export default function App() {
-    const routes = {
+const routes = {
         '/': () => <Home/>,
         '/catalog/:catalog/list': ({catalog}) => <Catalog what={catalog}/>,
         '/catalog/:catalog/create': ({catalog}) => <Create what={catalog} how={{}}/>,
@@ -16,6 +15,7 @@ export default function App() {
         '/catalog/:catalog/detail/:slug': ({catalog, slug}) => <Detail what={catalog} slug={slug}/>,
     }
 
+export default function App() {
     const match = useRoutes(routes);
 
     return (

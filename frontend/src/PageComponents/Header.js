@@ -1,4 +1,5 @@
 import React from 'react';
+import {A} from 'hookrouter';
 
 export default class Header extends React.Component {
     render() {
@@ -6,7 +7,7 @@ export default class Header extends React.Component {
             <header>
                 <nav>
                     <ul>
-                        <li><a href="/">Home</a></li>
+                        <li><A href="/">Home</A></li>
                         <li>Sign In</li>
                         <li>Sign Up</li>
                     </ul>

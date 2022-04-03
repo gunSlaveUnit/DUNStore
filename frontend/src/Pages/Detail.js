@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
+import {A} from 'hookrouter';
 
 export default function Detail({what, slug}) {
     const [product, setProduct] = React.useState([]);
@@ -18,12 +19,12 @@ export default function Detail({what, slug}) {
                     <h3>{product.title}</h3>
                     <h3>{product.slug}</h3>
                 </article>
-                <a href={`/catalog/${what}/update/${slug}`}>
+                <A href={`/catalog/${what}/update/${slug}`}>
                     Update
-                </a>
-                <a href={`/catalog/${what}/list`} onClick={() => API.del(what, slug)}>
+                </A>
+                <A href={`/catalog/${what}/list`} onClick={() => API.del(what, slug)}>
                     Delete
-                </a>
+                </A>
             </main>
             <Footer/>
         </div>
