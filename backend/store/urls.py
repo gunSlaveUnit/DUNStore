@@ -8,7 +8,7 @@ router = routers.SimpleRouter()
 
 router.register(r'categories', CategoryViewSet)
 router.register(r'processors', ProcessorViewSet)
-router.register(r'rams', RAMViewSet)
+router.register(r'ram-modules', RAMViewSet)
 router.register(r'power-units', PowerUnitViewSet)
 router.register(r'motherboards', MotherboardViewSet)
 router.register(r'video-cards', VideoCardViewSet)
