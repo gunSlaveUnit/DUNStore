@@ -18,6 +18,12 @@ export default function Detail({what, slug}) {
                     <h3>{product.title}</h3>
                     <h3>{product.slug}</h3>
                 </article>
+                <a href={`/catalog/${what}/update/${slug}`}>
+                    Update
+                </a>
+                <a href={`/catalog/${what}/list`} onClick={() => API.del(what, slug)}>
+                    Delete
+                </a>
             </main>
             <Footer/>
         </div>
