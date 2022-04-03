@@ -17,6 +17,9 @@ export default function Catalog({what}) {
             <main>
                 <article>
                     <h3>{what}</h3>
+                    <a href={`/catalog/${what}/create`}>
+                        Add a new product
+                    </a>
                     {cards.map(c => <ProductCard key={c.id} group={what} title={c.title} slug={c.slug}/>)}
                 </article>
             </main>
