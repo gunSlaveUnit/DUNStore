@@ -8,8 +8,8 @@ export default function Catalog({what}) {
     const [cards, setCards] = React.useState([]);
 
     useEffect( async () => {
-        setCards(await API.list('processors'))
-    }, [])
+        setCards(await API.list(what))
+    }, [what])
 
     return (
         <div className="Catalog">
