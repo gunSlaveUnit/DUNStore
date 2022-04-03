@@ -24,7 +24,7 @@ export async function create(what, how) {
     const requestOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: how
+        body: JSON.stringify(how)
     };
 
     const res = await fetch(URL_BASE + what + "/", requestOptions);
