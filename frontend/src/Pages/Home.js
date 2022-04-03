@@ -8,8 +8,8 @@ export default function Home() {
     const [categories, setCategories] = React.useState([]);
 
     useEffect( async () => {
-        setCategories(await API.list('categories'))
-    }, [])
+        setCategories(await API.list('categories'));
+    }, []);
 
     return (
         <div className="Home">
