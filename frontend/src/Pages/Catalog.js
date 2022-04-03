@@ -16,9 +16,9 @@ export default function Catalog({what}) {
             <Header/>
             <main>
                 <article>
-                    <h3>{what}</h3>
+                    <h3>{what.charAt(0).toUpperCase() + what.slice(1)}</h3>
                     <a href={`/catalog/${what}/create`}>
-                        Add a new product
+                        <h3>Add a new product</h3>
                     </a>
                     {cards.map(c => <ProductCard key={c.id} group={what} title={c.title} slug={c.slug}/>)}
                 </article>

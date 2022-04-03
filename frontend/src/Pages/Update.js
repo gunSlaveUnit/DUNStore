@@ -21,7 +21,7 @@ export default function Update({what, slug}) {
                             let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
                             API.update(what, slug, body)
                         }}>
-                            <h1>Update product</h1>
+                            <h3>Update product</h3>
                             {Object.entries(product).map(([k, v]) =>
                                 <div className="field" key={k}>
                                     <p>{k.charAt(0).toUpperCase() + k.slice(1)}</p>
