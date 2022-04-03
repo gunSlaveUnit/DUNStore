@@ -17,7 +17,7 @@ export default function Catalog({what}) {
             <main>
                 <article>
                     <h3>{what}</h3>
-                    {cards.map(c => <ProductCard key={c.id} title={c.title} slug={c.slug}/>)}
+                    {cards.map(c => <ProductCard key={c.id} group={what} title={c.title} slug={c.slug}/>)}
                 </article>
             </main>
             <Footer/>
