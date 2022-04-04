@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
-import {Form, FormGroup, FormLabel, FormControl, Button, FloatingLabel, Container} from 'react-bootstrap';
+import {Form, FormControl, Button, FloatingLabel, Container} from 'react-bootstrap';
 
 export default function Update({what, slug}) {
     const [product, setProduct] = React.useState([]);
