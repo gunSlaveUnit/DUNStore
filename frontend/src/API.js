@@ -48,6 +48,5 @@ export async function del(what, slug) {
         headers: {"Content-Type": "application/json"},
     };
 
-    const res = await fetch(URL_BASE + what + "/" + slug + "/", requestOptions);
-    return await res.json()
+    return await fetch(URL_BASE + what + "/" + slug + "/", requestOptions);
 }
