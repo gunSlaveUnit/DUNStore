@@ -8,8 +8,8 @@ import {A} from 'hookrouter';
 export default function Catalog({what}) {
     const [cards, setCards] = React.useState([]);
 
-    useEffect( async () => {
-        setCards(await API.list(what))
+    useEffect(() => {
+        API.list(what).then(p => setCards(p));
     }, [what])
 
     return (

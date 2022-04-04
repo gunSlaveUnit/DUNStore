@@ -7,8 +7,8 @@ import CategoryCard from "../Cards/CategoryCard";
 export default function Home() {
     const [categories, setCategories] = React.useState([]);
 
-    useEffect( async () => {
-        setCategories(await API.list('categories'));
+    useEffect( () => {
+        API.list('categories').then(p => setCategories(p));
     }, []);
 
     return (

@@ -6,8 +6,8 @@ import Footer from "../PageComponents/Footer";
 export default function Create({what, how}) {
     const [product, setProduct] = React.useState([]);
 
-    useEffect(async () => {
-        setProduct(await API.create(what, how))
+    useEffect(() => {
+        API.create(what, how).then(p => setProduct(p));
     }, [how, what])
 
     return (

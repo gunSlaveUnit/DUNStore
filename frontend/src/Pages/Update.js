@@ -6,8 +6,8 @@ import Footer from "../PageComponents/Footer";
 export default function Update({what, slug}) {
     const [product, setProduct] = React.useState([]);
 
-    useEffect(async () => {
-        setProduct(await API.detail(what, slug))
+    useEffect(() => {
+        API.detail(what, slug).then(p => setProduct(p))
     }, [slug, what])
 
     return (

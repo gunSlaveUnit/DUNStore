@@ -7,8 +7,8 @@ import {A} from 'hookrouter';
 export default function Detail({what, slug}) {
     const [product, setProduct] = React.useState([]);
 
-    useEffect( async () => {
-        setProduct(await API.detail(what, slug))
+    useEffect( () => {
+        API.detail(what, slug).then(p => setProduct(p));
     }, [slug, what])
 
     return (
