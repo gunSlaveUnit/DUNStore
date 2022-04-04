@@ -41,7 +41,7 @@ class RAM(Product):
 
     form_factor = models.CharField(max_length=10)
     generation = models.CharField(max_length=10)
-    mode = models.CharField(max_length=10)
+    mode = models.CharField(max_length=30)
     frequency = models.CharField(max_length=10)
     latency = models.CharField(max_length=10)
     capacity = models.CharField(max_length=10)
