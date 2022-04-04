@@ -11,7 +11,7 @@ export default function Update({what, slug}) {
     }, [slug, what])
 
     return (
-        <div className="Create">
+        <div className="Update">
             <Header/>
             <main>
                 <article>
