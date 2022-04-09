@@ -8,14 +8,14 @@ import Create from "./Pages/Create";
 import Update from "./Pages/Update";
 
 const routes = {
-        '/': () => <Home/>,
-        '/catalog/:catalog/list': ({catalog}) => <Catalog what={catalog}/>,
-        '/catalog/:catalog/create': ({catalog}) => <Create what={catalog} how={{}}/>,
-        '/catalog/:catalog/update/:slug': ({catalog, slug}) => <Update what={catalog} slug={slug}/>,
-        '/catalog/:catalog/detail/:slug': ({catalog, slug}) => <Detail what={catalog} slug={slug}/>,
-    }
+    '/': () => <Home/>,
+    '/catalog/:catalog/list': ({catalog}) => <Catalog what={catalog}/>,
+    '/catalog/:catalog/create': ({catalog}) => <Create what={catalog} how={{}}/>,
+    '/catalog/:catalog/update/:slug': ({catalog, slug}) => <Update what={catalog} slug={slug}/>,
+    '/catalog/:catalog/detail/:slug': ({catalog, slug}) => <Detail what={catalog} slug={slug}/>,
+}
 
-export default function App() {
+const App = () => {
     const match = useRoutes(routes);
 
     return (
@@ -24,3 +24,5 @@ export default function App() {
         </div>
     )
 }
+
+export default App;
