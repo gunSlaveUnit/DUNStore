@@ -3,7 +3,6 @@ import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
 import {A} from 'hookrouter';
-import {Container} from "react-bootstrap";
 
 export default function Detail({what, slug}) {
     const [product, setProduct] = React.useState([]);
@@ -13,7 +12,6 @@ export default function Detail({what, slug}) {
     }, [slug, what])
 
     return (
-        <Container>
             <div className="Detail">
                 <Header/>
                 <main>
@@ -30,6 +28,5 @@ export default function Detail({what, slug}) {
                 </main>
                 <Footer/>
             </div>
-        </Container>
     );
 }
