@@ -1,5 +1,5 @@
 const URL_BASE = "http://localhost:8000/api/v1/auth/";
-export let token = '';
+export let token = null;
 
 export async function signin(email, password) {
     const requestOptions = {
@@ -40,7 +40,6 @@ export async function signout() {
             "Authorization": `Token ${token}`
         },
     };
-
     return await fetch(URL_BASE + "token/logout/", requestOptions);
 }
 
