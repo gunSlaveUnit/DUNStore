@@ -1,0 +1,17 @@
+//TODO: fix it to use with docker
+const URL_BASE = "http://127.0.0.1:8000/api/v1/auth/";
+
+export async function signup(email, username, password) {
+    const requestOptions = {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            'email': email,
+            'username': username,
+            'password': password,
+        })
+    };
+
+    const res = await fetch(URL_BASE + "users/", requestOptions);
+    return await res.json()
+}

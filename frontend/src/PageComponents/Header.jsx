@@ -1,5 +1,6 @@
 import React from 'react';
 import {A} from 'hookrouter';
+import * as USER_API from '../User';
 
 const Header = () => {
     return (
@@ -7,8 +8,8 @@ const Header = () => {
             <nav>
                 <ul>
                     <li><A href="/">Home</A></li>
-                    <li>Sign In</li>
-                    <li>Sign Up</li>
+                    <li><button onClick={USER_API.signin}>Sign In</button></li>
+                    <li><button onClick={USER_API.signup}>Sign Up</button></li>
                 </ul>
             </nav>
         </header>
