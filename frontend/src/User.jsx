@@ -29,6 +29,14 @@ export async function signup(email, username, password) {
     return await res.json()
 }
 
-export async function signout() {
+export async function signout(token) {
+const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${token}`
+        },
+    };
 
+    return await fetch(URL_BASE + "token/logout/", requestOptions);
 }
