@@ -8,8 +8,8 @@ const Header = () => {
             <nav>
                 <ul>
                     <li><A href="/">Home</A></li>
-                    <li><button onClick={USER_API.signin}>Sign In</button></li>
-                    <li><button onClick={USER_API.signup}>Sign Up</button></li>
+                    <li><button onClick={() => USER_API.signin}>Sign In</button></li>
+                    <li><button onClick={() => USER_API.signup}>Sign Up</button></li>
                 </ul>
             </nav>
         </header>
