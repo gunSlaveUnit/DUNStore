@@ -1,5 +1,5 @@
 const URL_BASE = "http://localhost:8000/api/v1/auth/";
-let token = '';
+export let token = '';
 
 export async function signin(email, password) {
     const requestOptions = {
