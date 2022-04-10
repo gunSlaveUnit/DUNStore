@@ -1,5 +1,4 @@
-//TODO: fix it to use with docker
-const URL_BASE = "http://127.0.0.1:8000/api/v1/auth/";
+const URL_BASE = "http://localhost:8000/api/v1/auth/";
 
 export async function signin(email, password) {
     const requestOptions = {
