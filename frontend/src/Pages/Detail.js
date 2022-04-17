@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
-import {A, navigate} from 'hookrouter';
+import {navigate} from 'hookrouter';
 
 export default function Detail({what, slug}) {
     const [product, setProduct] = React.useState([]);
