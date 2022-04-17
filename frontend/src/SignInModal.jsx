@@ -9,13 +9,13 @@ const SignInModal = ({tokenAPI}) => {
         <div className="SignInModal">
             <label>Create an account on GURU</label>
             <p>
-                <input id='email' type="text" placeholder={"Enter an email"}/>
+                <input id='username' type="text" placeholder={"Enter a username"}/>
             </p>
             <p>
                 <input id='password' type="password" placeholder={"Enter a password"}/>
             </p>
             <button onClick={() => {
-                signin(document.getElementById('email').value,
+                signin(document.getElementById('username').value,
                     document.getElementById('password').value)
                     .then(t => tokenAPI.setToken(t));
             }}>Submit
