@@ -1,12 +1,12 @@
-const URL_BASE = "http://localhost:8000/api/v1/auth/";
+const URL_BASE = "http://127.0.0.1:8000/api/v1/auth/";
 export let token = null;
 
-export async function signin(email, password) {
+export async function signin(username, password) {
     const requestOptions = {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({
-            'email': email,
+            'username': username,
             'password': password,
         })
     };
