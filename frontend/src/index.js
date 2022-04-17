@@ -2,7 +2,7 @@ import React from 'react';
 import * as ReactDomClient from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './tests/reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/main.css';
 
 ReactDomClient
     .createRoot(document.getElementById('root'))
