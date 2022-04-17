@@ -1,6 +1,5 @@
 import React from 'react';
 import {A} from 'hookrouter';
-import SignInModal from "../SignInModal";
 import {signout} from "../User";
 
 const Header = () => {
@@ -42,8 +41,6 @@ const Header = () => {
 
                 </ul>
             </nav>
-
-            <SignInModal tokenAPI={tokenAPI}/>
         </header>
     );
 }
