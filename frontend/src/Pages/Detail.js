@@ -3,6 +3,8 @@ import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
 import {navigate} from 'hookrouter';
+import {Button} from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Detail({what, slug}) {
     const [product, setProduct] = React.useState([]);
@@ -19,12 +21,14 @@ export default function Detail({what, slug}) {
                     <h3>{product.title}</h3>
                     <h3>{product.slug}</h3>
                 </article>
-                <button onClick={() => navigate(`/catalog/${what}/update/${slug}`)}>
+                <Button variant="contained"
+                        onClick={() => navigate(`/catalog/${what}/update/${slug}`)}>
                     Update
-                </button>
-                <button onClick={() => API.del(what, slug).then(_ => navigate(`/catalog/${what}/list`, true))}>
+                </Button>
+                <Button variant="outlined" color="error" startIcon={<DeleteIcon />}
+                        onClick={() => API.del(what, slug).then(_ => navigate(`/catalog/${what}/list`, true))}>
                     Delete
-                </button>
+                </Button>
             </main>
             <Footer/>
         </div>
