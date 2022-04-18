@@ -21,7 +21,7 @@ export default function Catalog({what}) {
                     <Container maxWidth={"lg"} sx={{marginTop: 12}}>
                         <Typography variant={"h2"} align={"center"}
                                     gutterBottom color={"whitesmoke"}
-                                    sx={{fontWeight: 'bold'}}>{what.charAt(0).toUpperCase() + what.slice(1)}</Typography>
+                                    sx={{fontWeight: 'bold'}}>{what.charAt(0).toUpperCase() + what.slice(1).replace( /-/g, " " )}</Typography>
                         <Button variant="contained" size={"large"} style={{ borderRadius: '8px',
                                 backgroundColor: "#227173"
                             }}

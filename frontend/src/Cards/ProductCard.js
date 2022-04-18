@@ -18,17 +18,6 @@ export default function ProductCard(props) {
                 }}
             >
                 <Box
-                    component="img"
-                    sx={{
-                        height: 233,
-                        width: 350,
-                        maxHeight: {xs: 300, md: 300},
-                        maxWidth: {xs: 400, md: 350},
-                    }}
-                    alt="The house from the offer."
-                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&w=350&dpr=2"
-                />
-                <Box
                     sx={{
                         display: 'flex',
                         flexDirection: 'column',
