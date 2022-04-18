@@ -2,8 +2,7 @@ import React, {useEffect} from "react";
 import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
-import {Button, Container, FormControl, FormHelperText, Grid, Input, InputLabel, Typography} from "@mui/material";
-import {navigate} from "hookrouter";
+import {Button, Container, FormControl, Input, InputLabel, Typography} from "@mui/material";
 
 export default function Create({what, how}) {
     const [product, setProduct] = React.useState([]);
