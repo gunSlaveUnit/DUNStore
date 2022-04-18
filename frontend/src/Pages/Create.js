@@ -27,7 +27,7 @@ export default function Create({what, how}) {
                             API.create(what, body)
                         }}>
                             {Object.keys(product).map(f =>
-                                <FormControl sx={{margin: 2, display: 'flex', flexDirection: 'column'}}>
+                                <FormControl sx={{margin: 8, display: 'flex', flexDirection: 'column'}}>
                                     <InputLabel htmlFor="my-input" sx={{fontSize: 25}} style={{color: "whitesmoke"}}>
                                         {"Enter a " + f.replace( /_/g, " " )}
                                     </InputLabel>
