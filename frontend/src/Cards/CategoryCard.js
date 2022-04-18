@@ -8,7 +8,7 @@ export default function CategoryCard(props) {
         <Grid item key={props.slug} xs={12} sm={6} md={4} minHeight={"md"}>
             <A href={`/catalog/${props.slug}/list`} style={{textDecoration: 'none'}}>
                 <Card sx={{
-                    color: 'primary.main',
+                    color: 'whitesmoke',
                     fontSize: 30,
                     borderRadius: '12px',
                     boxShadow: 1,

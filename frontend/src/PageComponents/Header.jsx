@@ -11,7 +11,8 @@ const Header = () => {
                 <Toolbar sx={{justifyContent: "space-between"}}>
                     <Typography variant="h3" sx={{fontWeight: 'bold'}}>GURU</Typography>
                     <Box mr={3}>
-                        <Button color={"inherit"} variant={"outlined"} mr={1} size={"large"} sx={{borderRadius: '8px'}}>Sign In</Button>
+                        <Button color={"inherit"} variant={"outlined"} mr={1} size={"large"}
+                                sx={{borderRadius: '8px', marginX: 3}}>Sign In</Button>
                         <Button style={{ borderRadius: '8px',
                                 backgroundColor: "#227173"
                             }} variant={"contained"} size={"large"}>

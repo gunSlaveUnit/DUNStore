@@ -4,7 +4,7 @@ import {Container, Typography} from "@mui/material";
 const Footer = () => {
     return (
         <footer>
-            <Container gutterBottom>
+            <Container gutterBottom sx={{marginTop: 2}}>
                 <Typography variant={"h6"} align={"center"} color={"whitesmoke"}>
                     &copy; GURU {new Date().getFullYear()}. All rights reserved
                 </Typography>
