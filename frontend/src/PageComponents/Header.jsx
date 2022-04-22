@@ -1,6 +1,9 @@
 import React from 'react';
 import {AppBar, Box, Button, Container, Toolbar, Typography} from "@mui/material";
-import {A} from 'hookrouter';
+import {A, navigate} from 'hookrouter';
+import DeleteIcon from "@mui/icons-material/Delete";
+import * as API from "../API";
+import {ShoppingCart} from "@mui/icons-material";
 
 const Header = () => {
     const [token, setToken] = React.useState(null);
@@ -22,6 +25,11 @@ const Header = () => {
                                 backgroundColor: "#227173"
                             }} variant={"contained"} size={"large"}>
                             Sign Up
+                        </Button>
+                        <Button startIcon={<ShoppingCart/>} size={"large"}
+                                    style={{borderRadius: '8px', color: "#227173"}}
+                                    onClick={() => navigate("/cart")}>
+                                Cart
                         </Button>
                     </Box>
                 </Toolbar>
