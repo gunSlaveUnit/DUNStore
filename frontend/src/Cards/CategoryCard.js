@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import {A} from 'hookrouter';
-import {Card, CardContent, CardMedia, Grid, Link, Typography} from "@mui/material";
+import {Card, CardContent, Grid, Typography} from "@mui/material";
 
 export default function CategoryCard(props) {
     return (

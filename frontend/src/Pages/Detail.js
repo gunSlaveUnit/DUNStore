@@ -3,10 +3,8 @@ import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
 import {navigate} from 'hookrouter';
-import {Box, Button, Container, FormControl, Grid, Input, InputLabel, Toolbar, Typography} from "@mui/material";
+import {Box, Button, Container, Grid, Toolbar, Typography} from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Label} from "@mui/icons-material";
-import CategoryCard from "../Cards/CategoryCard";
 
 const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published"];
 
