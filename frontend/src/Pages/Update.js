@@ -2,6 +2,9 @@ import React, {useEffect} from "react";
 import * as API from "../API";
 import Header from "../PageComponents/Header";
 import Footer from "../PageComponents/Footer";
+import {Button, Container, FormControl, Input, InputLabel, Typography} from "@mui/material";
+
+const disabledEditingFields = ["id", "created_at", "updated_at"];
 
 export default function Update({what, slug}) {
     const [product, setProduct] = React.useState([]);
@@ -15,21 +18,32 @@ export default function Update({what, slug}) {
             <Header/>
             <main>
                 <article>
-                    <section>
+                    <Container maxWidth={"md"} sx={{marginTop: 12}} align={"center"}>
+                        <Typography variant={"h2"} align={"center"}
+                                    color={"whitesmoke"}
+                                    sx={{fontWeight: 'bold'}}>Update product</Typography>
                         <form onSubmit={() => {
                             let data = document.getElementsByTagName("input")
                             let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
                             API.update(what, slug, body)
                         }}>
-                            <h3>Update product</h3>
                             {Object.entries(product).map(([k, v]) =>
-                                <p title={k.charAt(0).toUpperCase() + k.slice(1)}>
-                                    <input type="text" defaultValue={v}/>
-                                </p>
+                                <FormControl sx={{margin: 8, display: 'flex', flexDirection: 'column'}} disabled={disabledEditingFields.includes(k)}>
+                                    <InputLabel htmlFor="my-input" sx={{fontSize: 25}} style={{color: "whitesmoke"}}>
+                                        {k.charAt(0).toUpperCase() + k.slice(1).replace( /_/g, " ")}
+                                    </InputLabel>
+                                    <Input defaultValue={v} sx={{fontSize: 25}} aria-describedby="my-helper-text" style={{color: "#227173"}}/>
+                                </FormControl>
                             )}
-                            <button type={"submit"}>Submit</button>
+                            <Button variant="contained" size={"large"} style={{
+                                borderRadius: '8px',
+                                backgroundColor: "#227173"
+                            }}
+                                    type={"submit"}>
+                                Submit
+                            </Button>
                         </form>
-                    </section>
+                    </Container>
                 </article>
             </main>
             <Footer/>
