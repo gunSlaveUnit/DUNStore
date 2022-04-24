@@ -63,7 +63,7 @@ export default function ProductCard(props) {
             <Button startIcon={<AddShoppingCartIcon/>} size={"large"}
                     style={{borderRadius: '8px', display: "flex", marginRight: "auto"}}
                     onClick={() => {
-                        add(tokenAPI.token(), props.group, props.slug).then(() => {})
+                        add(tokenAPI.token(), props.group, props.slug, 1).then(() => {})
                     }}>
                 Add to a cart
             </Button>
