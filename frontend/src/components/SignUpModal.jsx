@@ -1,5 +1,6 @@
 import React from "react";
 import {signup} from "../apis/User";
+import {Button, Typography} from "@mui/material";
 
 const SignUpModal = ({tokenAPI}) => {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -15,9 +16,11 @@ const SignUpModal = ({tokenAPI}) => {
 
     return (
         <React.Fragment>
-            <button onClick={() => setIsOpen(true)}>
-                Sign Up
-            </button>
+            <Button onClick={() => setIsOpen(true)} variant={"contained"}>
+                <Typography variant={"h6"} size="large">
+                    Sign Up
+                </Typography>
+            </Button>
 
             {isOpen &&
                 <div>
@@ -25,8 +28,8 @@ const SignUpModal = ({tokenAPI}) => {
                     <input id={"username"} type={"text"} placeholder={"Enter a username"}/>
                     <input id={"password"} type={"password"} placeholder={"Enter a password"}/>
                     <input id={"retype-password"} type={"password"} placeholder={"Retype password"}/>
-                    <button onClick={handleLogIn}>Sign Up</button>
-                    <button onClick={() => setIsOpen(false)}>Close</button>
+                    <Button onClick={handleLogIn}>Sign Up</Button>
+                    <Button onClick={() => setIsOpen(false)}>Close</Button>
                 </div>}
         </React.Fragment>
     )

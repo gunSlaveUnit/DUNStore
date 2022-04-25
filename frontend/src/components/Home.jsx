@@ -19,7 +19,7 @@ export default function Home() {
             {loading && <Loader/>}
             {categories.length ? (
                 <div>
-                    {categories.map(c => <CategoryCard key={c.id} title={c.title} slug={c.slug}/>)}
+                    {categories.map(c => <CategoryCard key={c.id} product={c}/>)}
                 </div>
             ) : (
                 loading ? null : <p>No categories</p>

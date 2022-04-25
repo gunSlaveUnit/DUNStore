@@ -1,5 +1,6 @@
 import React from "react";
 import {signin} from "../apis/User";
+import {Button, Typography} from "@mui/material";
 
 const SignInModal = ({tokenAPI}) => {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -14,16 +15,19 @@ const SignInModal = ({tokenAPI}) => {
 
     return (
         <React.Fragment>
-            <button onClick={() => setIsOpen(true)}>
-                Sign In
-            </button>
+            <Button onClick={() => setIsOpen(true)} variant={"contained"}
+                    style={{marginRight: 15}} size="large">
+                <Typography variant={"h6"}>
+                    Sign In
+                </Typography>
+            </Button>
 
             {isOpen &&
                 <div>
                     <input id={"username"} type={"text"} placeholder={"Enter a username"}/>
                     <input id={"password"} type={"password"} placeholder={"Enter a password"}/>
-                    <button onClick={handleLogIn}>Sign In</button>
-                    <button onClick={() => setIsOpen(false)}>Close</button>
+                    <Button onClick={handleLogIn} variant={"contained"}>Sign In</Button>
+                    <Button onClick={() => setIsOpen(false)} variant={"contained"}>Close</Button>
                 </div>}
         </React.Fragment>
     )

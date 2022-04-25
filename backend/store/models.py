@@ -15,6 +15,7 @@ class Product(models.Model):
     weight = models.FloatField()
     warranty = models.CharField(max_length=20)
     is_published = models.BooleanField(default=True)
+    photo = models.ImageField(upload_to="products/")
 
     class Meta:
         abstract = True
@@ -26,6 +27,7 @@ class Product(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=100, null=False)
     slug = models.SlugField(max_length=100, unique=True)
+    poster = models.ImageField(upload_to="categories/")
 
 
 class Processor(Product):

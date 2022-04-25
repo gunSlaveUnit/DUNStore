@@ -10,6 +10,7 @@ import Cart from "./Cart";
 import Header from "./Header";
 import Footer from "./Footer";
 import {useCookies} from "react-cookie";
+import {Container} from "@mui/material";
 
 const routes = {
     '/': () => <Home/>,
@@ -30,13 +31,13 @@ const App = () => {
     };
 
     return (
-        <div className={"MainWrapper"}>
+        <Container className={"MainWrapper"} maxWidth={"lg"}>
             <Header tokenAPI={tokenAPI}/>
             <main>
                 {match || <NotFoundPage/>}
             </main>
             <Footer/>
-        </div>
+        </Container>
     )
 }
 

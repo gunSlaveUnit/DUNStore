@@ -2,7 +2,12 @@ from django.contrib import admin
 
 from store.models import Category, Build, StorageDevice, VideoCard, Motherboard, Processor, RAM, PowerUnit
 
-admin.site.register(Category)
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
 admin.site.register(Build)
 admin.site.register(StorageDevice)
 admin.site.register(VideoCard)
