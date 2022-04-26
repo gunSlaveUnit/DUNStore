@@ -17,7 +17,7 @@ const SignUpModal = ({tokenAPI}) => {
     return (
         <React.Fragment>
             <Button onClick={() => setIsOpen(true)} variant={"contained"}
-            style={{borderRadius: 10, background: "#7a9cbc", borderWidth: 3, borderColor: "#435567"}} size={"medium"}>
+            style={{borderRadius: 10, background: "#7a9cbc", borderStyle: "solid", borderWidth: 3, borderColor: "#435567"}} size={"medium"}>
                 <Typography variant={"h6"} textTransform={"capitalize"}>
                     Sign Up
                 </Typography>
