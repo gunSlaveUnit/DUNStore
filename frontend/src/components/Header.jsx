@@ -10,7 +10,8 @@ const Header = ({tokenAPI}) => {
             <AppBar style={{backgroundColor: "#18181c"}} position={"fixed"}>
                 <Container fixed>
                     <Toolbar sx={{justifyContent: "space-between"}}>
-                        <Box
+                        <Toolbar>
+                            <Box
                             component="img"
                             sx={{
                                 height: 50,
@@ -24,13 +25,27 @@ const Header = ({tokenAPI}) => {
                         <Typography variant={"h4"} style={{display: "inline-block"}} ml={1}>
                             <A href={'/'} style={{textDecoration: 'none', color: "#6c6964"}}>GURU</A>
                         </Typography>
-                            <Button>Stores</Button>
-                            <Button>Contact</Button>
-                            <Button>About</Button>
-                        <ButtonGroup>
+                        </Toolbar>
+
+                        <Toolbar>
+                            <Button style={{color: "#eceded"}}>
+                                <Typography variant={"h5"} textTransform={"capitalize"}>
+                                    Stores
+                                </Typography>
+                            </Button>
+                            <Button style={{color: "#eceded"}}>
+                                <Typography variant={"h5"} textTransform={"capitalize"}>
+                                    Contact
+                                </Typography>
+                            </Button>
+                            <Button style={{color: "#eceded"}}>
+                                <Typography variant={"h5"} textTransform={"capitalize"}>
+                                    About
+                                </Typography>
+                            </Button>
                             <SignInModal tokenAPI={tokenAPI}/>
                             <SignUpModal tokenAPI={tokenAPI}/>
-                        </ButtonGroup>
+                        </Toolbar>
                     </Toolbar>
                 </Container>
             </AppBar>

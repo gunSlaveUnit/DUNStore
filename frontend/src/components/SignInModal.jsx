@@ -16,8 +16,8 @@ const SignInModal = ({tokenAPI}) => {
     return (
         <React.Fragment>
             <Button onClick={() => setIsOpen(true)} variant={"contained"}
-                    style={{marginRight: 15}} size="large">
-                <Typography variant={"h6"}>
+                    style={{marginRight: 15, borderRadius: 10, background: "#ae718f", borderWidth: 3, borderColor: "#664350"}} size="medium">
+                <Typography variant={"h6"} style={{color: "#eceded"}} textTransform={"capitalize"}>
                     Sign In
                 </Typography>
             </Button>
