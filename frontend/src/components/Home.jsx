@@ -39,7 +39,7 @@ export default function Home() {
             {loading && <Loader/>}
 
             {categories.length ? (
-                <Container maxWidth={"lg"}>
+                <Container maxWidth={"lg"} style={{alignItems: "center"}}>
                     <Grid container mt={6}
                           align="center" justify="center" >
                         {categories.map(c => <CategoryCard key={c.id} product={c}/>)}

@@ -3,7 +3,7 @@ import {CircularProgress} from "@mui/material";
 
 const Loader = () => {
     return (
-        <CircularProgress disableShrink />
+        <CircularProgress disableShrink style={{color: "#ededed"}}/>
     )
 }
 

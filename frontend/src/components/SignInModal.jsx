@@ -1,6 +1,35 @@
 import React from "react";
 import {signin} from "../apis/User";
-import {Button, Typography} from "@mui/material";
+import {
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle, styled,
+    TextField,
+    Typography
+} from "@mui/material";
+
+const CssTextField = styled(TextField)({
+    '& label.Mui-focused': {
+        color: '#ae718f',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#ae718f',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#ae718f',
+        },
+        '&:hover fieldset': {
+            borderColor: '#ae718f',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#ae718f',
+        },
+    },
+});
 
 const SignInModal = ({tokenAPI}) => {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -16,19 +45,74 @@ const SignInModal = ({tokenAPI}) => {
     return (
         <React.Fragment>
             <Button onClick={() => setIsOpen(true)} variant={"contained"}
-                    style={{marginRight: 15, borderRadius: 10, background: "#ae718f", borderStyle: "solid", borderWidth: 3, borderColor: "#664350"}} size="medium">
+                    style={{
+                        marginRight: 15,
+                        borderRadius: 10,
+                        background: "#ae718f",
+                        borderStyle: "solid",
+                        borderWidth: 3,
+                        borderColor: "#664350"
+                    }} size="medium">
                 <Typography variant={"h6"} style={{color: "#eceded"}} textTransform={"capitalize"}>
                     Sign In
                 </Typography>
             </Button>
 
             {isOpen &&
-                <div>
-                    <input id={"username"} type={"text"} placeholder={"Enter a username"}/>
-                    <input id={"password"} type={"password"} placeholder={"Enter a password"}/>
-                    <Button onClick={handleLogIn} variant={"contained"}>Sign In</Button>
-                    <Button onClick={() => setIsOpen(false)} variant={"contained"}>Close</Button>
-                </div>}
+                <Dialog open={isOpen} onClose={setIsOpen} aria-labelledby={"form-dialog-title"}
+                        PaperProps={{
+                            style: {
+                                backgroundColor: '#1e1e21',
+                                boxShadow: 'none',
+                            },
+                        }}>
+                    <DialogTitle id={"form-dialog-title"}>
+                        <Typography variant={"h4"} style={{color: "#eceded"}}>
+                            Sign In
+                        </Typography>
+                    </DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            <Typography variant={"h6"} style={{color: "#eceded"}}>
+                                Sign in to get all functionality and buy whatever you
+                                want
+                            </Typography>
+
+                        </DialogContentText>
+                        <CssTextField autoFocus margin={"dense"} id={"username"} label={"Username"} type={"text"}
+                                      fullWidth required sx={{ input: { color: '#ededed' } }}/>
+                        <CssTextField margin={"dense"} id={"password"} label={"Password"} type={"password"}
+                                      fullWidth required sx={{ input: { color: '#ededed' } }}/>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleLogIn} variant={"contained"}
+                                style={{
+                                    marginRight: 15,
+                                    borderRadius: 10,
+                                    background: "#ae718f",
+                                    borderStyle: "solid",
+                                    borderWidth: 3,
+                                    borderColor: "#664350"
+                                }} size="medium">
+                            <Typography variant={"h6"} style={{color: "#eceded"}} textTransform={"capitalize"}>
+                                Sign In
+                            </Typography>
+                        </Button>
+                        <Button onClick={() => setIsOpen(false)} variant={"contained"}
+                                style={{
+                                    borderRadius: 10,
+                                    background: "#7a9cbc",
+                                    borderStyle: "solid",
+                                    borderWidth: 3,
+                                    borderColor: "#435567"
+                                }} size={"medium"}>
+                            <Typography variant={"h6"} textTransform={"capitalize"}>
+                                Close
+                            </Typography>
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            }
         </React.Fragment>
     )
 }
