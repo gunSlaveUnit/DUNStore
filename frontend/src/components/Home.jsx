@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import * as API from "../apis/API";
 import CategoryCard from "./CategoryCard";
-import Loader from "./Loader/Loader";
+import Loader from "./Loader";
 import {Box, Container, Grid, Paper, Typography} from "@mui/material";
 import {A} from "hookrouter";
 
@@ -12,7 +12,7 @@ export default function Home() {
     useEffect(() => {
         API.list('categories')
             .then(p => setCategories(p))
-            .then(_ => setLoading(false));
+            .then(_ => setLoading(false))
     }, []);
 
     return (
@@ -21,17 +21,13 @@ export default function Home() {
                 <Box
                     component="img"
                     sx={{
-                        height: 120,
-                        width: 120,
-                        maxHeight: {xs: 120, md: 120},
-                        maxWidth: {xs: 120, md: 120},
+                        height: 210,
+                        width: 520,
                     }}
                     alt="GURU Store Logo"
                     src="../logo.png"
                 />
-                <Typography variant={"h1"} sx={{fontWeight: 'bold'}} ml={3} align={"center"} gutterBottom
-                            style={{display: "inline-block", color: "#eceded"}} gutterBottom>GURU</Typography>
-                <Typography variant={"h5"} align={"center"}
+                <Typography variant={"h5"} align={"center"} mt={2}
                             style={{color: "#eceded"}} gutterBottom>Computer store where you can pick up components for
                     your needs and tasks</Typography>
             </Container>
@@ -39,14 +35,21 @@ export default function Home() {
             {loading && <Loader/>}
 
             {categories.length ? (
-                <Container maxWidth={"lg"} style={{alignItems: "center"}}>
-                    <Grid container mt={6}
-                          align="center" justify="center" >
+                <Container style={{alignItems: "center"}}>
+                    <Grid container mt={1} spacing={3}
+                          align="center" justify="center">
                         {categories.map(c => <CategoryCard key={c.id} product={c}/>)}
                     </Grid>
                 </Container>
             ) : (
-                loading ? null : <p>No categories</p>
+                loading ? null :
+                    <Typography variant={"h3"}
+                                align={"center"}
+                                mt={7} style={{color: "#7a9cbc"}}
+                                gutterBottom
+                    >
+                        No categories
+                    </Typography>
             )}
         </Container>
 

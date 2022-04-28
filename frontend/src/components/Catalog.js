@@ -2,7 +2,10 @@ import React, {useEffect} from 'react';
 import * as API from "../apis/API";
 import ProductCard from "./ProductCard";
 import {navigate} from 'hookrouter';
-import Loader from "./Loader/Loader";
+import Loader from "./Loader";
+import {Button, Container, Grid, Typography} from "@mui/material";
+import CategoryCard from "./CategoryCard";
+import Create from "./Create";
 
 export default function Catalog({what}) {
     const [cards, setCards] = React.useState([]);
@@ -12,22 +15,27 @@ export default function Catalog({what}) {
         API.list(what)
             .then(p => setCards(p))
             .then(_ => setLoading(false));
-    })
+    }, [what])
 
     return (
-        <div>
-            <button onClick={() => navigate(`/catalog/${what}/create`)}>
-                Add a new product
-            </button>
+        <Container sx={{marginTop: 11}} fixed>
+            <Create what={what} how={{}}/>
 
             {loading && <Loader/>}
             {cards.length ? (
-                <div>
-                    {cards.map(c => <ProductCard key={c.id} group={what} title={c.title} slug={c.slug}/>)}
-                </div>
+                <Container fixed sx={{marginTop: 3}} maxWidth={"lg"} style={{alignItems: "center"}}>
+                    {cards.map(c => <ProductCard key={c.id} group={what} card={c}/>)}
+                </Container>
             ) : (
-                loading ? null : <p>No products</p>
+                loading ? null :
+                    <Typography variant={"h3"}
+                                align={"center"}
+                                mt={7} style={{color: "#7a9cbc"}}
+                                gutterBottom
+                    >
+                        No products
+                    </Typography>
             )}
-        </div>
+        </Container>
     );
 }

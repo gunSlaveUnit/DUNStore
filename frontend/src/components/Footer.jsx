@@ -1,10 +1,13 @@
 import React from 'react';
-import {Typography} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 
 const Footer = () => {
     return (
         <footer>
-            <Typography variant={"h6"} style={{color: "#ededed"}} align={"center"} mt={5}>
+            <Typography variant={"h6"}
+                        style={{color: "#ededed", display: "flex", flexDirection: "column"}}
+                        align={"center"} mt={7} bottom={0}
+            >
                 &copy; GURU {new Date().getFullYear()}. All rights reserved
             </Typography>
         </footer>

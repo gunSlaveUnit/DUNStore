@@ -15,7 +15,6 @@ import {Container} from "@mui/material";
 const routes = {
     '/': () => <Home/>,
     '/catalog/:catalog/list': ({catalog}) => <Catalog what={catalog}/>,
-    '/catalog/:catalog/create': ({catalog}) => <Create what={catalog} how={{}}/>,
     '/catalog/:catalog/update/:slug': ({catalog, slug}) => <Update what={catalog} slug={slug}/>,
     '/catalog/:catalog/detail/:slug': ({catalog, slug}) => <Detail what={catalog} slug={slug}/>,
     '/cart': () => <Cart/>,

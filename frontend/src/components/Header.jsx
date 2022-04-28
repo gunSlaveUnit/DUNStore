@@ -15,15 +15,13 @@ const Header = ({tokenAPI}) => {
                             component="img"
                             sx={{
                                 height: 50,
-                                width: 50,
-                                maxHeight: {xs: 100, md: 100},
-                                maxWidth: {xs: 100, md: 100},
+                                width: 120,
                             }}
                             alt="GURU Store Logo"
                             src="../logo.png"
                         />
-                        <Typography variant={"h4"} style={{display: "inline-block"}} ml={1}>
-                            <A href={'/'} style={{textDecoration: 'none', color: "#6c6964"}}>GURU</A>
+                        <Typography variant={"h5"} style={{display: "inline-block"}} ml={1}>
+                            <A href={'/'} style={{textDecoration: 'none', color: "#6c6964"}}>Home</A>
                         </Typography>
                         </Toolbar>
 

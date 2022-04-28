@@ -1,23 +1,20 @@
 import React from 'react';
-import {A, navigate} from 'hookrouter';
-import {CardActionArea, CardContent, CardHeader, CardMedia, Grid, Typography} from "@mui/material";
+import {navigate} from 'hookrouter';
+import {CardActionArea, CardContent, Grid, Typography} from "@mui/material";
 
 export default function CategoryCard({product}) {
+    function handleCategoryOnClicked() {
+        navigate(`/catalog/${product.slug}/list`)
+    }
+
     return (
-        <Grid item md={6}>
-            <CardActionArea style={{backgroundColor: "#27282b", height: 320, width: 400, borderRadius: "1.8em"}}>
-                <CardMedia
-                    component="img"
-                    height="140"
-                    image={product.poster}
-                    alt={`${product.title} poster`}
-                />
+        <Grid item md={4}>
+            <CardActionArea style={{backgroundColor: "#27282b", height: 300, width: 320, borderRadius: "1.8em"}}
+                            onClick={handleCategoryOnClicked}>
                 <CardContent>
-                    <A href={`/catalog/${product.slug}/list`} style={{textDecoration: 'none'}}>
-                        <Typography variant="h4" sx={{fontWeight: 'bold'}} align={"center"} style={{color: "#eceded"}}>
-                            {product.title}
-                        </Typography>
-                    </A>
+                    <Typography variant="h4" sx={{fontWeight: 'bold'}} align={"center"} style={{color: "#eceded"}}>
+                        {product.title}
+                    </Typography>
                 </CardContent>
             </CardActionArea>
         </Grid>

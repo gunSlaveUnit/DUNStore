@@ -64,6 +64,7 @@ const SignInModal = ({tokenAPI}) => {
                             style: {
                                 backgroundColor: '#1e1e21',
                                 boxShadow: 'none',
+                                borderRadius: "1.8em"
                             },
                         }}>
                     <DialogTitle id={"form-dialog-title"}>

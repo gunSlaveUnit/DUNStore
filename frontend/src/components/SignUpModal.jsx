@@ -64,17 +64,18 @@ const SignUpModal = ({tokenAPI}) => {
                             style: {
                                 backgroundColor: '#1e1e21',
                                 boxShadow: 'none',
+                                borderRadius: "1.8em"
                             },
                         }}>
                     <DialogTitle id={"form-dialog-title"}>
                         <Typography variant={"h4"} style={{color: "#eceded"}}>
-                            Sign In
+                            Sign Up
                         </Typography>
                     </DialogTitle>
                     <DialogContent>
                         <DialogContentText>
                             <Typography variant={"h6"} style={{color: "#eceded"}}>
-                                Sign in to get all functionality and buy whatever you
+                                Sign up to get all functionality and buy whatever you
                                 want
                             </Typography>
 
