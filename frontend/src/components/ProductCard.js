@@ -2,7 +2,18 @@ import React, {useEffect} from 'react';
 import {A, navigate} from 'hookrouter';
 import {add} from "../apis/CartAPI";
 import {useCookies} from "react-cookie";
-import {Button, ButtonBase, CardActionArea, CardContent, Grid, Paper, Stack, styled, Typography} from "@mui/material";
+import {
+    Button,
+    ButtonBase,
+    Link,
+    CardActionArea,
+    CardContent,
+    Grid,
+    Paper,
+    Stack,
+    styled,
+    Typography
+} from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 const Img = styled('img')({
@@ -19,12 +30,11 @@ export default function ProductCard(props) {
         setToken: token => setCookie('token', token),
     };
 
-    const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "price"];
-
-    function handleProductOnClicked() {
-        /* Move to product detail page */
+    function handleProductCardTitleClicked() {
         navigate(`/catalog/${props.group}/detail/${props.card.slug}`)
     }
+
+    const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "price"];
 
     return (
         <CardActionArea
@@ -35,21 +45,20 @@ export default function ProductCard(props) {
                 height: 300,
                 width: 800,
                 padding: 10,
+                marginBottom: 30,
                 borderRadius: "1.8em"
-            }} onClick={handleProductOnClicked}>
+            }}>
             <Grid container spacing={2}>
-                <Grid item>
-                    <ButtonBase sx={{width: 256, height: 256}}>
-                        <Img alt="complex" src="/static/images/grid/complex.jpg"/>
-                    </ButtonBase>
-                </Grid>
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
-                            <Typography gutterBottom variant="h5" sx={{fontWeight: 'bold'}} style={{color: "#eceded"}}
-                                        component="div">
-                                {props.card.title}
-                            </Typography>
+                            <Link onClick={() => handleProductCardTitleClicked()}>
+                                <Typography gutterBottom variant="h5" sx={{fontWeight: 'bold'}}
+                                            style={{color: "#eceded"}}
+                                            component="div">
+                                    {props.card.title}
+                                </Typography>
+                            </Link>
                             <Typography variant="body2" style={{color: "#6c6964"}} gutterBottom>
                                 ID: 1030114
                             </Typography>
