@@ -1,5 +1,4 @@
-const URL_BASE = "http://localhost:8000/api/v1/auth/";
-export let token = null;
+const URL_BASE = "http://localhost:8000/api/v1/users/auth/";
 
 export async function signin(username, password) {
     const requestOptions = {
@@ -11,10 +10,9 @@ export async function signin(username, password) {
         })
     };
 
-    const res = await fetch(URL_BASE + "token/login/", requestOptions);
+    const res = await fetch(URL_BASE + "login/", requestOptions);
     const data = await res.json()
-    token = data['auth_token']
-    return token
+    return data['auth_token']
 }
 
 export async function signup(email, username, password) {
@@ -28,11 +26,11 @@ export async function signup(email, username, password) {
         })
     };
 
-    const res = await fetch(URL_BASE + "users/", requestOptions);
+    const res = await fetch(URL_BASE + "register/", requestOptions);
     return await res.json()
 }
 
-export async function signout() {
+export async function signout(token) {
     const requestOptions = {
         method: "POST",
         headers: {
@@ -40,10 +38,10 @@ export async function signout() {
             "Authorization": `Token ${token}`
         },
     };
-    return await fetch(URL_BASE + "token/logout/", requestOptions);
+    return await fetch(URL_BASE + "refresh/", requestOptions);
 }
 
-export async function getByToken() {
+export async function getByToken(token) {
     const requestOptions = {
         method: "GET",
         headers: {
