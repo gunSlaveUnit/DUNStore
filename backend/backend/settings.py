@@ -37,10 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store',
     'cart',
+    'users',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
-    'djoser',
 ]
 
 MIDDLEWARE = [
