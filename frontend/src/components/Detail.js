@@ -45,10 +45,6 @@ export default function Detail({what, slug}) {
         navigate(`/catalog/${what}/update/${slug}`)
     }
 
-    function handleDelete() {
-        API.del(what, slug).then(_ => navigate(`/catalog/${what}/list`, true))
-    }
-
     return (
         <Container sx={{marginTop: 11}} fixed>
             {loading && <Loader/>}

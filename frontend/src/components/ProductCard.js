@@ -12,9 +12,11 @@ import {
     Paper,
     Stack,
     styled,
-    Typography
+    Typography, Card
 } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Delete from "./Delete";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -37,14 +39,14 @@ export default function ProductCard(props) {
     const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "price"];
 
     return (
-        <CardActionArea
+        <Card
             style={{
                 p: 2,
                 flexGrow: 1,
                 backgroundColor: "#27282b",
                 height: 300,
-                width: 800,
-                padding: 10,
+                width: 750,
+                padding: 30,
                 marginBottom: 30,
                 borderRadius: "1.8em"
             }}>
@@ -98,10 +100,12 @@ export default function ProductCard(props) {
                                     Add to cart
                                 </Typography>
                             </Button>
+
+                            <Delete what={props.group} product={props.card}/>
                         </Stack>
                     </Grid>
                 </Grid>
             </Grid>
-        </CardActionArea>
+        </Card>
     );
 }

@@ -1,68 +1,35 @@
-import React, {useEffect} from "react";
+import DeleteIcon from "@mui/icons-material/Delete";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography} from "@mui/material";
+import React from "react";
 import * as API from "../apis/API";
-import {
-    Button, Container,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogContentText,
-    DialogTitle,
-    styled, TextField,
-    Typography
-} from "@mui/material";
+import {navigate} from "hookrouter";
 
-const CssTextField = styled(TextField)({
-    '& label.Mui-focused': {
-        color: '#ae718f',
-    },
-    '& .MuiInput-underline:after': {
-        borderBottomColor: '#ae718f',
-    },
-    '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-            borderColor: '#ae718f',
-        },
-        '&:hover fieldset': {
-            borderColor: '#ae718f',
-        },
-        '&.Mui-focused fieldset': {
-            borderColor: '#ae718f',
-        },
-    },
-});
-
-export default function Create({what, how}) {
-    const [product, setProduct] = React.useState([]);
+export default function Delete({what, product}) {
     const [isOpen, setIsOpen] = React.useState(false)
 
-    useEffect(() => {
-        API.create(what, how).then(p => setProduct(p));
-    }, [what, how])
-
-    function handleSubmit() {
-        let data = document.getElementsByTagName("input")
-        let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
-        API.create(what, body).then(_ => {})
+    function handleDelete() {
+        API.del(what, product.slug)
+            .then(_ => setIsOpen(false))
+            .then(_ => navigate(`/catalog/${what}/list`, true))
     }
 
     return (
-        <Container>
-            <Button onClick={() => setIsOpen(true)} variant={"contained"}
+        <React.Fragment>
+            <Button variant={"contained"} startIcon={<DeleteIcon/>} onClick={() => setIsOpen(true)}
                     style={{
-                        marginRight: 15,
                         borderRadius: 10,
                         background: "#ae718f",
                         borderStyle: "solid",
                         borderWidth: 3,
-                        borderColor: "#664350"
-                    }} size="medium">
-                <Typography variant={"h6"} style={{color: "#eceded"}} textTransform={"capitalize"}>
-                    Add a new product
+                        borderColor: "#664350",
+                    }} size={"small"}>
+                <Typography variant={"small"} textTransform={"capitalize"}>
+                    Delete
                 </Typography>
             </Button>
 
             {isOpen &&
-                <Dialog open={isOpen} onClose={() => setIsOpen} aria-labelledby={"form-dialog-title"}
+                <Dialog open={isOpen} onClose={setIsOpen} aria-labelledby={"form-dialog-title"}
                         PaperProps={{
                             style: {
                                 backgroundColor: '#1e1e21',
@@ -72,17 +39,18 @@ export default function Create({what, how}) {
                         }}>
                     <DialogTitle id={"form-dialog-title"}>
                         <Typography variant={"h4"} style={{color: "#eceded"}}>
-                            {`Create: ${what}`}
+                            Delete item
                         </Typography>
                     </DialogTitle>
                     <DialogContent>
-                        {Object.keys(product).map(f =>
-                            <CssTextField key={f} id={f} type={"text"} label={"Enter a " + f.replace(/_/g, " ")}
-                                          fullWidth required sx={{input: {color: '#ededed'}}} margin={"dense"}/>
-                        )}
+                        <DialogContentText>
+                            <Typography variant={"h6"} style={{color: "#eceded"}}>
+                                Are you sure you want to delete this?
+                            </Typography>
+                        </DialogContentText>
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleSubmit} variant={"contained"}
+                        <Button onClick={handleDelete} variant={"contained"}
                                 style={{
                                     marginRight: 15,
                                     borderRadius: 10,
@@ -92,7 +60,7 @@ export default function Create({what, how}) {
                                     borderColor: "#664350"
                                 }} size="medium">
                             <Typography variant={"h6"} style={{color: "#eceded"}} textTransform={"capitalize"}>
-                                Submit
+                                Yes, delete this
                             </Typography>
                         </Button>
                         <Button onClick={() => setIsOpen(false)} variant={"contained"}
@@ -110,6 +78,6 @@ export default function Create({what, how}) {
                     </DialogActions>
                 </Dialog>
             }
-        </Container>
-    );
+        </React.Fragment>
+    )
 }
