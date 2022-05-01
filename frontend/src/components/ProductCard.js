@@ -17,6 +17,7 @@ import {
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Delete from "./Delete";
+import Update from "./Update";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -101,6 +102,7 @@ export default function ProductCard(props) {
                                 </Typography>
                             </Button>
 
+                            <Update what={props.group} slug={props.card.slug}/>
                             <Delete what={props.group} product={props.card}/>
                         </Stack>
                     </Grid>

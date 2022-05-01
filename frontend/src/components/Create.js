@@ -10,6 +10,7 @@ import {
     styled, TextField,
     Typography
 } from "@mui/material";
+import slugify from "react-slugify";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -77,7 +78,8 @@ export default function Create({what, how}) {
                     </DialogTitle>
                     <DialogContent>
                         {Object.keys(product).map(f =>
-                            <CssTextField key={f} id={f} type={"text"} label={"Enter a " + f.replace(/_/g, " ")}
+                            <CssTextField key={f} id={f} type={"text"}
+                                          label={"Enter a " + f.replace(/_/g, " ")}
                                           fullWidth required sx={{input: {color: '#ededed'}}} margin={"dense"}/>
                         )}
                     </DialogContent>
