@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import * as CartAPI from "../apis/CartAPI";
 import * as ProductAPI from "../apis/API";
 import {Container, Typography} from "@mui/material";
 import Loader from "./Loader";
 import {useCookies} from "react-cookie";
-import ProductCard from "./ProductCard";
 import CartProduct from "./CartProduct";
 
 export default function Cart() {
@@ -26,18 +25,15 @@ export default function Cart() {
             .then(_ => setLoading(false));
     }, [cookies])
 
-    const [price, setPrice] = React.useState(0);
-    useEffect(
-        () => {
-            setPrice(products.reduce((price, p) => price + p.info.price, 0));
-        },
+    const price = useMemo(
+        () => products.reduce((price, p) => price + p.info.price, 0),
         [products]);
 
     return (<Container sx={{marginTop: 11}} fixed>
         {loading && <Loader/>}
         {products.length ? (
             <React.Fragment>
-                 <Typography variant={"h4"}
+                <Typography variant={"h4"}
                             align={"center"}
                             mt={7} style={{color: "#7a9cbc"}}
                             gutterBottom>
