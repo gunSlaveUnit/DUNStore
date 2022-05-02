@@ -10,6 +10,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
+import {useCookies} from "react-cookie";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -31,15 +32,23 @@ const CssTextField = styled(TextField)({
     },
 });
 
-const SignInModal = ({tokenAPI}) => {
-    const [isOpen, setIsOpen] = React.useState(false)
+const SignInModal = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies([]);
 
     function handleLogIn() {
-        let username = document.getElementById('username').value;
+        let email = document.getElementById('email').value;
         let password = document.getElementById('password').value;
 
-        signin(username, password)
-            .then(t => tokenAPI.setToken(t))
+        signin(email, password)
+            .then(r => setAccount(r))
+    }
+
+    function setAccount(r) {
+        setCookie("access", r.access)
+        setCookie("refresh", r.refresh)
+        setCookie("username", r.username)
+        setCookie("email", r.email)
     }
 
     return (
@@ -80,7 +89,7 @@ const SignInModal = ({tokenAPI}) => {
                             </Typography>
 
                         </DialogContentText>
-                        <CssTextField autoFocus margin={"dense"} id={"username"} label={"Username"} type={"text"}
+                        <CssTextField autoFocus margin={"dense"} id={"email"} label={"Email"} type={"email"}
                                       fullWidth required sx={{ input: { color: '#ededed' } }}/>
                         <CssTextField margin={"dense"} id={"password"} label={"Password"} type={"password"}
                                       fullWidth required sx={{ input: { color: '#ededed' } }}/>

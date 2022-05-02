@@ -1,12 +1,15 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
-from cart.views import CartRowListAPIView, CartRowCreateAPIView
+from cart.views import CartRowViewSet
+
+router = routers.SimpleRouter()
+router.register(r'', CartRowViewSet)
 
 urlpatterns = [
-    path('', CartRowListAPIView.as_view()),
-    path('add', CartRowCreateAPIView.as_view()),
+    path('', include(router.urls)),
 ]
 
 if settings.DEBUG:

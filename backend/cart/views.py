@@ -6,15 +6,12 @@ from cart.models import CartRow
 from cart.serializers import CartRowSerializer
 
 
-class CartRowListAPIView(ListAPIView):
+class CartRowViewSet(ModelViewSet):
+    queryset = CartRow.objects.all()
     serializer_class = CartRowSerializer
 
     def list(self, request, *args, **kwargs):
-        token = request.query_params.get("token")
-        queryset = CartRow.objects.filter(token=token)
+        email = request.query_params.get("email")
+        queryset = CartRow.objects.filter(email=email)
         serializer = CartRowSerializer(queryset, many=True)
         return Response(serializer.data)
-
-
-class CartRowCreateAPIView(CreateAPIView):
-    serializer_class = CartRowSerializer
