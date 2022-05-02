@@ -28,10 +28,6 @@ const Img = styled('img')({
 
 export default function ProductCard(props) {
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
-    const tokenAPI = {
-        token: () => cookies.token,
-        setToken: token => setCookie('token', token),
-    };
 
     function handleProductCardTitleClicked() {
         navigate(`/catalog/${props.group}/detail/${props.card.slug}`)
@@ -87,7 +83,7 @@ export default function ProductCard(props) {
                                 {props.card.price}&#8381;
                             </Typography>
                             <Button onClick={() => {
-                                add(tokenAPI.token(), props.group, props.card.slug, 1).then(() => {
+                                add(cookies["access"], props.group, props.card.slug, 1).then(() => {
                                 })
                             }} variant={"contained"} startIcon={<AddShoppingCartIcon/>}
                                     style={{

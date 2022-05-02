@@ -1,4 +1,4 @@
-const URL_BASE = "http://localhost:8000/api/v1/cart";
+const URL_BASE = "http://localhost:8000/api/v1/cart/";
 
 export async function add(token, category, slug, amount) {
     const requestOptions = {
@@ -14,6 +14,6 @@ export async function add(token, category, slug, amount) {
         )
     };
 
-    const res = await fetch(URL_BASE + "/add", requestOptions);
+    const res = await fetch(URL_BASE, requestOptions);
     return await res.json()
 }
