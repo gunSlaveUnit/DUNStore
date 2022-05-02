@@ -1,4 +1,3 @@
-from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
@@ -11,9 +10,9 @@ class CartRowViewSet(ModelViewSet):
     serializer_class = CartRowSerializer
 
     def list(self, request, *args, **kwargs):
-        email = request.query_params.get("email")
-        if email is None:
-            return Response("Email not provided")
-        queryset = CartRow.objects.filter(email=email)
+        token = request.query_params.get("token")
+        if token is None:
+            return Response("Token not provided")
+        queryset = CartRow.objects.filter(token=token)
         serializer = CartRowSerializer(queryset, many=True)
         return Response(serializer.data)
