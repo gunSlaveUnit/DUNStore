@@ -9,13 +9,11 @@ import Update from "./Update";
 import Cart from "./Cart";
 import Header from "./Header";
 import Footer from "./Footer";
-import {useCookies} from "react-cookie";
 import {Container} from "@mui/material";
 
 const routes = {
     '/': () => <Home/>,
     '/catalog/:catalog/list': ({catalog}) => <Catalog what={catalog}/>,
-    '/catalog/:catalog/update/:slug': ({catalog, slug}) => <Update what={catalog} slug={slug}/>,
     '/catalog/:catalog/detail/:slug': ({catalog, slug}) => <Detail what={catalog} slug={slug}/>,
     '/cart': () => <Cart/>,
 }
@@ -23,15 +21,9 @@ const routes = {
 const App = () => {
     const match = useRoutes(routes);
 
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
-    const tokenAPI = {
-        token: () => cookies.token,
-        setToken: token => setCookie('token', token),
-    };
-
     return (
         <Container className={"MainWrapper"} maxWidth={"lg"}>
-            <Header tokenAPI={tokenAPI}/>
+            <Header/>
             <main>
                 {match || <NotFoundPage/>}
             </main>

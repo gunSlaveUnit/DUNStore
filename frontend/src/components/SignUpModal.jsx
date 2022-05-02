@@ -10,6 +10,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
+import {useCookies} from "react-cookie";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -31,8 +32,9 @@ const CssTextField = styled(TextField)({
     },
 });
 
-const SignUpModal = ({tokenAPI}) => {
-    const [isOpen, setIsOpen] = React.useState(false)
+const SignUpModal = () => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies([]);
 
     function handleSignUp() {
         let email = document.getElementById('email').value;
@@ -40,7 +42,14 @@ const SignUpModal = ({tokenAPI}) => {
         let password = document.getElementById('password').value;
 
         signup(email, username, password)
-            .then(t => tokenAPI.setToken(t))
+            .then(r => setAccount(r))
+    }
+
+    function setAccount(r) {
+        setCookie("access", r.access)
+        setCookie("refresh", r.refresh)
+        setCookie("username", r.username)
+        setCookie("email", r.email)
     }
 
     return (
