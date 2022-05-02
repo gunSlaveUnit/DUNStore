@@ -12,6 +12,8 @@ class CartRowViewSet(ModelViewSet):
 
     def list(self, request, *args, **kwargs):
         email = request.query_params.get("email")
+        if email is None:
+            return Response("Email not provided")
         queryset = CartRow.objects.filter(email=email)
         serializer = CartRowSerializer(queryset, many=True)
         return Response(serializer.data)
