@@ -90,9 +90,9 @@ const SignInModal = () => {
 
                         </DialogContentText>
                         <CssTextField autoFocus margin={"dense"} id={"email"} label={"Email"} type={"email"}
-                                      fullWidth required sx={{ label: { color: '#ededed' } }}/>
+                                      fullWidth required sx={{label: {color: '#ededed'}, input: {color: '#ededed'}}}/>
                         <CssTextField margin={"dense"} id={"password"} label={"Password"} type={"password"}
-                                      fullWidth required sx={{ label: { color: '#ededed' } }}/>
+                                      fullWidth required sx={{label: {color: '#ededed'}, input: {color: '#ededed'}}}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleLogIn} variant={"contained"}

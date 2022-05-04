@@ -78,9 +78,10 @@ export default function Create({what, how, update}) {
                     </DialogTitle>
                     <DialogContent>
                         {Object.keys(product).map(f =>
-                            <CssTextField key={f} id={f} type={"text"}
+                            <CssTextField key={f} id={f} type={f === "image" ? "file" : "text"}
                                           label={"Enter a " + f.replace(/_/g, " ")}
-                                          fullWidth required sx={{label: {color: '#ededed'}}} margin={"dense"}/>
+                                          fullWidth required sx={{label: {color: '#ededed'},
+                                input: {color: '#ededed', marginLeft: f === "image" ? 15 : 0}}} margin={"dense"}/>
                         )}
                     </DialogContent>
                     <DialogActions>
