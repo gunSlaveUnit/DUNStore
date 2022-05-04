@@ -83,7 +83,7 @@ export default function Update({what, slug}) {
                         {Object.entries(product).map(([k, v]) =>
                             <CssTextField key={k} id={k} type={"text"} defaultValue={v} disabled={disabledEditingFields.includes(k)}
                             label={k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, " ")}
-                                          fullWidth required sx={{input: {color: '#ededed'}}} margin={"dense"}/>
+                                          fullWidth required sx={{label: {color: '#ededed'}}} margin={"dense"}/>
                         )}
                     </DialogContent>
                     <DialogActions>

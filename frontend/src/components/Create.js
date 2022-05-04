@@ -80,7 +80,7 @@ export default function Create({what, how, update}) {
                         {Object.keys(product).map(f =>
                             <CssTextField key={f} id={f} type={"text"}
                                           label={"Enter a " + f.replace(/_/g, " ")}
-                                          fullWidth required sx={{input: {color: '#ededed'}}} margin={"dense"}/>
+                                          fullWidth required sx={{label: {color: '#ededed'}}} margin={"dense"}/>
                         )}
                     </DialogContent>
                     <DialogActions>

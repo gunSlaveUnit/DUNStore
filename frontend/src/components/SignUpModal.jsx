@@ -90,13 +90,13 @@ const SignUpModal = () => {
 
                         </DialogContentText>
                         <CssTextField autoFocus margin={"dense"} id={"email"} label={"Email"} type={"email"}
-                                      fullWidth required sx={{input: {color: '#ededed'}}}/>
+                                      fullWidth required sx={{label: {color: '#ededed'}}}/>
                         <CssTextField margin={"dense"} id={"username"} label={"Username"} type={"text"}
-                                      fullWidth required sx={{input: {color: '#ededed'}}}/>
+                                      fullWidth required sx={{label: {color: '#ededed'}}}/>
                         <CssTextField margin={"dense"} id={"password"} label={"Password"} type={"password"}
-                                      fullWidth required sx={{input: {color: '#ededed'}}}/>
+                                      fullWidth required sx={{label: {color: '#ededed'}}}/>
                         <CssTextField margin={"dense"} id={"retype-password"} label={"Retype password"}
-                                      type={"password"} fullWidth required sx={{input: {color: '#ededed'}}}/>
+                                      type={"password"} fullWidth required sx={{label: {color: '#ededed'}}}/>
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={handleSignUp} variant={"contained"}

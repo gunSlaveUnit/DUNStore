@@ -32,8 +32,7 @@ export default function Catalog({what}) {
                     <Typography variant={"h3"}
                                 align={"center"}
                                 mt={7} style={{color: "#7a9cbc"}}
-                                gutterBottom
-                    >
+                                gutterBottom>
                         No products
                     </Typography>
             )}
