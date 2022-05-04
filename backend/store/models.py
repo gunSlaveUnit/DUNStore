@@ -15,6 +15,7 @@ class Product(models.Model):
     weight = models.FloatField()
     warranty = models.CharField(max_length=20)
     is_published = models.BooleanField(default=True)
+    image = models.ImageField(upload_to='products/')
 
     class Meta:
         abstract = True
