@@ -1,6 +1,6 @@
 import React from 'react';
 import {navigate} from 'hookrouter';
-import {CardActionArea, CardContent, Grid, Typography} from "@mui/material";
+import {Box, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mui/material";
 
 export default function CategoryCard({product}) {
     function handleCategoryOnClicked() {
@@ -11,10 +11,23 @@ export default function CategoryCard({product}) {
         <Grid item md={4}>
             <CardActionArea style={{backgroundColor: "#27282b", height: 300, width: 320, borderRadius: "1.8em"}}
                             onClick={handleCategoryOnClicked}>
-                <CardContent>
-                    <img src={product.image} alt={`${product.title} poster`}/>
+                <CardMedia>
+                    <Box
+                        component="img"
+                        sx={{
+                            height: 280,
+                            width: 280,
+                            maxHeight: {xs: 300, md: 220},
+                            maxWidth: {xs: 300, md: 220},
+                            padding: 1
+                        }}
+                        alt={`${product.title} poster`}
+                        src={product.image}
+                    />
+                </CardMedia>
 
-                    <Typography variant="h4" sx={{fontWeight: 'bold'}} align={"center"} style={{color: "#eceded"}}>
+                <CardContent>
+                    <Typography variant="h4" sx={{fontWeight: 'bold'}} align={"center"} style={{color: "#ededed"}}>
                         {product.title}
                     </Typography>
                 </CardContent>
