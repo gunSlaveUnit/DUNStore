@@ -12,6 +12,8 @@ export default function CategoryCard({product}) {
             <CardActionArea style={{backgroundColor: "#27282b", height: 300, width: 320, borderRadius: "1.8em"}}
                             onClick={handleCategoryOnClicked}>
                 <CardContent>
+                    <img src={product.image} alt={`${product.title} poster`}/>
+
                     <Typography variant="h4" sx={{fontWeight: 'bold'}} align={"center"} style={{color: "#eceded"}}>
                         {product.title}
                     </Typography>

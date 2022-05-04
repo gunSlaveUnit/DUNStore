@@ -26,6 +26,7 @@ class Product(models.Model):
 class Category(models.Model):
     title = models.CharField(max_length=100, null=False)
     slug = models.SlugField(max_length=100, unique=True)
+    image = models.ImageField(upload_to='categories/')
 
 
 class Processor(Product):
