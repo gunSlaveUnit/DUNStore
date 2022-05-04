@@ -5,12 +5,10 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
     styled, TextField,
     Typography
 } from "@mui/material";
-import slugify from "react-slugify";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -32,7 +30,7 @@ const CssTextField = styled(TextField)({
     },
 });
 
-export default function Create({what, how}) {
+export default function Create({what, how, update}) {
     const [product, setProduct] = React.useState([]);
     const [isOpen, setIsOpen] = React.useState(false)
 
@@ -43,7 +41,9 @@ export default function Create({what, how}) {
     function handleSubmit() {
         let data = document.getElementsByTagName("input")
         let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
-        API.create(what, body).then(_ => {})
+        API.create(what, body)
+            .then(_ => setIsOpen(false))
+            .then(update)
     }
 
     return (
