@@ -33,7 +33,7 @@ export default function ProductCard(props) {
         navigate(`/catalog/${props.group}/detail/${props.card.slug}`)
     }
 
-    const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "price"];
+    const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "price", "image"];
 
     return (
         <Card
@@ -41,13 +41,18 @@ export default function ProductCard(props) {
                 p: 2,
                 flexGrow: 1,
                 backgroundColor: "#27282b",
-                height: 300,
+                height: 260,
                 width: 750,
                 padding: 30,
                 marginBottom: 30,
                 borderRadius: "1.8em"
             }}>
             <Grid container spacing={2}>
+                <Grid item>
+                    <ButtonBase sx={{width: 256, height: 256}}>
+                        <Img alt={`${props.card.title} logo`} src={props.card.image} />
+                    </ButtonBase>
+                </Grid>
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
