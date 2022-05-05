@@ -40,7 +40,7 @@ export default function Cart() {
                     {`Order price: ${price}`}&#8381;
                 </Typography>
                 <Container fixed sx={{marginTop: 3}} maxWidth={"lg"} style={{alignItems: "center"}}>
-                    {products.map(c => <CartProduct key={c.id} group={c.category} card={c.info}/>)}
+                    {products.map(c => <CartProduct key={c.id} group={c.category} card={c}/>)}
                 </Container>
             </React.Fragment>
         ) : (

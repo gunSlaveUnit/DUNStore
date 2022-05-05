@@ -12,7 +12,7 @@ import {
     Paper,
     Stack,
     styled,
-    Typography, Card
+    Typography, Card, Icon, ButtonGroup
 } from "@mui/material";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -28,6 +28,8 @@ const Img = styled('img')({
 
 export default function CartProduct(props) {
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
+    const [amount, setAmount] = React.useState(props.card.amount)
+
 
     function handleProductCardTitleClicked() {
         navigate(`/catalog/${props.group}/detail/${props.card.slug}`)
@@ -50,7 +52,7 @@ export default function CartProduct(props) {
             <Grid container spacing={2}>
                 <Grid item>
                     <ButtonBase sx={{width: 256, height: 256}}>
-                        <Img alt={`${props.card.title} logo`} src={props.card.image} />
+                        <Img alt={`${props.card.info.title} logo`} src={props.card.info.image}/>
                     </ButtonBase>
                 </Grid>
                 <Grid item xs={12} sm container>
@@ -60,17 +62,17 @@ export default function CartProduct(props) {
                                 <Typography gutterBottom variant="h5" sx={{fontWeight: 'bold'}}
                                             style={{color: "#eceded"}}
                                             component="div">
-                                    {props.card.title}
+                                    {props.card.info.title}
                                 </Typography>
                             </Link>
                             <Typography variant="body2" style={{color: "#6c6964"}} gutterBottom>
                                 ID: 1030114
                             </Typography>
-                            {Object.keys(props.card).map(f => {
+                            {Object.keys(props.card.info).map(f => {
                                 if (!avoidedServiceFields.includes(f))
                                     return (
                                         <Typography variant="body1" key={f} style={{color: "#eceded"}}>
-                                            {f.charAt(0).toUpperCase() + f.slice(1).replace(/_/g, " ") + ": " + props.card[f]}
+                                            {f.charAt(0).toUpperCase() + f.slice(1).replace(/_/g, " ") + ": " + props.card.info[f]}
                                         </Typography>
                                     )
                             })}
@@ -85,10 +87,20 @@ export default function CartProduct(props) {
                         <Stack>
                             <Typography variant="h5" sx={{fontWeight: 'bold'}} style={{color: "#eceded"}}
                                         component="div" align={"right"}>
-                                {props.card.price}&#8381;
+                                {props.card.info.price}&#8381;
                             </Typography>
 
                             <Delete what={props.group} product={props.card}/>
+
+                            <ButtonGroup style={{marginTop: 100}}>
+                                <Icon sx={{backgroundColor: "#eceded", fontSize: 50, borderRadius: 15}}>
+                                    <Typography variant="h5" sx={{fontWeight: 'bold'}}>
+                                        {amount}
+                                    </Typography>
+                                </Icon>
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => setAmount(amount + 1)}>add_circle</Icon>
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => setAmount(amount - 1)}>remove_circle</Icon>
+                            </ButtonGroup>
                         </Stack>
                     </Grid>
                 </Grid>
