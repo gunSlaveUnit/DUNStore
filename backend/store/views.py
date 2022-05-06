@@ -22,40 +22,34 @@ class BuildViewSet(ModelViewSet):
 class StorageDeviceViewSet(ModelViewSet):
     queryset = StorageDevice.objects.filter(is_published=True)
     serializer_class = StorageDeviceSerializer
-    parser_classes = (MultiPartParser, FormParser)
     lookup_field = 'slug'
 
 
 class VideoCardViewSet(ModelViewSet):
     queryset = VideoCard.objects.filter(is_published=True)
     serializer_class = VideoCardSerializer
-    parser_classes = (MultiPartParser, FormParser)
     lookup_field = 'slug'
 
 
 class MotherboardViewSet(ModelViewSet):
     queryset = Motherboard.objects.filter(is_published=True)
     serializer_class = MotherboardSerializer
-    parser_classes = (MultiPartParser, FormParser)
     lookup_field = 'slug'
 
 
 class ProcessorViewSet(ModelViewSet):
     queryset = Processor.objects.filter(is_published=True)
     serializer_class = ProcessorSerializer
-    parser_classes = (MultiPartParser, FormParser)
     lookup_field = 'slug'
 
 
 class RAMViewSet(ModelViewSet):
     queryset = RAM.objects.filter(is_published=True)
     serializer_class = RAMSerializer
-    parser_classes = (MultiPartParser, FormParser)
     lookup_field = 'slug'
 
 
 class PowerUnitViewSet(ModelViewSet):
     queryset = PowerUnit.objects.filter(is_published=True)
     serializer_class = PowerUnitSerializer
-    parser_classes = (MultiPartParser, FormParser)
     lookup_field = 'slug'
