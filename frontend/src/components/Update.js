@@ -12,6 +12,7 @@ import {
     Typography
 } from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
+import {useCookies} from "react-cookie";
 
 const disabledEditingFields = ["id", "created_at", "updated_at"];
 
@@ -38,15 +39,17 @@ const CssTextField = styled(TextField)({
 export default function Update({what, slug}) {
     const [product, setProduct] = React.useState([]);
     const [isOpen, setIsOpen] = React.useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     useEffect(() => {
-        API.detail(what, slug).then(p => setProduct(p))
+        API.detail(what, slug)
+            .then(p => setProduct(p))
     }, [slug, what])
 
     function handleSubmit() {
         let data = document.getElementsByTagName("input")
         let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
-        API.update(what, slug, body).then(_ => {
+        API.update(what, slug, body, cookies["access"]).then(_ => {
         })
     }
 

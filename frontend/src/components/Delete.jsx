@@ -3,12 +3,14 @@ import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogT
 import React from "react";
 import * as API from "../apis/API";
 import {navigate} from "hookrouter";
+import {useCookies} from "react-cookie";
 
 export default function Delete({what, product}) {
-    const [isOpen, setIsOpen] = React.useState(false)
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     function handleDelete() {
-        API.del(what, product.slug)
+        API.del(what, product.slug, cookies["access"])
             .then(_ => setIsOpen(false))
             .then(_ => navigate(`/catalog/${what}/list`, true))
     }
