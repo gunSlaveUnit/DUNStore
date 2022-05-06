@@ -20,10 +20,13 @@ export async function detail(what, slug) {
     return await res.json()
 }
 
-export async function create(what, how) {
+export async function create(what, how, token) {
     const requestOptions = {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(how)
     };
 
@@ -31,10 +34,13 @@ export async function create(what, how) {
     return await res.json()
 }
 
-export async function update(what, slug, how) {
+export async function update(what, slug, how, token) {
     const requestOptions = {
         method: "PUT",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(how)
     };
 
@@ -42,10 +48,13 @@ export async function update(what, slug, how) {
     return await res.json()
 }
 
-export async function del(what, slug) {
+export async function del(what, slug, token) {
     const requestOptions = {
         method: "DELETE",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        },
     };
 
     return await fetch(URL_BASE + what + "/" + slug + "/", requestOptions);

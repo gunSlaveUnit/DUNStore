@@ -9,6 +9,7 @@ import {
     styled, TextField,
     Typography
 } from "@mui/material";
+import {useCookies} from "react-cookie";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -32,10 +33,12 @@ const CssTextField = styled(TextField)({
 
 export default function Create({what, how, update}) {
     const [product, setProduct] = React.useState([]);
-    const [isOpen, setIsOpen] = React.useState(false)
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     useEffect(() => {
-        API.create(what, how).then(p => setProduct(p));
+        API.create(what, how, cookies["access"])
+            .then(p => setProduct(p));
     }, [what, how])
 
     function handleSubmit() {
