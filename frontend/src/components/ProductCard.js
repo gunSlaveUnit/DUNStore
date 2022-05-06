@@ -50,7 +50,7 @@ export default function ProductCard(props) {
             <Grid container spacing={2}>
                 <Grid item>
                     <ButtonBase sx={{width: 256, height: 256}}>
-                        <Img alt={`${props.card.title} logo`} src={props.card.image} />
+                        <Img alt={`${props.card.title} logo`} src={props.card.image}/>
                     </ButtonBase>
                 </Grid>
                 <Grid item xs={12} sm container>
@@ -87,21 +87,24 @@ export default function ProductCard(props) {
                                         component="div" align={"right"}>
                                 {props.card.price}&#8381;
                             </Typography>
-                            <Button onClick={() => {
-                                add(cookies["access"], props.group, props.card.slug, 1).then(() => {
-                                })
-                            }} variant={"contained"} startIcon={<AddShoppingCartIcon/>}
-                                    style={{
-                                        borderRadius: 10,
-                                        background: "#7a9cbc",
-                                        borderStyle: "solid",
-                                        borderWidth: 3,
-                                        borderColor: "#435567",
-                                    }} size={"small"}>
-                                <Typography variant={"small"} textTransform={"capitalize"}>
-                                    Add to cart
-                                </Typography>
-                            </Button>
+
+                            {cookies["access"] &&
+                                <Button onClick={() => {
+                                    add(cookies["access"], props.group, props.card.slug, 1).then(() => {
+                                    })
+                                }} variant={"contained"} startIcon={<AddShoppingCartIcon/>}
+                                        style={{
+                                            borderRadius: 10,
+                                            background: "#7a9cbc",
+                                            borderStyle: "solid",
+                                            borderWidth: 3,
+                                            borderColor: "#435567",
+                                        }} size={"small"}>
+                                    <Typography variant={"small"} textTransform={"capitalize"}>
+                                        Add to cart
+                                    </Typography>
+                                </Button>
+                            }
 
                             <Update what={props.group} slug={props.card.slug}/>
                             <Delete what={props.group} product={props.card}/>
