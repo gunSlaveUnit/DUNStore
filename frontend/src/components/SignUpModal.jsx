@@ -32,9 +32,8 @@ const CssTextField = styled(TextField)({
     },
 });
 
-const SignUpModal = () => {
+const SignUpModal = ({cookies}) => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const [cookies, setCookie, removeCookie] = useCookies([]);
 
     function handleSignUp() {
         let email = document.getElementById('email').value;
@@ -43,13 +42,14 @@ const SignUpModal = () => {
 
         signup(email, username, password)
             .then(r => setAccount(r))
+            .then(_ => setIsOpen(false))
     }
 
     function setAccount(r) {
-        setCookie("access", r.access)
-        setCookie("refresh", r.refresh)
-        setCookie("username", r.username)
-        setCookie("email", r.email)
+        cookies.setCookies("access", r.access)
+        cookies.setCookies("refresh", r.refresh)
+        cookies.setCookies("username", r.username)
+        cookies.setCookies("email", r.email)
     }
 
     return (

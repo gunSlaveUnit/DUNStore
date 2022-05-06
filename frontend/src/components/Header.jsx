@@ -8,8 +8,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 
 const Header = () => {
-    const [cookies, setCookie, removeCookie] = useCookies([]);
-
+    const [cookies, setCookie, removeCookie] = useCookies();
+    const cookieAPI = {
+        setCookies: (name, value) => setCookie(name, value)
+    }
     useEffect(() => {}, [cookies])
 
     function handleSignOut() {
@@ -55,8 +57,8 @@ const Header = () => {
                                     About
                                 </Typography>
                             </Button>
-                            {!cookies['refresh'] && <SignInModal/>}
-                            {!cookies['refresh'] && <SignUpModal/>}
+                            {!cookies['refresh'] && <SignInModal cookies={cookieAPI}/>}
+                            {!cookies['refresh'] && <SignUpModal cookies={cookieAPI}/>}
                             {cookies['refresh'] &&
                                 <Button onClick={() => navigate('/cart')}
                                         startIcon={<ShoppingCartIcon style={{ color: "#7a9cbc", fontSize: "30" }}/>} >
