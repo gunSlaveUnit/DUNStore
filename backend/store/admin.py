@@ -8,10 +8,34 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
+@admin.register(StorageDevice)
+class StorageDeviceAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(VideoCard)
+class VideoCardAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(Motherboard)
+class MotherboardAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(Processor)
+class ProcessorAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(RAM)
+class RAMAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
+@admin.register(PowerUnit)
+class PowerUnitAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}
+
+
 admin.site.register(Build)
-admin.site.register(StorageDevice)
-admin.site.register(VideoCard)
-admin.site.register(Motherboard)
-admin.site.register(Processor)
-admin.site.register(RAM)
-admin.site.register(PowerUnit)
