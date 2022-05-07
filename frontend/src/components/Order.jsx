@@ -67,8 +67,9 @@ export default function Order() {
     const [cookies, setCookie, removeCookie] = useCookies();
     const [contact, setContact] = React.useState({});
     const [address, setAddress] = React.useState({});
+    const [isPaid, setIsPaid] = React.useState(false);
 
-    useEffect(() => {console.log(contact)}, [contact, address]);
+    useEffect(() => {}, [contact, address, isPaid]);
 
     const handleChangeObtainWay = (event, newValue) => {
         setObtainWayValue(newValue);
@@ -123,9 +124,23 @@ export default function Order() {
         setContact(body)
     }
 
+    const handlePaymentMethod = () => {
+        let cardPaymentInfo = {
+            "cardNumber": document.getElementById("cardNumber").value,
+            "validityMonth": document.getElementById("validityMonth").value,
+            "validityYear": document.getElementById("validityYear").value,
+            "cvvcvc": document.getElementById("cvvcvc").value,
+        }
+
+        OrderAPI.pay(cardPaymentInfo, cookies["access"])
+            .then(r => setIsPaid(r))
+    }
+
     const handleOrderConfirm = () => {
-        handleContactData()
-        handleDeliveryAddress()
+        //handleContactData()
+        //handleDeliveryAddress()
+        if (paymentMethodValue === 1)
+            handlePaymentMethod()
     }
 
     return (
