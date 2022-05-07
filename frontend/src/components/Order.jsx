@@ -17,6 +17,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import PaidIcon from '@mui/icons-material/Paid';
+import * as OrderAPI from "../apis/OrderAPI";
+import {useCookies} from "react-cookie";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -62,6 +64,7 @@ export default function Order() {
     const [obtainWayValue, setObtainWayValue] = React.useState(0);
     const [paymentMethodValue, setPaymentMethodValue] = React.useState(0);
     const [pointIssue, setPointIssue] = React.useState('');
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     const handleChangeObtainWay = (event, newValue) => {
         setObtainWayValue(newValue);
@@ -74,6 +77,40 @@ export default function Order() {
     const handleChangepointIssue = (event) => {
         setPointIssue(event.target.value);
     };
+
+    const handleDeliveryAddress = () => {
+        let body = {}
+        body["city"] = document.getElementById("city").value
+        body["street"] = document.getElementById("street").value
+        body["house"] = document.getElementById("house").value
+
+        let building = document.getElementById("building").value
+        if (building !== '')
+            body["building"] = building
+
+        let frame = document.getElementById("frame").value
+        if (frame !== '')
+            body["frame"] = frame
+
+        let entrance = document.getElementById("entrance").value
+        if (entrance !== '')
+            body["entrance"] = entrance
+
+        let floor = document.getElementById("floor").value
+        if (floor !== '')
+            body["floor"] = floor
+
+        console.log(body)
+
+        OrderAPI.create("addresses", body, cookies["access"])
+            .then(r => {
+                console.log(r)
+            })
+    }
+
+    const handleOrderConfirm = () => {
+        handleDeliveryAddress()
+    }
 
     return (
         <Container sx={{marginTop: 11}} fixed>
@@ -125,7 +162,7 @@ export default function Order() {
                                           }} margin={"dense"}/>
                         </Grid>
                         <Grid item xs={"auto"}>
-                            <CssTextField id={"phone"} type={"tel"}
+                            <CssTextField id={"alt_phone"} type={"tel"}
                                           pattern={""}
                                           label={"Phone number if we don't get through"}
                                           sx={{
@@ -397,8 +434,7 @@ export default function Order() {
                 Total price: 10000
             </Typography>
 
-            <Button onClick={() => {
-            }} variant={"contained"}
+            <Button onClick={() => handleOrderConfirm()} variant={"contained"}
                     style={{
                         marginRight: 15,
                         borderRadius: 10,
