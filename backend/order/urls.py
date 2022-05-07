@@ -1,10 +1,10 @@
 from django.urls import path, include
 from rest_framework import routers
 
-from cart.views import CartRowViewSet
+from order.views import DeliveryAddressViewSet
 
 router = routers.SimpleRouter()
-router.register(r'', CartRowViewSet)
+router.register(r'addresses', DeliveryAddressViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
