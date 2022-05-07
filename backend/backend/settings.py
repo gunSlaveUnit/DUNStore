@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'store',
     'cart',
     'users',
+    'order',
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
