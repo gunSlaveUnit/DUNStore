@@ -1,11 +1,11 @@
 import {
     Box,
-    Button,
+    Button, Card, CardContent, CardMedia,
     Container,
     FormControl, FormHelperText,
     Grid,
     InputLabel, MenuItem,
-    Select,
+    Select, Stack,
     styled,
     TextField,
     Typography
@@ -17,6 +17,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import PaidIcon from '@mui/icons-material/Paid';
+import * as PropTypes from "prop-types";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -36,6 +37,33 @@ const CssTextField = styled(TextField)({
             borderColor: '#ae718f',
         },
     },
+});
+
+const CardTextField = styled(TextField)({
+    '& label.Mui-focused': {
+        color: '#27282b',
+    },
+    '& .MuiInput-underline:after': {
+        borderBottomColor: '#27282b',
+    },
+    '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+            borderColor: '#27282b',
+        },
+        '&:hover fieldset': {
+            borderColor: '#27282b',
+        },
+        '&.Mui-focused fieldset': {
+            borderColor: '#27282b',
+        },
+    },
+});
+
+const Img = styled('img')({
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
 });
 
 export default function Order() {
@@ -250,15 +278,110 @@ export default function Order() {
                 }
 
                 {paymentMethodValue === 1 &&
-                    <Box sx={{width: '50%'}} mt={3}>
+                    <Box sx={{width: '50%', position: "relative"}} mt={3}>
                         <Typography variant={"h6"}
                                     align={"left"}
                                     style={{color: "#7a9cbc"}}
                                     gutterBottom>
                             Card details
                         </Typography>
-                    </Box>
 
+                        <Card sx={{
+                            maxWidth: "70%", borderRadius: "1.0em",
+                            width: 340,
+                            height: 220,
+                            backgroundColor: "#ededed"
+                        }}>
+                            <CardMedia style={{padding: 15, width: "100%"}}>
+                                <Box
+                                    component="img"
+                                    sx={{
+                                        height: 20,
+                                        width: 40,
+                                    }}
+                                    alt="Visa Inc Logo"
+                                    src={"../BankLogos/VisaIncLogo.svg"}
+                                />
+                                <Box
+                                    component="img"
+                                    sx={{
+                                        height: 20,
+                                        width: 40,
+                                    }}
+                                    alt="Mastercard Logo"
+                                    src={"../BankLogos/MastercardLogo.svg"}
+                                />
+                                <Box
+                                    component="img"
+                                    sx={{
+                                        height: 20,
+                                        width: 40,
+                                    }}
+                                    alt="Mir Logo"
+                                    src={"../BankLogos/MirLogo.svg"}
+                                />
+                                <Box
+                                    component="img"
+                                    sx={{
+                                        height: 20,
+                                        width: 40,
+                                    }}
+                                    alt="UnionPay Logo"
+                                    src={"../BankLogos/UnionPayLogo.svg"}
+                                />
+                            </CardMedia>
+                            <CardContent style={{padding: 15, width: "100%"}}>
+                                <CardTextField id={"cardNumber"} type={"tel"}
+                                               pattern={"[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"}
+                                               placeholder={"0000 0000 0000 0000"}
+                                               required
+                                               sx={{width: "90%"}} margin={"dense"}/>
+
+                                <Box className={"Validity"} sx={{width: '100%'}}>
+                                    <Stack direction={"row"} sx={{width: '100%'}}>
+                                        <CardTextField id={"validityMonth"} type={"tel"}
+                                                       pattern={"[0-9]{2}"}
+                                                       placeholder={"month"}
+                                                       required
+                                                       sx={{maxWidth: "30%"}} margin={"dense"}/>
+
+                                        <Typography variant={"h5"} marginTop={2.5} marginRight={1}
+                                                    marginLeft={1}>/</Typography>
+
+                                        <CardTextField id={"validityYear"} type={"tel"}
+                                                       pattern={"[0-9]{2}"}
+                                                       placeholder={"year"}
+                                                       required
+                                                       sx={{maxWidth: "30%"}} margin={"dense"}/>
+                                    </Stack>
+                                </Box>
+                            </CardContent>
+                        </Card>
+
+                        <Card sx={{
+                            maxWidth: "70%", borderRadius: "1.0em",
+                            marginLeft: 20,
+                            width: 340,
+                            height: 220,
+                            backgroundColor: "#ededed"
+                        }}>
+                            <CardContent style={{width: "100%", height: "100%"}}>
+                                <Box className={"SecretCode"}
+                                     sx={{
+                                         width: '100%', height: "100%",
+                                         display: 'flex',
+                                         flexDirection: 'row-reverse',
+                                         justify: "flex-end",
+                                     }}>
+                                    <CardTextField id={"cvvcvc"} type={"tel"}
+                                                   pattern={"[0-9]{3}"}
+                                                   placeholder={"CVV / CVC"}
+                                                   required
+                                                   sx={{maxWidth: "30%", marginRight: 4, marginTop: 16}} margin={"dense"}/>
+                                </Box>
+                            </CardContent>
+                        </Card>
+                    </Box>
                 }
             </div>
 
