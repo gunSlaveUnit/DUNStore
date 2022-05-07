@@ -129,11 +129,11 @@ export default function Order() {
             "cardNumber": document.getElementById("cardNumber").value,
             "validityMonth": document.getElementById("validityMonth").value,
             "validityYear": document.getElementById("validityYear").value,
-            "cvvcvc": document.getElementById("cvvcvc").value,
+            "cvv_cvc": document.getElementById("cvv_cvc").value,
         }
 
         OrderAPI.pay(cardPaymentInfo, cookies["access"])
-            .then(r => setIsPaid(r))
+            .then(r => console.log(r))
     }
 
     const handleOrderConfirm = () => {
@@ -371,7 +371,7 @@ export default function Order() {
                                          justify: "flex-end",
                                      }}>
 
-                                    <CardTextField id={"cvvcvc"} type={"password"}
+                                    <CardTextField id={"cvv_cvc"} type={"password"}
                                                    inputProps={{maxLength: 3}}
                                                    pattern={"[0-9]{3}"}
                                                    placeholder={"CVV / CVC"}
