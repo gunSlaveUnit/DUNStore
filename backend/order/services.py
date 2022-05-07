@@ -1,4 +1,5 @@
 import random
+from rest_framework import status
 
 
 def make_payment(payment_info: dict) -> dict:
@@ -15,11 +16,12 @@ def make_payment(payment_info: dict) -> dict:
     :return: dict {"status": ..., "message": ...}
     """
     if not isinstance(payment_info, dict):
-        return {'status': '400', 'message': 'Invalid payment data provided. It must be a dictionary'}
+        return {'status': status.HTTP_400_BAD_REQUEST,
+                'message': 'Invalid payment data provided. It must be a dictionary'}
 
     is_payment_successful = random.randint(0, 10)
 
-    result = {'status': '200', 'message': 'The payment was successful'} if is_payment_successful < 8 else {
-        'status': '400', 'message': 'Something was wrong'}
+    result = {'status': status.HTTP_200_OK, 'message': 'The payment was successful'} if is_payment_successful < 8 else {
+        'status': status.HTTP_400_BAD_REQUEST, 'message': 'Something was wrong'}
 
     return result
