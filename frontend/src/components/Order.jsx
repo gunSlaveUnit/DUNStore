@@ -65,9 +65,10 @@ export default function Order() {
     const [paymentMethodValue, setPaymentMethodValue] = React.useState(0);
     const [pointIssue, setPointIssue] = React.useState('');
     const [cookies, setCookie, removeCookie] = useCookies();
+    const [contact, setContact] = React.useState({});
     const [address, setAddress] = React.useState({});
 
-    useEffect(() => {}, [address]);
+    useEffect(() => {console.log(contact)}, [contact, address]);
 
     const handleChangeObtainWay = (event, newValue) => {
         setObtainWayValue(newValue);
@@ -109,7 +110,21 @@ export default function Order() {
             })
     }
 
+    const handleContactData = () => {
+        let body = {}
+        body["name"] = document.getElementById("name").value
+        body["surname"] = document.getElementById("surname").value
+        body["phone"] = document.getElementById("phone").value
+
+        let altPhone = document.getElementById("alt_phone").value
+        if (altPhone !== '')
+            body["alt_phone"] = altPhone
+
+        setContact(body)
+    }
+
     const handleOrderConfirm = () => {
+        handleContactData()
         handleDeliveryAddress()
     }
 
