@@ -14,7 +14,7 @@ class DeliveryAddressViewSet(ModelViewSet):
         """
             Instantiates and returns the list of permissions that this view requires.
             """
-        if self.action in ('list', 'retrieve'):
+        if self.action in ("create", "retrieve"):
             permission_classes = [IsAuthenticatedOrReadOnly]
         else:
             permission_classes = [IsAdminUser]
