@@ -10,7 +10,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import React from "react";
+import React, {useEffect} from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -65,6 +65,9 @@ export default function Order() {
     const [paymentMethodValue, setPaymentMethodValue] = React.useState(0);
     const [pointIssue, setPointIssue] = React.useState('');
     const [cookies, setCookie, removeCookie] = useCookies();
+    const [address, setAddress] = React.useState({});
+
+    useEffect(() => {}, [address]);
 
     const handleChangeObtainWay = (event, newValue) => {
         setObtainWayValue(newValue);
@@ -100,11 +103,9 @@ export default function Order() {
         if (floor !== '')
             body["floor"] = floor
 
-        console.log(body)
-
         OrderAPI.create("addresses", body, cookies["access"])
             .then(r => {
-                console.log(r)
+                setAddress(r)
             })
     }
 
@@ -330,7 +331,7 @@ export default function Order() {
                                     height: 50,
                                     marginTop: 2,
                                     position: "absolute",
-                                    backgroundColor: "#27282b"
+                                    backgroundColor: "#888"
                                 }}/>
                                 <Box className={"SecretCode"}
                                      sx={{
