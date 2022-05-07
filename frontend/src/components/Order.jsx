@@ -400,7 +400,7 @@ export default function Order() {
 
             <Typography variant={"h4"}
                         align={"left"}
-                        mt={40} style={{color: "#7a9cbc"}}
+                        mt={paymentMethodValue === 0 ? 3 : 40} style={{color: "#7a9cbc"}}
                         gutterBottom>
                 Total price: 10000
             </Typography>
