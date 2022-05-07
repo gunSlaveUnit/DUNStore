@@ -17,7 +17,6 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import PaidIcon from '@mui/icons-material/Paid';
-import * as PropTypes from "prop-types";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -59,24 +58,17 @@ const CardTextField = styled(TextField)({
     },
 });
 
-const Img = styled('img')({
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-});
-
 export default function Order() {
     const [obtainWayValue, setObtainWayValue] = React.useState(0);
-    const [paymentMethodValue, setpaymentMethodValue] = React.useState(0);
+    const [paymentMethodValue, setPaymentMethodValue] = React.useState(0);
     const [pointIssue, setPointIssue] = React.useState('');
 
     const handleChangeObtainWay = (event, newValue) => {
         setObtainWayValue(newValue);
     };
 
-    const handleChangepaymentMethod = (event, newValue) => {
-        setpaymentMethodValue(newValue);
+    const handleChangePaymentMethod = (event, newValue) => {
+        setPaymentMethodValue(newValue);
     };
 
     const handleChangepointIssue = (event) => {
@@ -266,7 +258,7 @@ export default function Order() {
                     3. Confirmation and payment
                 </Typography>
 
-                <Tabs value={paymentMethodValue} onChange={handleChangepaymentMethod}
+                <Tabs value={paymentMethodValue} onChange={handleChangePaymentMethod}
                       aria-label="icon label tabs example"
                       gutterBottom>
                     <Tab icon={<PaidIcon/>} label="Cash or card upon receipt" style={{color: "#ededed"}}/>
