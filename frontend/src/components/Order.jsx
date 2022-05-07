@@ -278,7 +278,7 @@ export default function Order() {
                 }
 
                 {paymentMethodValue === 1 &&
-                    <Box sx={{width: '50%', position: "relative"}} mt={3}>
+                    <Box sx={{width: '50%'}} mt={3}>
                         <Typography variant={"h6"}
                                     align={"left"}
                                     style={{color: "#7a9cbc"}}
@@ -288,8 +288,45 @@ export default function Order() {
 
                         <Card sx={{
                             maxWidth: "70%", borderRadius: "1.0em",
+                            marginLeft: 17,
+                            marginTop: 5,
                             width: 340,
                             height: 220,
+                            position: "absolute",
+                            backgroundColor: "#ededed"
+                        }}>
+                            <CardContent style={{width: "100%", height: "100%"}}>
+                                <Card sx={{
+                                    width: "100%",
+                                    height: 50,
+                                    marginTop: 2,
+                                    position: "absolute",
+                                    backgroundColor: "#27282b"
+                                }}/>
+                                <Box className={"SecretCode"}
+                                     sx={{
+                                         width: '100%', height: "50%",
+                                         display: 'flex',
+                                         flexDirection: 'row-reverse',
+                                         justify: "flex-end",
+                                     }}>
+
+                                    <CardTextField id={"cvvcvc"} type={"password"}
+                                                   inputProps={{maxLength: 3}}
+                                                   pattern={"[0-9]{3}"}
+                                                   placeholder={"CVV / CVC"}
+                                                   required
+                                                   sx={{maxWidth: "30%", marginRight: 4, marginTop: 16}}
+                                                   margin={"dense"}/>
+                                </Box>
+                            </CardContent>
+                        </Card>
+
+                        <Card sx={{
+                            maxWidth: "70%", borderRadius: "1.0em",
+                            width: 340,
+                            height: 220,
+                            position: "absolute",
                             backgroundColor: "#ededed"
                         }}>
                             <CardMedia style={{padding: 15, width: "100%"}}>
@@ -357,37 +394,13 @@ export default function Order() {
                                 </Box>
                             </CardContent>
                         </Card>
-
-                        <Card sx={{
-                            maxWidth: "70%", borderRadius: "1.0em",
-                            marginLeft: 20,
-                            width: 340,
-                            height: 220,
-                            backgroundColor: "#ededed"
-                        }}>
-                            <CardContent style={{width: "100%", height: "100%"}}>
-                                <Box className={"SecretCode"}
-                                     sx={{
-                                         width: '100%', height: "100%",
-                                         display: 'flex',
-                                         flexDirection: 'row-reverse',
-                                         justify: "flex-end",
-                                     }}>
-                                    <CardTextField id={"cvvcvc"} type={"tel"}
-                                                   pattern={"[0-9]{3}"}
-                                                   placeholder={"CVV / CVC"}
-                                                   required
-                                                   sx={{maxWidth: "30%", marginRight: 4, marginTop: 16}} margin={"dense"}/>
-                                </Box>
-                            </CardContent>
-                        </Card>
                     </Box>
                 }
             </div>
 
             <Typography variant={"h4"}
                         align={"left"}
-                        mt={7} style={{color: "#7a9cbc"}}
+                        mt={40} style={{color: "#7a9cbc"}}
                         gutterBottom>
                 Total price: 10000
             </Typography>
