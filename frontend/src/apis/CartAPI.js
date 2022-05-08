@@ -13,7 +13,10 @@ export async function list(token) {
 export async function add(token, category, slug, amount) {
     const requestOptions = {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(
             {
                 "token": token,
