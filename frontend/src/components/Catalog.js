@@ -6,10 +6,12 @@ import Loader from "./Loader";
 import {Button, Container, Grid, Typography} from "@mui/material";
 import CategoryCard from "./CategoryCard";
 import Create from "./Create";
+import {useCookies} from "react-cookie";
 
 export default function Catalog({what}) {
     const [cards, setCards] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
+    const [cookies, setCookie, removeCookie] = useCookies();
 
     useEffect(() => {
         if (cards) return;
@@ -20,7 +22,7 @@ export default function Catalog({what}) {
 
     return (
         <Container sx={{marginTop: 11}} fixed>
-            <Create what={what} how={{}} update={() => { setCards(null) }}/>
+            {cookies["is_superuser"] === "true" && <Create what={what} how={{}} update={() => { setCards(null) }}/>}
 
             {loading && <Loader/>}
             {(cards || []).length ? (

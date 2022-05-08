@@ -106,8 +106,8 @@ export default function ProductCard(props) {
                                 </Button>
                             }
 
-                            <Update what={props.group} slug={props.card.slug}/>
-                            <Delete what={props.group} product={props.card}/>
+                            {cookies["is_superuser"] === "true" && <Update what={props.group} slug={props.card.slug}/>}
+                            {cookies["is_superuser"] === "true" && <Delete what={props.group} product={props.card}/>}
                         </Stack>
                     </Grid>
                 </Grid>
