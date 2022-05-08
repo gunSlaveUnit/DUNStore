@@ -46,7 +46,7 @@ const SignUpModal = ({cookies}) => {
     }
 
     function setAccount(r) {
-        cookies.setCookies("access", r.access)
+        cookies.setCookies("access", r.token)
         cookies.setCookies("refresh", r.refresh)
         cookies.setCookies("username", r.user.username)
         cookies.setCookies("email", r.user.email)
