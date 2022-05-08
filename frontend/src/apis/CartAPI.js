@@ -27,3 +27,24 @@ export async function add(token, category, slug, amount) {
     const res = await fetch(URL_BASE, requestOptions);
     return await res.json()
 }
+
+export async function update(token, category, slug, amount, id) {
+    const requestOptions = {
+        method: "PUT",
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(
+            {
+                "token": token,
+                "category": category,
+                "slug": slug,
+                "amount": amount
+            }
+        )
+    };
+
+    const res = await fetch(URL_BASE + id + "/", requestOptions);
+    return await res.json()
+}
