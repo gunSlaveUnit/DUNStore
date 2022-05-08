@@ -11,6 +11,7 @@ import {
     Typography
 } from "@mui/material";
 import {useCookies} from "react-cookie";
+import {navigate} from "hookrouter";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -42,6 +43,7 @@ const SignInModal = ({cookies}) => {
         signin(email, password)
             .then(r => setAccount(r))
             .then(_ => setIsOpen(false))
+            .then(_ => navigate('/'))
     }
 
     function setAccount(r) {
