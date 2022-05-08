@@ -5,8 +5,6 @@ import {Button, Container, Typography} from "@mui/material";
 import Loader from "./Loader";
 import {useCookies} from "react-cookie";
 import CartProduct from "./CartProduct";
-import {add} from "../apis/CartAPI";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import {navigate} from "hookrouter";
 
 export default function Cart() {
