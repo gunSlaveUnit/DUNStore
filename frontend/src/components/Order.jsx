@@ -167,7 +167,7 @@ export default function Order() {
             .forEach(p => {
                 let orderItemBody = {}
 
-                orderItemBody["user"] = 2
+                orderItemBody["user"] = cookies["id"]
 
                 orderItemBody["receiver_name"] = contact["name"]
                 orderItemBody["receiver_surname"] = contact["surname"]
