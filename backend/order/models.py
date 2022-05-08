@@ -5,6 +5,10 @@ class ObtainWay(models.Model):
     title = models.CharField(max_length=50)
 
 
+class Status(models.Model):
+    title = models.CharField(max_length=50)
+
+
 class DeliveryAddress(models.Model):
     city = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
