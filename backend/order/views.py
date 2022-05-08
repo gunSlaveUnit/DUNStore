@@ -4,15 +4,20 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, I
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from order.models import DeliveryAddress
-from order.serializers import DeliveryAddressSerializer
+from order.models import ObtainWay, DeliveryAddress
+from order.serializers import ObtainWaySerializer, DeliveryAddressSerializer
 from order.services import make_payment
+
+
+class ObtainWayViewSet(ModelViewSet):
+    queryset = ObtainWay.objects.all()
+    serializer_class = ObtainWaySerializer
+    permission_classes = [IsAdminUser, IsAuthenticated]
 
 
 class DeliveryAddressViewSet(ModelViewSet):
     queryset = DeliveryAddress.objects.all()
     serializer_class = DeliveryAddressSerializer
-    lookup_field = 'slug'
 
     def get_permissions(self):
         """
