@@ -48,8 +48,10 @@ const SignUpModal = ({cookies}) => {
     function setAccount(r) {
         cookies.setCookies("access", r.access)
         cookies.setCookies("refresh", r.refresh)
-        cookies.setCookies("username", r.username)
-        cookies.setCookies("email", r.email)
+        cookies.setCookies("username", r.user.username)
+        cookies.setCookies("email", r.user.email)
+        cookies.setCookies("is_superuser", r.user.is_superuser)
+        cookies.setCookies("id", r.user.id)
     }
 
     return (
