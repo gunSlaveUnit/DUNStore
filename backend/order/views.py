@@ -4,8 +4,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, I
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from order.models import ObtainWay, Status, DeliveryAddress
-from order.serializers import ObtainWaySerializer, StatusSerializer, DeliveryAddressSerializer
+from order.models import ObtainWay, Status, DeliveryAddress, OrderItem
+from order.serializers import ObtainWaySerializer, StatusSerializer, DeliveryAddressSerializer, OrderItemSerializer
 from order.services import make_payment
 
 
@@ -48,6 +48,32 @@ class DeliveryAddressViewSet(ModelViewSet):
             Instantiates and returns the list of permissions that this view requires.
             """
         if self.action in ("create", "retrieve"):
+            permission_classes = [IsAuthenticatedOrReadOnly]
+        else:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
+
+
+class OrderViewSet(ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer
+
+    def list(self, request, *args, **kwargs):
+        auth_header = request.headers.get("Authorization")
+        token = auth_header[auth_header.find(" "):]
+
+        if token is None:
+            return Response("Token not provided")
+        queryset = OrderItem.objects.all()
+        serializer = OrderItemSerializer(queryset, many=True)
+
+        return Response(serializer.data)
+
+    def get_permissions(self):
+        """
+            Instantiates and returns the list of permissions that this view requires.
+            """
+        if self.action in ('list', 'retrieve'):
             permission_classes = [IsAuthenticatedOrReadOnly]
         else:
             permission_classes = [IsAdminUser]
