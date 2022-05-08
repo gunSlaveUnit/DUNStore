@@ -18,6 +18,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Delete from "./Delete";
 import Update from "./Update";
+import AddItemCardConfirmModal from "./AddItemCardConfirmModal";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -89,21 +90,7 @@ export default function ProductCard(props) {
                             </Typography>
 
                             {cookies["access"] &&
-                                <Button onClick={() => {
-                                    add(cookies["access"], props.group, props.card.slug, 1).then(() => {
-                                    })
-                                }} variant={"contained"} startIcon={<AddShoppingCartIcon/>}
-                                        style={{
-                                            borderRadius: 10,
-                                            background: "#7a9cbc",
-                                            borderStyle: "solid",
-                                            borderWidth: 3,
-                                            borderColor: "#435567",
-                                        }} size={"small"}>
-                                    <Typography variant={"small"} textTransform={"capitalize"}>
-                                        Add to cart
-                                    </Typography>
-                                </Button>
+                                <AddItemCardConfirmModal categorySlug={props.group} productSlug={props.card.slug}/>
                             }
 
                             {cookies["is_superuser"] === "true" && <Update what={props.group} slug={props.card.slug}/>}
