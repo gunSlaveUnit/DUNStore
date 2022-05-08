@@ -62,7 +62,7 @@ export default function Cart() {
             loading ? null :
                 <Typography variant={"h3"}
                             align={"center"}
-                            mt={7} style={{color: "#7a9cbc"}}
+                            mt={18} style={{color: "#7a9cbc"}}
                             gutterBottom>
                     No products in your cart
                 </Typography>)}
