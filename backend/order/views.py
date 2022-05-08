@@ -12,7 +12,16 @@ from order.services import make_payment
 class ObtainWayViewSet(ModelViewSet):
     queryset = ObtainWay.objects.all()
     serializer_class = ObtainWaySerializer
-    permission_classes = [IsAdminUser, IsAuthenticated]
+
+    def get_permissions(self):
+        """
+            Instantiates and returns the list of permissions that this view requires.
+            """
+        if self.action == "retrieve":
+            permission_classes = [IsAuthenticatedOrReadOnly]
+        else:
+            permission_classes = [IsAdminUser]
+        return [permission() for permission in permission_classes]
 
 
 class DeliveryAddressViewSet(ModelViewSet):
