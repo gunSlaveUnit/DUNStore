@@ -372,11 +372,12 @@ export default function Order() {
                                      }}>
 
                                     <CardTextField id={"cvv_cvc"} type={"password"}
-                                                   inputProps={{maxLength: 3}}
+                                                   inputProps={{maxLength: 3, style: { textAlign: 'center' }}}
                                                    pattern={"[0-9]{3}"}
                                                    placeholder={"CVV / CVC"}
                                                    required
-                                                   sx={{maxWidth: "30%", marginRight: 4, marginTop: 16}}
+                                                   sx={{maxWidth: "31%", marginRight: 4,
+                                                       marginTop: 16, alignContent: "center"}}
                                                    margin={"dense"}/>
                                 </Box>
                             </CardContent>
@@ -432,14 +433,16 @@ export default function Order() {
                                                pattern={"[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"}
                                                placeholder={"0000 0000 0000 0000"}
                                                required
+                                               inputProps={{maxLength: 19, style: { textAlign: 'center' }}}
                                                sx={{width: "90%"}} margin={"dense"}/>
 
                                 <Box className={"Validity"} sx={{width: '100%'}}>
                                     <Stack direction={"row"} sx={{width: '100%'}}>
                                         <CardTextField id={"validityMonth"} type={"tel"}
                                                        pattern={"[0-9]{2}"}
-                                                       placeholder={"month"}
+                                                       placeholder={"mm"}
                                                        required
+                                                       inputProps={{maxLength: 2, style: { textAlign: 'center' }}}
                                                        sx={{maxWidth: "30%"}} margin={"dense"}/>
 
                                         <Typography variant={"h5"} marginTop={2.5} marginRight={1}
@@ -447,8 +450,9 @@ export default function Order() {
 
                                         <CardTextField id={"validityYear"} type={"tel"}
                                                        pattern={"[0-9]{2}"}
-                                                       placeholder={"year"}
+                                                       placeholder={"yy"}
                                                        required
+                                                       inputProps={{maxLength: 2, style: { textAlign: 'center' }}}
                                                        sx={{maxWidth: "30%"}} margin={"dense"}/>
                                     </Stack>
                                 </Box>
