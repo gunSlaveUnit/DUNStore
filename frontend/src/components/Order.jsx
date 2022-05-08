@@ -21,6 +21,7 @@ import * as OrderAPI from "../apis/OrderAPI";
 import {useCookies} from "react-cookie";
 import * as CartAPI from "../apis/CartAPI";
 import * as ProductAPI from "../apis/API";
+import {add} from "../apis/CartAPI";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -153,14 +154,43 @@ export default function Order() {
         }
 
         OrderAPI.pay(cardPaymentInfo, cookies["access"])
-            .then(r => console.log(r))
+            .then(r => setIsPaid(true))
     }
 
     const handleOrderConfirm = () => {
-        //handleContactData()
-        //handleDeliveryAddress()
+        handleContactData()
+        handleDeliveryAddress()
         if (paymentMethodValue === 1)
             handlePaymentMethod()
+
+        products
+            .forEach(p => {
+                let orderItemBody = {}
+
+                orderItemBody["user"] = 2
+
+                orderItemBody["receiver_name"] = contact["name"]
+                orderItemBody["receiver_surname"] = contact["surname"]
+                orderItemBody["phone"] = contact["phone"]
+                if ("alt_phone" in contact)
+                    orderItemBody["alt_phone"] = contact["alt_phone"]
+
+                orderItemBody["obtain_method"] = obtainWayValue + 1
+                orderItemBody["address"] = address["id"]
+                orderItemBody["status"] = 1
+                orderItemBody["is_paid"] = isPaid
+
+                orderItemBody["category_slug"] = p.category
+                orderItemBody["product_slug"] = p.info.slug
+                orderItemBody["cost"] = p.info.price
+                orderItemBody["amount"] = p["amount"]
+
+                if (orderItemBody["receiver_name"])
+                    OrderAPI.create('orders', orderItemBody, cookies["access"])
+                        .then(r => {
+                            console.log(r)
+                        })
+            })
     }
 
     return (
@@ -392,12 +422,14 @@ export default function Order() {
                                      }}>
 
                                     <CardTextField id={"cvv_cvc"} type={"password"}
-                                                   inputProps={{maxLength: 3, style: { textAlign: 'center' }}}
+                                                   inputProps={{maxLength: 3, style: {textAlign: 'center'}}}
                                                    pattern={"[0-9]{3}"}
                                                    placeholder={"CVV / CVC"}
                                                    required
-                                                   sx={{maxWidth: "31%", marginRight: 4,
-                                                       marginTop: 16, alignContent: "center"}}
+                                                   sx={{
+                                                       maxWidth: "31%", marginRight: 4,
+                                                       marginTop: 16, alignContent: "center"
+                                                   }}
                                                    margin={"dense"}/>
                                 </Box>
                             </CardContent>
@@ -453,7 +485,7 @@ export default function Order() {
                                                pattern={"[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}"}
                                                placeholder={"0000 0000 0000 0000"}
                                                required
-                                               inputProps={{maxLength: 19, style: { textAlign: 'center' }}}
+                                               inputProps={{maxLength: 19, style: {textAlign: 'center'}}}
                                                sx={{width: "90%"}} margin={"dense"}/>
 
                                 <Box className={"Validity"} sx={{width: '100%'}}>
@@ -462,7 +494,7 @@ export default function Order() {
                                                        pattern={"[0-9]{2}"}
                                                        placeholder={"mm"}
                                                        required
-                                                       inputProps={{maxLength: 2, style: { textAlign: 'center' }}}
+                                                       inputProps={{maxLength: 2, style: {textAlign: 'center'}}}
                                                        sx={{maxWidth: "30%"}} margin={"dense"}/>
 
                                         <Typography variant={"h5"} marginTop={2.5} marginRight={1}
@@ -472,7 +504,7 @@ export default function Order() {
                                                        pattern={"[0-9]{2}"}
                                                        placeholder={"yy"}
                                                        required
-                                                       inputProps={{maxLength: 2, style: { textAlign: 'center' }}}
+                                                       inputProps={{maxLength: 2, style: {textAlign: 'center'}}}
                                                        sx={{maxWidth: "30%"}} margin={"dense"}/>
                                     </Stack>
                                 </Box>
