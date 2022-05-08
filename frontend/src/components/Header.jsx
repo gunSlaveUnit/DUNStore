@@ -21,6 +21,8 @@ const Header = () => {
         removeCookie("email")
         removeCookie("id")
         removeCookie("is_superuser")
+
+        navigate('/', true)
     }
 
     return (
