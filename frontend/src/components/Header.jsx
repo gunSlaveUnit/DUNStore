@@ -19,6 +19,8 @@ const Header = () => {
         removeCookie("refresh")
         removeCookie("username")
         removeCookie("email")
+        removeCookie("id")
+        removeCookie("is_superuser")
     }
 
     return (
