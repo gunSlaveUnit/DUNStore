@@ -89,7 +89,7 @@ export default function Order() {
     }, [cookies, contact, address, isPaid])
 
     const price = useMemo(
-        () => products.reduce((price, p) => price + p.info.price, 0),
+        () => products.reduce((price, p) => price + p.info.price * p.amount, 0),
         [products]);
 
     const handleChangeObtainWay = (event, newValue) => {
@@ -182,7 +182,7 @@ export default function Order() {
 
                 orderItemBody["category_slug"] = p.category
                 orderItemBody["product_slug"] = p.info.slug
-                orderItemBody["cost"] = p.info.price
+                orderItemBody["cost"] = p.info.price * p["amount"]
                 orderItemBody["amount"] = p["amount"]
 
                 if (orderItemBody["receiver_name"])

@@ -27,7 +27,7 @@ export default function Cart() {
     }, [cookies])
 
     const price = useMemo(
-        () => products.reduce((price, p) => price + p.info.price, 0),
+        () => products.reduce((price, p) => price + p.info.price * p.amount, 0),
         [products]);
 
     return (<Container sx={{marginTop: 11}} fixed>
@@ -41,7 +41,9 @@ export default function Cart() {
                     {`Order price: ${price}`}&#8381;
                 </Typography>
 
-                <Button variant={"contained"} onClick={_ => {navigate('/order')}}
+                <Button variant={"contained"} onClick={_ => {
+                    navigate('/order')
+                }}
                         style={{
                             borderRadius: 10,
                             background: "#7a9cbc",

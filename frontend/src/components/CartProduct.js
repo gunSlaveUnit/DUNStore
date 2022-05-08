@@ -1,23 +1,16 @@
 import React, {useEffect} from 'react';
 import {A, navigate} from 'hookrouter';
-import {add} from "../apis/CartAPI";
 import {useCookies} from "react-cookie";
 import {
-    Button,
     ButtonBase,
     Link,
-    CardActionArea,
-    CardContent,
     Grid,
-    Paper,
     Stack,
     styled,
     Typography, Card, Icon, ButtonGroup
 } from "@mui/material";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Delete from "./Delete";
-import Update from "./Update";
+import * as CartAPI from "../apis/CartAPI";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -30,9 +23,17 @@ export default function CartProduct(props) {
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
     const [amount, setAmount] = React.useState(props.card.amount)
 
+    useEffect(() => {
+        handleUpdate()
+    }, [amount])
 
     function handleProductCardTitleClicked() {
         navigate(`/catalog/${props.group}/detail/${props.card.slug}`)
+    }
+
+    function handleUpdate() {
+        CartAPI.update(cookies["access"], props.group, props.card.slug, amount, props.card.id)
+            .then(_ => {})
     }
 
     const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "price", "image"];
@@ -98,8 +99,8 @@ export default function CartProduct(props) {
                                         {amount}
                                     </Typography>
                                 </Icon>
-                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => setAmount(amount + 1)}>add_circle</Icon>
-                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => setAmount(amount - 1)}>remove_circle</Icon>
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {setAmount(amount + 1); handleUpdate()}}>add_circle</Icon>
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {setAmount(amount - 1); handleUpdate()}}>remove_circle</Icon>
                             </ButtonGroup>
                         </Stack>
                     </Grid>
