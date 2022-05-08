@@ -73,7 +73,7 @@ class OrderViewSet(ModelViewSet):
         """
             Instantiates and returns the list of permissions that this view requires.
             """
-        if self.action in ('list', 'retrieve'):
+        if self.action in ("list", 'retrieve', "create"):
             permission_classes = [IsAuthenticatedOrReadOnly]
         else:
             permission_classes = [IsAdminUser]
