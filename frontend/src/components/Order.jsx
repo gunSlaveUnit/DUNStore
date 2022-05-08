@@ -10,7 +10,7 @@ import {
     TextField,
     Typography
 } from "@mui/material";
-import React, {useEffect} from "react";
+import React, {useEffect, useMemo} from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -19,6 +19,8 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import PaidIcon from '@mui/icons-material/Paid';
 import * as OrderAPI from "../apis/OrderAPI";
 import {useCookies} from "react-cookie";
+import * as CartAPI from "../apis/CartAPI";
+import * as ProductAPI from "../apis/API";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -68,8 +70,26 @@ export default function Order() {
     const [contact, setContact] = React.useState({});
     const [address, setAddress] = React.useState({});
     const [isPaid, setIsPaid] = React.useState(false);
+    const [products, setProducts] = React.useState([]);
+    const [loading, setLoading] = React.useState(true);
 
-    useEffect(() => {}, [contact, address, isPaid]);
+    useEffect(() => {
+        CartAPI.list(cookies["access"])
+            .then(products => {
+                Promise
+                    .all(products
+                        .map(p => ProductAPI
+                            .detail(p.category, p.slug)
+                            .then(r => p.info = r)
+                            .then(() => p)))
+                    .then(results => setProducts(results))
+            })
+            .then(_ => setLoading(false));
+    }, [cookies, contact, address, isPaid])
+
+    const price = useMemo(
+        () => products.reduce((price, p) => price + p.info.price, 0),
+        [products]);
 
     const handleChangeObtainWay = (event, newValue) => {
         setObtainWayValue(newValue);
@@ -466,7 +486,7 @@ export default function Order() {
                         align={"left"}
                         mt={paymentMethodValue === 0 ? 3 : 40} style={{color: "#7a9cbc"}}
                         gutterBottom>
-                Total price: 10000
+                Total price: {price}
             </Typography>
 
             <Button onClick={() => handleOrderConfirm()} variant={"contained"}
