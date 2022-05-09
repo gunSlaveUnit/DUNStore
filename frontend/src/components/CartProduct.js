@@ -7,10 +7,10 @@ import {
     Grid,
     Stack,
     styled,
-    Typography, Card, Icon, ButtonGroup
+    Typography, Card, Icon, ButtonGroup, Button
 } from "@mui/material";
-import Delete from "./Delete";
 import * as CartAPI from "../apis/CartAPI";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -33,7 +33,8 @@ export default function CartProduct(props) {
 
     function handleUpdate() {
         CartAPI.update(cookies["access"], props.group, props.card.slug, amount, props.card.id)
-            .then(_ => {})
+            .then(_ => {
+            })
     }
 
     const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "price", "image"];
@@ -91,7 +92,22 @@ export default function CartProduct(props) {
                                 {props.card.info.price}&#8381;
                             </Typography>
 
-                            <Delete what={props.group} product={props.card}/>
+                            <Button variant={"contained"} startIcon={<DeleteIcon/>} onClick={() => {
+                                CartAPI.del(cookies["access"], props.card.id)
+                                    .then(_ => {
+                                    })
+                            }}
+                                    style={{
+                                        borderRadius: 10,
+                                        background: "#ae718f",
+                                        borderStyle: "solid",
+                                        borderWidth: 3,
+                                        borderColor: "#664350",
+                                    }} size={"small"}>
+                                <Typography variant={"small"} textTransform={"capitalize"}>
+                                    Remove
+                                </Typography>
+                            </Button>
 
                             <ButtonGroup style={{marginTop: 100}}>
                                 <Icon sx={{backgroundColor: "#eceded", fontSize: 50, borderRadius: 15}}>
@@ -99,8 +115,14 @@ export default function CartProduct(props) {
                                         {amount}
                                     </Typography>
                                 </Icon>
-                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {setAmount(amount + 1); handleUpdate()}}>add_circle</Icon>
-                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {setAmount(amount - 1); handleUpdate()}}>remove_circle</Icon>
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {
+                                    setAmount(amount + 1);
+                                    handleUpdate()
+                                }}>add_circle</Icon>
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {
+                                    setAmount(amount - 1);
+                                    handleUpdate()
+                                }}>remove_circle</Icon>
                             </ButtonGroup>
                         </Stack>
                     </Grid>
