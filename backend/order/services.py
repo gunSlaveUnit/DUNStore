@@ -21,8 +21,7 @@ def make_payment(payment_info: dict) -> dict:
 
     is_payment_successful = random.randint(0, 10)
 
-    result = {'status': status.HTTP_200_OK, 'message': 'The payment was successful'} if is_payment_successful < 8 else {
-        'status': status.HTTP_400_BAD_REQUEST, 'message': 'Something was wrong'}
+    result = {'status': status.HTTP_200_OK, 'message': 'The payment was successful'}
 
     return result
 
