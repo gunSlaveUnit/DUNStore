@@ -22,6 +22,7 @@ class DeliveryAddress(models.Model):
 
 
 class OrderItem(models.Model):
+    code = models.CharField(max_length=10)
     user = models.ForeignKey(User, models.DO_NOTHING)
     receiver_name = models.CharField(max_length=100)
     receiver_surname = models.CharField(max_length=100)
