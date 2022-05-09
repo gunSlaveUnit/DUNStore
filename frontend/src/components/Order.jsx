@@ -104,6 +104,17 @@ export default function Order() {
         setPointIssue(event.target.value);
     };
 
+    const makeCode = () => {
+        let result = '';
+        let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let charactersLength = characters.length;
+        for (let i = 0; i < 10; i++) {
+            result += characters.charAt(Math.floor(Math.random() *
+                charactersLength));
+        }
+        return result;
+    }
+
     const handleDeliveryAddress = () => {
         let body = {}
         body["city"] = document.getElementById("city").value
@@ -163,10 +174,11 @@ export default function Order() {
         if (paymentMethodValue === 1)
             handlePaymentMethod()
 
+        let code = makeCode()
         products
             .forEach(p => {
                 let orderItemBody = {}
-
+                orderItemBody["code"] = code
                 orderItemBody["user"] = cookies["id"]
 
                 orderItemBody["receiver_name"] = contact["name"]
