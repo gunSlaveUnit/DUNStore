@@ -15,6 +15,7 @@ import {
 import {add} from "../apis/CartAPI";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import {useCookies} from "react-cookie";
+import AddItemCardConfirmModal from "./AddItemCardConfirmModal";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -33,17 +34,13 @@ export default function Detail({what, slug}) {
         setToken: token => setCookie('token', token),
     };
 
-    const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published"];
+    const avoidedServiceFields = ["id", "title", "created_at", "updated_at", "slug", "is_published", "image"];
 
     useEffect(() => {
         API.detail(what, slug)
             .then(p => setProduct(p))
             .then(_ => setLoading(false));
     }, [slug, what])
-
-    function handleUpdate() {
-        navigate(`/catalog/${what}/update/${slug}`)
-    }
 
     return (
         <Container sx={{marginTop: 11}} fixed>
@@ -60,6 +57,12 @@ export default function Detail({what, slug}) {
                         borderRadius: "1.8em"
                     }}>
                         <Grid container spacing={2}>
+                            <Grid item>
+                                <ButtonBase sx={{width: 300, height: 300}}
+                                            style={{marginTop: "16%", marginLeft: 40}}>
+                                    <Img alt={`${product.title} logo`} src={product.image}/>
+                                </ButtonBase>
+                            </Grid>
                             <Grid item xs={12} sm container>
                                 <Grid item xs container direction="column" spacing={2}>
                                     <Grid item xs>
@@ -76,21 +79,10 @@ export default function Detail({what, slug}) {
                                                     component="div" align={"left"}>
                                             {product.price}&#8381;
                                         </Typography>
-                                        <Button onClick={() => {
-                                            add(tokenAPI.token(), product.group, product.slug, 1).then(() => {
-                                            })
-                                        }} variant={"contained"} startIcon={<AddShoppingCartIcon/>}
-                                                style={{
-                                                    borderRadius: 10,
-                                                    background: "#7a9cbc",
-                                                    borderStyle: "solid",
-                                                    borderWidth: 3,
-                                                    borderColor: "#435567",
-                                                }} size={"medium"}>
-                                            <Typography variant={"medium"} textTransform={"capitalize"}>
-                                                Add to cart
-                                            </Typography>
-                                        </Button>
+                                        {cookies["access"] &&
+                                            <AddItemCardConfirmModal categorySlug={what}
+                                                                     productSlug={slug}/>
+                                        }
                                     </Grid>
 
                                     <Grid item>
@@ -106,7 +98,7 @@ export default function Detail({what, slug}) {
 
                     <Container maxWidth={"sm"}>
                         <Typography variant="h5" sx={{fontWeight: 'bold'}} mt={2}
-                                    style={{color: "#eceded"}}>
+                                    style={{color: "#7a9cbc"}}>
                             Specifications
                         </Typography>
 
