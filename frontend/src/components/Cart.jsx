@@ -34,13 +34,6 @@ export default function Cart() {
         {loading && <Loader/>}
         {products.length ? (
             <Container fixed sx={{marginTop: 3}} maxWidth={"lg"} style={{alignItems: "center"}}>
-                <Typography variant={"h4"}
-                            align={"center"}
-                            mt={7} style={{color: "#7a9cbc"}}
-                            gutterBottom>
-                    {`Order price: ${price}`}&#8381;
-                </Typography>
-
                 <Button variant={"contained"} onClick={_ => {
                     navigate('/order')
                 }}
