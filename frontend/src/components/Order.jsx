@@ -21,7 +21,6 @@ import * as OrderAPI from "../apis/OrderAPI";
 import {useCookies} from "react-cookie";
 import * as CartAPI from "../apis/CartAPI";
 import * as ProductAPI from "../apis/API";
-import {add} from "../apis/CartAPI";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -68,9 +67,6 @@ export default function Order() {
     const [paymentMethodValue, setPaymentMethodValue] = React.useState(0);
     const [pointIssue, setPointIssue] = React.useState('');
     const [cookies, setCookie, removeCookie] = useCookies();
-    const [contact, setContact] = React.useState({});
-    const [address, setAddress] = React.useState({});
-    const [isPaid, setIsPaid] = React.useState(false);
     const [products, setProducts] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
@@ -86,7 +82,7 @@ export default function Order() {
                     .then(results => setProducts(results))
             })
             .then(_ => setLoading(false));
-    }, [cookies, contact, address, isPaid])
+    }, [cookies])
 
     const price = useMemo(
         () => products.reduce((price, p) => price + p.info.price * p.amount, 0),
@@ -115,8 +111,9 @@ export default function Order() {
         return result;
     }
 
-    const handleDeliveryAddress = () => {
+    const handleDeliveryAddress = async () => {
         let body = {}
+        let id = -1;
         body["city"] = document.getElementById("city").value
         body["street"] = document.getElementById("street").value
         body["house"] = document.getElementById("house").value
@@ -137,26 +134,15 @@ export default function Order() {
         if (floor !== '')
             body["floor"] = floor
 
-        OrderAPI.create("addresses", body, cookies["access"])
-            .then(r => {
-                setAddress(r)
-            })
-    }
+        await OrderAPI.create("addresses", body, cookies["access"])
+            .then(r => id = r.id)
 
-    const handleContactData = () => {
-        let body = {}
-        body["name"] = document.getElementById("name").value
-        body["surname"] = document.getElementById("surname").value
-        body["phone"] = document.getElementById("phone").value
-
-        let altPhone = document.getElementById("alt_phone").value
-        if (altPhone !== '')
-            body["alt_phone"] = altPhone
-
-        setContact(body)
+        return id
     }
 
     const handlePaymentMethod = () => {
+        let result = true
+
         let cardPaymentInfo = {
             "cardNumber": document.getElementById("cardNumber").value,
             "validityMonth": document.getElementById("validityMonth").value,
@@ -165,48 +151,48 @@ export default function Order() {
         }
 
         OrderAPI.pay(cardPaymentInfo, cookies["access"])
-            .then(r => setIsPaid(true))
+            .then(r => {
+            })
+
+        return result
     }
 
-    const handleOrderConfirm = () => {
-        handleContactData()
-        handleDeliveryAddress()
+    const handleOrderConfirm = async () => {
+        let isPaid = false
         if (paymentMethodValue === 1)
-            handlePaymentMethod()
+            isPaid = handlePaymentMethod()
+        let address = await handleDeliveryAddress()
 
         let code = makeCode()
-        products
-            .forEach(p => {
-                let orderItemBody = {}
-                orderItemBody["code"] = code
-                orderItemBody["user"] = cookies["id"]
+        for (const p of products) {
+            let orderItemBody = {
+                "code": code,
+                "user": cookies["id"],
+                "receiver_name": document.getElementById("name").value,
+                "receiver_surname": document.getElementById("surname").value,
+                "phone": document.getElementById("phone").value,
+                "obtain_method": obtainWayValue + 1,
+                "status": 1,
+                "category_slug": p.category,
+                "product_slug": p.info.slug,
+                "cost": p.info.price * p["amount"],
+                "amount": p["amount"],
+                "is_paid": isPaid,
+                "address": address
+            }
 
-                orderItemBody["receiver_name"] = contact["name"]
-                orderItemBody["receiver_surname"] = contact["surname"]
-                orderItemBody["phone"] = contact["phone"]
-                if ("alt_phone" in contact)
-                    orderItemBody["alt_phone"] = contact["alt_phone"]
+            let altPhone = document.getElementById("alt_phone").value
+            if (altPhone !== '')
+                orderItemBody["alt_phone"] = altPhone
 
-                orderItemBody["obtain_method"] = obtainWayValue + 1
-                orderItemBody["address"] = address["id"]
-                orderItemBody["status"] = 1
-                orderItemBody["is_paid"] = isPaid
+            OrderAPI.create('orders', orderItemBody, cookies["access"])
+                .then(r => {
+                })
 
-                orderItemBody["category_slug"] = p.category
-                orderItemBody["product_slug"] = p.info.slug
-                orderItemBody["cost"] = p.info.price * p["amount"]
-                orderItemBody["amount"] = p["amount"]
-
-                if (orderItemBody["receiver_name"]) {
-                    OrderAPI.create('orders', orderItemBody, cookies["access"])
-                        .then(r => {
-                        })
-
-                    CartAPI.del(cookies["access"], p.id)
-                        .then(_ => {
-                        })
-                }
-            })
+            CartAPI.del(cookies["access"], p.id)
+                .then(_ => {
+                })
+        }
     }
 
     return (
