@@ -94,8 +94,7 @@ export default function CartProduct(props) {
 
                             <Button variant={"contained"} startIcon={<DeleteIcon/>} onClick={() => {
                                 CartAPI.del(cookies["access"], props.card.id)
-                                    .then(_ => {
-                                    })
+                                    .then(_ => props.update(!props.isUpdated))
                             }}
                                     style={{
                                         borderRadius: 10,

@@ -11,6 +11,7 @@ export default function Cart() {
     const [products, setProducts] = React.useState([]);
     const [cookies, setCookie, removeCookie] = useCookies([]);
     const [loading, setLoading] = React.useState(true);
+    const [isItemRemoved, setIsItemRemoved] = React.useState(false);
 
     useEffect(() => {
         CartAPI.list(cookies["access"])
@@ -24,7 +25,7 @@ export default function Cart() {
                     .then(results => setProducts(results))
             })
             .then(_ => setLoading(false));
-    }, [cookies])
+    }, [cookies, isItemRemoved])
 
     const price = useMemo(
         () => products.reduce((price, p) => price + p.info.price * p.amount, 0),
@@ -49,7 +50,9 @@ export default function Cart() {
                     </Typography>
                 </Button>
 
-                {products.map(c => <CartProduct key={c.id} group={c.category} card={c}/>)}
+                {products.map(c => <CartProduct key={c.id} group={c.category} card={c}
+                                                isUpdated={isItemRemoved}
+                                                update={(value) => setIsItemRemoved(value)}/>)}
             </Container>
         ) : (
             loading ? null :
