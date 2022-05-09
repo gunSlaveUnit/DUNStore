@@ -57,7 +57,7 @@ export default function ProductCard(props) {
                 <Grid item xs={12} sm container>
                     <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
-                            <Link onClick={() => handleProductCardTitleClicked()}>
+                            <Link onClick={() => handleProductCardTitleClicked()} style={{cursor: "pointer"}}>
                                 <Typography gutterBottom variant="h5" sx={{fontWeight: 'bold'}}
                                             style={{color: "#eceded"}}
                                             component="div">
