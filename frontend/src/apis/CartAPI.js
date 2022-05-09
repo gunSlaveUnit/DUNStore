@@ -51,3 +51,15 @@ export async function update(token, category, slug, amount, id) {
     const res = await fetch(URL_BASE + id + "/", requestOptions);
     return await res.json()
 }
+
+export async function del(token, id) {
+    const requestOptions = {
+        method: "DELETE",
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        },
+    };
+
+    return await fetch(URL_BASE + id + "/", requestOptions);
+}
