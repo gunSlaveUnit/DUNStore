@@ -45,7 +45,7 @@ export default function Cart() {
                             borderColor: "#435567",
                         }} size={"medium"}>
                     <Typography variant={"medium"} textTransform={"capitalize"} align={"center"}>
-                        Checkout
+                        Make an order
                     </Typography>
                 </Button>
 
