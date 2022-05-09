@@ -185,11 +185,15 @@ export default function Order() {
                 orderItemBody["cost"] = p.info.price * p["amount"]
                 orderItemBody["amount"] = p["amount"]
 
-                if (orderItemBody["receiver_name"])
+                if (orderItemBody["receiver_name"]) {
                     OrderAPI.create('orders', orderItemBody, cookies["access"])
                         .then(r => {
-                            console.log(r)
                         })
+
+                    CartAPI.del(cookies["access"], p.id)
+                        .then(_ => {
+                        })
+                }
             })
     }
 
