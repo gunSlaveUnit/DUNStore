@@ -21,6 +21,7 @@ import * as OrderAPI from "../apis/OrderAPI";
 import {useCookies} from "react-cookie";
 import * as CartAPI from "../apis/CartAPI";
 import * as ProductAPI from "../apis/API";
+import OrderConfirm from "./OrderConfirm";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -70,6 +71,8 @@ export default function Order() {
     const [products, setProducts] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [addresses, setAddresses] = React.useState([]);
+    const [code, setCode] = React.useState('')
+    const [isConfirmOpen, setisConfirmOpen] = React.useState(false)
 
     useEffect(() => {
         CartAPI.list(cookies["access"])
@@ -86,6 +89,8 @@ export default function Order() {
 
         OrderAPI.list("addresses", cookies["access"])
             .then(r => setAddresses(Array.from(r)))
+
+        setCode(makeCode())
     }, [cookies])
 
     const price = useMemo(
@@ -172,7 +177,6 @@ export default function Order() {
         else
             addressId = await handleDeliveryAddress()
 
-        let code = makeCode()
         for (const p of products) {
             let orderItemBody = {
                 "code": code,
@@ -202,6 +206,8 @@ export default function Order() {
                 .then(_ => {
                 })
         }
+
+        setisConfirmOpen(true)
     }
 
     return (
@@ -535,7 +541,9 @@ export default function Order() {
                 Total price: {price}&#8381;
             </Typography>
 
-            <Button onClick={() => handleOrderConfirm()} variant={"contained"}
+            <Button onClick={() => {
+                handleOrderConfirm()
+            }} variant={"contained"}
                     style={{
                         marginRight: 15,
                         borderRadius: 10,
@@ -548,6 +556,8 @@ export default function Order() {
                     Confirm and order
                 </Typography>
             </Button>
+
+            {isConfirmOpen && <OrderConfirm open={isConfirmOpen} close={() => setisConfirmOpen()} orderCode={code}/>}
         </Container>
     )
 }
