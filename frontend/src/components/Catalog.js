@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
 import * as API from "../apis/API";
 import ProductCard from "./ProductCard";
-import {navigate} from 'hookrouter';
 import Loader from "./Loader";
-import {Button, Container, Grid, Typography} from "@mui/material";
-import CategoryCard from "./CategoryCard";
+import {Container, Typography} from "@mui/material";
 import Create from "./Create";
 import {useCookies} from "react-cookie";
 

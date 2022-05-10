@@ -75,6 +75,12 @@ export default function Order() {
     const [isConfirmOpen, setisConfirmOpen] = React.useState(false)
 
     useEffect(() => {
+        /**
+         * 1. Load cart rows with related products
+         * 2. Load store addresses
+         * 3. Create order code
+         */
+
         CartAPI.list(cookies["access"])
             .then(products => {
                 Promise
@@ -110,6 +116,11 @@ export default function Order() {
     };
 
     const makeCode = () => {
+        /**
+         * Generate a random code for order
+         * @type {string}
+         */
+
         let result = '';
         let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         let charactersLength = characters.length;
@@ -121,6 +132,11 @@ export default function Order() {
     }
 
     const handleDeliveryAddress = async () => {
+        /**
+         * Creates a new user address for delivery
+         * @type {{}}
+         */
+
         let body = {}
         let id = -1;
         body["city"] = document.getElementById("city").value
@@ -150,6 +166,11 @@ export default function Order() {
     }
 
     const handlePaymentMethod = () => {
+        /**
+         * Make a pay
+         * @type {boolean}
+         */
+
         let result = true
 
         let cardPaymentInfo = {
@@ -157,6 +178,7 @@ export default function Order() {
             "validityMonth": document.getElementById("validityMonth").value,
             "validityYear": document.getElementById("validityYear").value,
             "cvv_cvc": document.getElementById("cvv_cvc").value,
+            "price": price
         }
 
         OrderAPI.pay(cardPaymentInfo, cookies["access"])
@@ -167,6 +189,11 @@ export default function Order() {
     }
 
     const handleOrderConfirm = async () => {
+        /**
+         * Make an order
+         * @type {boolean}
+         */
+
         let isPaid = false
         if (paymentMethodValue === 1)
             isPaid = handlePaymentMethod()

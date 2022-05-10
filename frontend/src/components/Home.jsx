@@ -2,8 +2,7 @@ import React, {useEffect} from "react";
 import * as API from "../apis/API";
 import CategoryCard from "./CategoryCard";
 import Loader from "./Loader";
-import {Box, Container, Grid, Paper, Typography} from "@mui/material";
-import {A} from "hookrouter";
+import {Box, Container, Grid, Typography} from "@mui/material";
 
 export default function Home() {
     const [categories, setCategories] = React.useState([]);

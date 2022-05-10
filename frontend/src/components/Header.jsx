@@ -6,15 +6,19 @@ import {AppBar, Box, Button, Container, Toolbar, Typography} from "@mui/material
 import {useCookies} from "react-cookie";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-
 const Header = () => {
     const [cookies, setCookie, removeCookie] = useCookies();
     const cookieAPI = {
         setCookies: (name, value) => setCookie(name, value)
     }
-    useEffect(() => {}, [cookies])
+    useEffect(() => {
+    }, [cookies])
 
     function handleSignOut() {
+        /**
+         * Remove all user data from cookies
+         */
+
         removeCookie("access")
         removeCookie("refresh")
         removeCookie("username")
@@ -65,7 +69,7 @@ const Header = () => {
                             {!cookies['refresh'] && <SignUpModal cookies={cookieAPI}/>}
                             {cookies['refresh'] &&
                                 <Button onClick={() => navigate('/cart')}
-                                        startIcon={<ShoppingCartIcon style={{ color: "#7a9cbc", fontSize: "30" }}/>} >
+                                        startIcon={<ShoppingCartIcon style={{color: "#7a9cbc", fontSize: "30"}}/>}>
                                     <Typography variant={"h5"} style={{color: "#eceded"}} textTransform={"capitalize"}>
                                         Cart
                                     </Typography>

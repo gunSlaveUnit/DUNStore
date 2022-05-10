@@ -1,19 +1,14 @@
 import React, {useEffect} from "react";
 import * as API from "../apis/API";
-import {navigate} from 'hookrouter';
 import Loader from "./Loader";
 import {
-    Button,
     ButtonBase,
     Card,
-    CardActionArea,
     Container,
-    Grid, Stack,
+    Grid,
     styled,
     Typography
 } from "@mui/material";
-import {add} from "../apis/CartAPI";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import {useCookies} from "react-cookie";
 import AddItemCardConfirmModal from "./AddItemCardConfirmModal";
 
@@ -109,7 +104,9 @@ export default function Detail({what, slug}) {
                                         <Grid item>
                                             <Typography key={f} variant="h6"
                                                         style={{color: "#eceded"}}>
-                                                {f.charAt(0).toUpperCase() + f.slice(1).replace(/_/g, " ") + ": " + product[f]}
+                                                {f.charAt(0).toUpperCase()
+                                                    + f.slice(1).replace(/_/g, " ")
+                                                    + ": " + product[f]}
                                             </Typography>
                                         </Grid>
                                     )
