@@ -520,7 +520,7 @@ export default function Order() {
                         align={"left"}
                         mt={paymentMethodValue === 0 ? 3 : 40} style={{color: "#7a9cbc"}}
                         gutterBottom>
-                Total price: {price}
+                Total price: {price}&#8381;
             </Typography>
 
             <Button onClick={() => handleOrderConfirm()} variant={"contained"}
