@@ -10,6 +10,7 @@ import {
     Typography
 } from "@mui/material";
 import {useCookies} from "react-cookie";
+import {getFields} from "../apis/API";
 
 const CssTextField = styled(TextField)({
     '& label.Mui-focused': {
@@ -37,15 +38,41 @@ export default function Create({what, how, update}) {
     const [cookies, setCookie, removeCookie] = useCookies();
 
     useEffect(() => {
-        API.create(what, how, cookies["access"])
+        API.getFields(what, how, cookies["access"])
             .then(p => setProduct(p));
     }, [what, how])
 
+    const [data, setData] = React.useState({});
+    const [errors, setErrors] = React.useState({});
+
+
+    const handleChange = ({currentTarget: input}) => {
+        let newData = {...data};
+        newData[input.id] = input.value;
+        setData(newData);
+    };
+
+    const handleImageChange = ({currentTarget: input}) => {
+        let newData = {...data};
+        newData[input.id] = input.files[0];
+        setData(newData);
+    };
+
     function handleSubmit() {
-        let data = document.getElementsByTagName("input")
-        let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
-        API.create(what, body)
-            .then(_ => setIsOpen(false))
+        let form_data = new FormData();
+
+        Object.entries(data)
+            .forEach(([key, value]) => {
+                if (key === "image")
+                    form_data.append("image", data.image, data.image.name);
+                else
+                    form_data.append(key, value);
+            });
+
+        form_data.append("is_published", "true")
+
+        API.create(what, form_data, cookies["access"])
+            .then(r => setIsOpen(false))
             .then(update)
     }
 
@@ -83,8 +110,17 @@ export default function Create({what, how, update}) {
                         {Object.keys(product).map(f =>
                             <CssTextField key={f} id={f} type={f === "image" ? "file" : "text"}
                                           label={"Enter a " + f.replace(/_/g, " ")}
-                                          fullWidth required sx={{label: {color: '#ededed'},
-                                input: {color: '#ededed', marginLeft: f === "image" ? 15 : 0}}} margin={"dense"}/>
+                                          fullWidth required
+                                          onChange={(e) => {
+                                              if (f === "image")
+                                                  handleImageChange(e);
+                                              else
+                                                  handleChange(e);
+                                          }}
+                                          sx={{
+                                              label: {color: '#ededed'},
+                                              input: {color: '#ededed', marginLeft: f === "image" ? 15 : 0}
+                                          }} margin={"dense"}/>
                         )}
                     </DialogContent>
                     <DialogActions>

@@ -46,11 +46,37 @@ export default function Update({what, slug}) {
             .then(p => setProduct(p))
     }, [slug, what])
 
+    const [data, setData] = React.useState({});
+    const [errors, setErrors] = React.useState({});
+
+
+    const handleChange = ({currentTarget: input}) => {
+        let newData = {...data};
+        newData[input.id] = input.value;
+        setData(newData);
+    };
+
+    const handleImageChange = ({currentTarget: input}) => {
+        let newData = {...data};
+        newData[input.id] = input.files[0];
+        setData(newData);
+    };
+
     function handleSubmit() {
-        let data = document.getElementsByTagName("input")
-        let body = Object.fromEntries(Object.keys(product).map((f, i) => [f, data[i].value]));
-        API.update(what, slug, body, cookies["access"]).then(_ => {
-        })
+        let form_data = new FormData();
+
+        Object.entries(data)
+            .forEach(([key, value]) => {
+                if (key === "image")
+                    form_data.append("image", data.image, data.image.name);
+                else
+                    form_data.append(key, value);
+            });
+
+        form_data.append("is_published", "true")
+
+        API.update(what, slug, form_data, cookies["access"])
+            .then(r => setIsOpen(false))
     }
 
     return (
@@ -85,6 +111,12 @@ export default function Update({what, slug}) {
                     <DialogContent>
                         {Object.entries(product).map(([k, v]) =>
                             <CssTextField key={k} id={k} type={"text"} defaultValue={v} disabled={disabledEditingFields.includes(k)}
+                                          onChange={(e) => {
+                                              if (k === "image")
+                                                  handleImageChange(e);
+                                              else
+                                                  handleChange(e);
+                                          }}
                             label={k.charAt(0).toUpperCase() + k.slice(1).replace(/_/g, " ")}
                                           fullWidth required sx={{label: {color: '#ededed'}, input: {color: '#ededed'}}} margin={"dense"}/>
                         )}
