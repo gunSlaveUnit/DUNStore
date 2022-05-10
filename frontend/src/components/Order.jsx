@@ -85,7 +85,7 @@ export default function Order() {
             .then(_ => setLoading(false));
 
         OrderAPI.list("addresses", cookies["access"])
-            .then(r => setAddresses(r))
+            .then(r => setAddresses(Array.from(r)))
     }, [cookies])
 
     const price = useMemo(
