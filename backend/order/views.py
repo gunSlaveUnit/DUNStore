@@ -43,11 +43,23 @@ class DeliveryAddressViewSet(ModelViewSet):
     queryset = DeliveryAddress.objects.all()
     serializer_class = DeliveryAddressSerializer
 
+    def list(self, request, *args, **kwargs):
+        auth_header = request.headers.get("Authorization")
+        token = auth_header[auth_header.find(" "):]
+
+        if token is None:
+            return Response("Token not provided")
+
+        queryset = DeliveryAddress.objects.filter(is_store=True)
+        serializer = DeliveryAddressSerializer(queryset, many=True)
+
+        return Response(serializer.data)
+
     def get_permissions(self):
         """
             Instantiates and returns the list of permissions that this view requires.
             """
-        if self.action in ("create", "retrieve"):
+        if self.action in ("create", "retrieve", "list"):
             permission_classes = [IsAuthenticatedOrReadOnly]
         else:
             permission_classes = [IsAdminUser]
