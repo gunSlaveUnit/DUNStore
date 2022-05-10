@@ -108,19 +108,25 @@ export default function CartProduct(props) {
                                 </Typography>
                             </Button>
 
-                            <ButtonGroup style={{marginTop: 100}}>
+                            <ButtonGroup style={{marginTop: 140}}>
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40, marginTop: 0.6}} onClick={() => {
+                                    if (amount < 99) {
+                                        setAmount(amount + 1);
+                                        handleUpdate()
+                                    }
+                                }}>add_circle</Icon>
+
                                 <Icon sx={{backgroundColor: "#eceded", fontSize: 50, borderRadius: 15}}>
-                                    <Typography variant="h5" sx={{fontWeight: 'bold'}}>
+                                    <Typography variant="h5" sx={{fontWeight: 'bold'}} mt={1}>
                                         {amount}
                                     </Typography>
                                 </Icon>
-                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {
-                                    setAmount(amount + 1);
-                                    handleUpdate()
-                                }}>add_circle</Icon>
-                                <Icon sx={{color: "#7a9cbc", fontSize: 40}} onClick={() => {
-                                    setAmount(amount - 1);
-                                    handleUpdate()
+
+                                <Icon sx={{color: "#7a9cbc", fontSize: 40, marginTop: 0.6}} onClick={() => {
+                                    if (amount > 1) {
+                                        setAmount(amount - 1);
+                                        handleUpdate()
+                                    }
                                 }}>remove_circle</Icon>
                             </ButtonGroup>
                         </Stack>
