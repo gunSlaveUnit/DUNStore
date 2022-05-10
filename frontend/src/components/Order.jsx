@@ -69,7 +69,7 @@ export default function Order() {
     const [cookies, setCookie, removeCookie] = useCookies();
     const [products, setProducts] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
-    const [addresses, setAddresses] = React.useState(true);
+    const [addresses, setAddresses] = React.useState([]);
 
     useEffect(() => {
         CartAPI.list(cookies["access"])
