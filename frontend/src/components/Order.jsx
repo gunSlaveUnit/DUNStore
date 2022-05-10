@@ -69,6 +69,7 @@ export default function Order() {
     const [cookies, setCookie, removeCookie] = useCookies();
     const [products, setProducts] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
+    const [addresses, setAddresses] = React.useState(true);
 
     useEffect(() => {
         CartAPI.list(cookies["access"])
@@ -82,6 +83,9 @@ export default function Order() {
                     .then(results => setProducts(results))
             })
             .then(_ => setLoading(false));
+
+        OrderAPI.list("addresses", cookies["access"])
+            .then(r => setAddresses(r))
     }, [cookies])
 
     const price = useMemo(
@@ -161,7 +165,12 @@ export default function Order() {
         let isPaid = false
         if (paymentMethodValue === 1)
             isPaid = handlePaymentMethod()
-        let address = await handleDeliveryAddress()
+
+        let addressId = -1
+        if (obtainWayValue === 0)
+            addressId = pointIssue.id
+        else
+            addressId = await handleDeliveryAddress()
 
         let code = makeCode()
         for (const p of products) {
@@ -178,7 +187,7 @@ export default function Order() {
                 "cost": p.info.price * p["amount"],
                 "amount": p["amount"],
                 "is_paid": isPaid,
-                "address": address
+                "address": addressId
             }
 
             let altPhone = document.getElementById("alt_phone").value
@@ -278,7 +287,8 @@ export default function Order() {
                     <Box sx={{width: '50%'}} mt={3}>
                         <FormControl required sx={{m: 1, minWidth: "50%"}}>
                             <InputLabel id="demo-simple-select-required-label"
-                                        style={{color: "#ededed", borderColor: "#ededed"}}>Age</InputLabel>
+                                        style={{color: "#ededed", borderColor: "#ededed"}}>Select store
+                                address</InputLabel>
                             <Select style={{color: "#ededed", borderColor: "#ededed"}}
                                     sx={{label: {color: '#ededed'}, input: {color: '#ededed'}}}
                                     labelId="demo-simple-select-required-label"
@@ -286,9 +296,11 @@ export default function Order() {
                                     value={pointIssue}
                                     label="Point of issue *"
                                     onChange={handleChangepointIssue}>
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
+                                {addresses.map((a) =>
+                                    <MenuItem key={a.id}
+                                              value={a}>
+                                        {`г. ${a.city}, ${a.street}, д. ${a.house}`}
+                                    </MenuItem>)}
                             </Select>
                             <FormHelperText style={{color: "#ededed"}}>Required</FormHelperText>
                         </FormControl>
