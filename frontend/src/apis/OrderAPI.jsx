@@ -14,6 +14,19 @@ export async function create(what, how, token) {
     return await res.json()
 }
 
+export async function list(what, token) {
+    const requestOptions = {
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + token,
+            "Content-Type": "application/json"
+        },
+    };
+
+    const res = await fetch(URL_BASE + what + "/", requestOptions);
+    return await res.json()
+}
+
 export async function pay(cardPaymentInfo, token) {
     const requestOptions = {
         method: "POST",
