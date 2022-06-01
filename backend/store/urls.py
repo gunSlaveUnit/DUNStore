@@ -2,7 +2,8 @@ from django.urls import path, include
 from rest_framework import routers
 
 from store.views import CategoryViewSet, BuildViewSet, \
-    StorageDeviceViewSet, VideoCardViewSet, MotherboardViewSet, ProcessorViewSet, RAMViewSet, PowerUnitViewSet
+    StorageDeviceViewSet, VideoCardViewSet, MotherboardViewSet, \
+    ProcessorViewSet, RAMViewSet, PowerUnitViewSet
 
 router = routers.SimpleRouter()
 

@@ -10,6 +10,10 @@ export default function Delete({what, product}) {
     const [cookies, setCookie, removeCookie] = useCookies();
 
     function handleDelete() {
+        /**
+         * Deletes selected item
+         */
+
         API.del(what, product.slug, cookies["access"])
             .then(_ => setIsOpen(false))
             .then(_ => navigate(`/catalog/${what}/list`, true))

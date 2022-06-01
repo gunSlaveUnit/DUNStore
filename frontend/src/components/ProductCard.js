@@ -1,21 +1,14 @@
-import React, {useEffect} from 'react';
-import {A, navigate} from 'hookrouter';
-import {add} from "../apis/CartAPI";
+import React from 'react';
+import {navigate} from 'hookrouter';
 import {useCookies} from "react-cookie";
 import {
-    Button,
     ButtonBase,
     Link,
-    CardActionArea,
-    CardContent,
     Grid,
-    Paper,
     Stack,
     styled,
     Typography, Card
 } from "@mui/material";
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Delete from "./Delete";
 import Update from "./Update";
 import AddItemCardConfirmModal from "./AddItemCardConfirmModal";
@@ -31,6 +24,10 @@ export default function ProductCard(props) {
     const [cookies, setCookie, removeCookie] = useCookies(['token']);
 
     function handleProductCardTitleClicked() {
+        /**
+         * Navigate to detail product page
+         */
+
         navigate(`/catalog/${props.group}/detail/${props.card.slug}`)
     }
 

@@ -35,6 +35,8 @@ class OrderItemSerializer(ModelSerializer):
         fields = '__all__'
 
     def to_internal_value(self, data):
+        """ Used to validate the update request for your serializer """
+
         user_id = data.get('user')
         obtain_method_id = data.get('obtain_method')
         address_id = data.get('address')

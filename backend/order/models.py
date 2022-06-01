@@ -4,14 +4,21 @@ from users.models import User
 
 
 class ObtainWay(models.Model):
+    """ How the user can receive the goods,
+    for example, by himself or by delivery """
     title = models.CharField(max_length=50)
 
 
 class Status(models.Model):
+    """ Order status: accepted, processed, issued, etc. """
     title = models.CharField(max_length=50)
 
 
 class DeliveryAddress(models.Model):
+    """ The address of the store for the
+    issuance of goods or the address of the
+    customer for delivery """
+
     city = models.CharField(max_length=100)
     street = models.CharField(max_length=100)
     house = models.CharField(max_length=100)
@@ -23,6 +30,8 @@ class DeliveryAddress(models.Model):
 
 
 class OrderItem(models.Model):
+    """ An order line for a single item in an order. """
+
     code = models.CharField(max_length=10)
     user = models.ForeignKey(User, models.DO_NOTHING)
     receiver_name = models.CharField(max_length=100)

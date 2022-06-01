@@ -25,12 +25,16 @@ class Product(models.Model):
 
 
 class Category(models.Model):
+    """ Describes a group of products according to their
+    purpose for the computer: processors, motherboards, etc. """
+
     title = models.CharField(max_length=100, null=False)
     slug = models.SlugField(max_length=100, unique=True)
     image = models.ImageField(upload_to='categories/')
 
 
 class Processor(Product):
+    """ Represents the central processing unit """
     supply_type = models.CharField(max_length=10)
     socket = models.CharField(max_length=20)
     cores_amount = models.IntegerField()
@@ -39,7 +43,7 @@ class Processor(Product):
 
 
 class RAM(Product):
-    """ Represents one RAM module """
+    """ Represents one random access memory module """
 
     form_factor = models.CharField(max_length=10)
     generation = models.CharField(max_length=10)
@@ -50,10 +54,15 @@ class RAM(Product):
 
 
 class PowerUnit(Product):
+    """ Represents the power supply """
+
     power = models.IntegerField()
 
 
 class Motherboard(Product):
+    """ Represents the motherboard into
+    which all other components are connected """
+
     socket = models.CharField(max_length=20)
     ram_generation = models.CharField(max_length=10)
     ram_type = models.CharField(max_length=10)
@@ -61,6 +70,8 @@ class Motherboard(Product):
 
 
 class VideoCard(Product):
+    """ Represents a graphics device """
+
     gpu_frequency = models.IntegerField()
     video_memory_size = models.IntegerField()
     video_memory_generation = models.CharField(max_length=10)
@@ -68,6 +79,9 @@ class VideoCard(Product):
 
 
 class StorageDevice(Product):
+    """ Represents a storage device,
+    such as a hard drive or ssd """
+
     type = models.CharField(max_length=10)
     capacity = models.IntegerField()
     form_factor = models.CharField(max_length=10)
@@ -75,6 +89,7 @@ class StorageDevice(Product):
 
 
 class Build(Product):
+
     description = models.TextField()
     motherboard = models.ForeignKey(Motherboard, models.DO_NOTHING)
     processor = models.ForeignKey(Processor, models.DO_NOTHING)

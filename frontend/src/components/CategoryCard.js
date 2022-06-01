@@ -4,6 +4,10 @@ import {Box, CardActionArea, CardContent, CardMedia, Grid, Typography} from "@mu
 
 export default function CategoryCard({product}) {
     function handleCategoryOnClicked() {
+        /**
+         * Navigate to catalog with products of this category
+         */
+
         navigate(`/catalog/${product.slug}/list`)
     }
 
