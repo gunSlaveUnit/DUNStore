@@ -15,8 +15,6 @@
 
 ![Page 11](frontend/screenshots/screenshot_11.png)
 
-![Page 12](frontend/screenshots/screenshot_12.png)
-
 ![Page 13](frontend/screenshots/screenshot_13.png)
 
 ![Page 14](frontend/screenshots/screenshot_14.png)
